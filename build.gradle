@@ -8,11 +8,6 @@ subprojects {
         }
 
         doLast {
-            println "--- STOPPING DAEMON ----"
-            stopDaemon()
-            println "--- PROCESSING ONCE ----"
-            process(readme)
-            println "--- PROCESSING TWICE ---"
             readme.text = process(readme)
         }
     }
@@ -26,7 +21,6 @@ String process(File file) {
     def temp = tempFile(file)
     def writer = new PrintWriter(temp)
     def handlingCommand = false
-    def newTotalTimeReport = null
 
     file.eachLine { line ->
         if (handlingCommand && !isCommandOutput(line)) {
@@ -36,8 +30,8 @@ String process(File file) {
         if (!handlingCommand) {
             writer.println(line)
         }
-        if (handlingCommand && isTotalTimeReport(line) && newTotalTimeReport) {
-            writer.println(marginTolerantTotalTimeReport(line, newTotalTimeReport))
+        if (handlingCommand && isTotalTimeReport(line)) {
+            writer.println(line)
         }
         if (isCommand(line)) {
             handlingCommand = true
@@ -49,10 +43,10 @@ String process(File file) {
             new BufferedReader(new StringReader(output.toString())).with { reader ->
                 def outputLine
                 while ((outputLine = reader.readLine()) != null) {
-                    if (isTotalTimeReport(outputLine)) {
-                        newTotalTimeReport = outputLine
+                    if (isTotalTimeReport(outputLine) || isStartingNewDaemonReport(outputLine)) {
+                        continue
                     }
-                    else if (isEmptyLine(outputLine)) {
+                    if (isEmptyLine(outputLine)) {
                         writer.println('')
                     }
                     else {
@@ -90,22 +84,14 @@ boolean isTotalTimeReport(String line) {
     line =~ /Total time: /
 }
 
+boolean isStartingNewDaemonReport(String line) {
+    line =~ /Starting a new Gradle Daemon for this build/
+}
+
 Float extractTotalTime(String line) {
     Float.valueOf(line.replace('Total time: ', '').replace(' secs', ''))
 }
 
 boolean isEmptyLine(String line) {
     line =~ /^$/ || line =~ /^ +$/
-}
-
-String marginTolerantTotalTimeReport(String line, String newTotalTimeReport) {
-    float oldTotalTime = extractTotalTime(line)
-    float newTotalTime = extractTotalTime(newTotalTimeReport)
-    float margin = oldTotalTime * 0.50
-    float lowerMargin = oldTotalTime - margin
-    float upperMargin = oldTotalTime + margin
-    if (newTotalTime <= lowerMargin || newTotalTime >= upperMargin) {
-        return "    $newTotalTimeReport"
-    }
-    return "$line"
 }

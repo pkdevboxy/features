@@ -1,5 +1,6 @@
 # Gradle
 .gradle
+build
 
 # Vim
 *.sw[o-z]

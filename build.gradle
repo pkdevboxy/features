@@ -35,15 +35,21 @@ String process(File file) {
             handlingCommand = true
             def command = extractCommand(line)
             def process = command.execute()
-            process.in.eachLine { output ->
-                if (isTotalTimeReport(output)) {
-                    newTotalTimeReport = output
-                }
-                else if (isEmptyLine(output)) {
-                    writer.println('')
-                }
-                else {
-                    writer.println("    $output")
+            def output = new StringBuilder()
+            process.consumeProcessOutput(output, output)
+            process.waitFor()
+            new BufferedReader(new StringReader(output.toString())).with { reader ->
+                def outputLine
+                while ((outputLine = reader.readLine()) != null) {
+                    if (isTotalTimeReport(outputLine)) {
+                        newTotalTimeReport = outputLine
+                    }
+                    else if (isEmptyLine(outputLine)) {
+                        writer.println('')
+                    }
+                    else {
+                        writer.println("    $outputLine")
+                    }
                 }
             }
         }

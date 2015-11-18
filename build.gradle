@@ -101,7 +101,7 @@ boolean isEmptyLine(String line) {
 String marginTolerantTotalTimeReport(String line, String newTotalTimeReport) {
     float oldTotalTime = extractTotalTime(line)
     float newTotalTime = extractTotalTime(newTotalTimeReport)
-    float margin = oldTotalTime * 0.25
+    float margin = oldTotalTime * 0.50
     float lowerMargin = oldTotalTime - margin
     float upperMargin = oldTotalTime + margin
     if (newTotalTime <= lowerMargin || newTotalTime >= upperMargin) {

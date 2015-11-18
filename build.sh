@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-hub ci-status HEAD
+./gradlew readme
 
-./gradlew --version
+git status -sb
+
+git diff

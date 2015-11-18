@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/cbeams/features.svg?branch=master)](https://travis-ci.org/cbeams/features)
+[![Build Status](https://travis-ci.org/gradle/features.svg?branch=master)](https://travis-ci.org/gradle/features)

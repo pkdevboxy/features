@@ -2,4 +2,4 @@
 
 hub ci-status HEAD
 
-exit 0
+./gradlew --version

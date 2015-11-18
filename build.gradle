@@ -1,0 +1,97 @@
+
+subprojects {
+
+    task readme {
+        def readme = file('README.md')
+        if (!readme.exists()) {
+            throw new GradleException("$readme does not exist!")
+        }
+
+        doLast {
+            readme.text = process(readme)
+        }
+    }
+}
+
+
+String process(File file) {
+    def temp = tempFile(file)
+    def writer = new PrintWriter(temp)
+    def handlingCommand = false
+    def newTotalTimeReport = null
+
+    file.eachLine { line ->
+        if (handlingCommand && !isCommandOutput(line)) {
+            handlingCommand = false
+            writer.println('')
+        }
+        if (!handlingCommand) {
+            writer.println(line)
+        }
+        if (handlingCommand && isTotalTimeReport(line) && newTotalTimeReport) {
+            writer.println(marginTolerantTotalTimeReport(line, newTotalTimeReport))
+        }
+        if (isCommand(line)) {
+            handlingCommand = true
+            def command = extractCommand(line)
+            def process = command.execute()
+            process.in.eachLine { output ->
+                if (isTotalTimeReport(output)) {
+                    newTotalTimeReport = output
+                }
+                else if (isEmptyLine(output)) {
+                    writer.println('')
+                }
+                else {
+                    writer.println("    $output")
+                }
+            }
+        }
+    }
+
+    writer.close()
+    return temp.text
+}
+
+File tempFile(File file) {
+    File temp = File.createTempFile(file.name, '.tmp')
+    temp.deleteOnExit()
+    return temp
+}
+
+boolean isCommand(String line) {
+    line.startsWith('    $ ')
+}
+
+def extractCommand(String line) {
+    def command = line.replace('    $ ', '')
+    return ['bash', '-c', command]
+}
+
+boolean isCommandOutput(String line) {
+    line =~ /^$/ || line =~ /^    /
+}
+
+boolean isTotalTimeReport(String line) {
+    line =~ /Total time: /
+}
+
+Float extractTotalTime(String line) {
+    Float.valueOf(line.replace('Total time: ', '').replace(' secs', ''))
+}
+
+boolean isEmptyLine(String line) {
+    line =~ /^$/ || line =~ /^ +$/
+}
+
+String marginTolerantTotalTimeReport(String line, String newTotalTimeReport) {
+    float oldTotalTime = extractTotalTime(line)
+    float newTotalTime = extractTotalTime(newTotalTimeReport)
+    float margin = oldTotalTime * 0.25
+    float lowerMargin = oldTotalTime - margin
+    float upperMargin = oldTotalTime + margin
+    if (newTotalTime <= lowerMargin || newTotalTime >= upperMargin) {
+        return "    $newTotalTimeReport"
+    }
+    return "$line"
+}

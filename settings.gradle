@@ -6,5 +6,4 @@ rootProject.children.each { project ->
     def featureDir = project.name.replaceAll("\\p{Upper}") { "-${it.toLowerCase()}" }
     project.projectDir = new File(settingsDir, "$featureDir")
     assert project.projectDir.isDirectory()
-    assert project.buildFile.isFile()
 }

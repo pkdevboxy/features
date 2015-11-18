@@ -1,0 +1,34 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+model {
+    components {
+
+        myLib(JvmLibrarySpec) {
+            sources.java {
+                source.srcDir 'src/lib'
+            }
+            api {
+                exports 'org.cosmos'
+            }
+        }
+
+        myApp(JvmLibrarySpec) {
+            sources.java {
+                source.srcDir 'src/app'
+                dependencies {
+                    library 'myLib'
+                }
+            }
+        }
+    }
+}
+
+task run(type: Exec) {
+    commandLine 'java',
+        '-classpath',
+        'build/jars/myLibJar/myLib.jar:build/jars/myAppJar/myApp.jar',
+        'com.myco.app.Main'
+}

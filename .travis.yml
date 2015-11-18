@@ -19,4 +19,4 @@ cache:
     - /Library/Caches/Homebrew/
 
 script:
-  - ./build.sh
+  - ./gradlew --no-daemon readme

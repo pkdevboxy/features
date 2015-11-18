@@ -6,7 +6,7 @@ BOF
 
     BUILD SUCCESSFUL
 
-    Total time: 0.0 secs
+    Total time: 0.709 secs
 
 MOF
 
@@ -22,7 +22,7 @@ MOF
 
     BUILD FAILED
 
-    Total time: 0.0 secs
+    Total time: 0.693 secs
 
 MOF
 

@@ -1,3 +1,5 @@
+include 'template'
+
 rootProject.name = 'features'
 
 rootProject.children.each { project ->

@@ -34,7 +34,7 @@ String process(File file) {
         if (isCommand(line)) {
             handlingCommand = true
             def command = extractCommand(line)
-            def process = command.execute()
+            def process = command.execute(null, file.getParentFile())
             def output = new StringBuilder()
             process.consumeProcessOutput(output, output)
             process.waitFor()

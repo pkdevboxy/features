@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./gradlew readme
+./gradlew --no-daemon readme
 
 git status -sb
 

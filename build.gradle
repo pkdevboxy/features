@@ -8,11 +8,19 @@ subprojects {
         }
 
         doLast {
+            println "--- STOPPING DAEMON ----"
+            stopDaemon()
+            println "--- PROCESSING ONCE ----"
+            process(readme)
+            println "--- PROCESSING TWICE ---"
             readme.text = process(readme)
         }
     }
 }
 
+void stopDaemon() {
+    "$rootProject.rootDir/gradlew --stop".execute().waitFor()
+}
 
 String process(File file) {
     def temp = tempFile(file)

@@ -2,4 +2,4 @@
 
 echo test2
 
-hub
+hub ci-status HEAD^

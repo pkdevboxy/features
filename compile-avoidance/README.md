@@ -10,16 +10,8 @@ For a component with a large number of source files, the incremental build perfo
 
 ## Status
 
- - Backlog
- - In Design
- - In Implement
- - Incubating
- - Stable
-
 
 ## Terminology
-
-**Binary signature**: ...
 
 ## History
 
@@ -48,18 +40,19 @@ See: [`feature:compile-avoidance`](https://github.com/gradle/langos/labels/featu
 
  - Eliminate the need for intermediate `ApiJar` by compiling directly against API classes
 
+----
 
-## How to use Compile Avoidance
+## Usage
 
-The following steps use the code in this folder to demonstrate _the simplest possible usage of compile avoidance_.
+The following steps use the code in this directory to demonstrate _the simplest possible usage of compile avoidance_.
 
 ### 1. Generate a large number of application classes
+
+The performance benefits of compile avoidance are most dramatic in situations where there are a large number of classes that would otherwise take a considerable amount of time to compile.
 
     $ for i in $(seq 1 5000); do echo "package com.myco.gen; class C$i {}" > src/app/com/myco/gen/C$i.java; done
 
 ### 2. Clean, build and run
-
-> *Note: the build time below assumes the daemon is already warm*
 
     $ ../gradlew clean build run
     :compileAvoidance:clean
@@ -203,5 +196,3 @@ Because this modification **will** result in a change to the library's ABI, the 
 ### Step 6: clean up
 
     $ git checkout src && git clean -fxq src
-
-EOF

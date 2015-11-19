@@ -17,21 +17,24 @@
 
 ### Dependent features
 
+----
 
-## Executable spec
+## Usage
 
 ### Step 1. Run the 'components' report
 
 ### Step 2. Compile Android library classes for Java 6
 
-    $ ../../gradlew myAndroidJava6
+    # ../../gradlew myAndroidJava6
 
     BUILD SUCCESSFUL
 
 ### Step 3. Compile Android library classes for Java 8
 
-    $ ../../gradlew myAndroidJava8
+    # ../../gradlew myAndroidJava8
 
     BUILD SUCCESSFUL
 
 ### Step 4. Report class file versions to see the difference
+
+### Step 5. Clean up

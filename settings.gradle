@@ -1,4 +1,10 @@
 include 'template'
+
 include 'compile-avoidance'
+
+include 'android-compile-dependencies'
+include 'android-compile-dependencies:built-from-java-sources'
+include 'android-compile-dependencies:depends-on-android-library'
+include 'android-compile-dependencies:depends-on-jvm-library'
 
 rootProject.name = 'features'

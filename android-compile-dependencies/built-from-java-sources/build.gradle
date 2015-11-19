@@ -1,10 +1,16 @@
+interface HasClassesDirectory {
+}
+
+interface HasTargetPlatform<T> {
+}
+
 @Managed
 trait MyAndroidPlatform implements Platform {
     JavaPlatform javaPlatform
 }
 
 @Managed
-interface MyAndroidLibrarySpec {
+interface MyAndroidLibrarySpec extends ComponentSpec {
 }
 
 @Managed
@@ -62,7 +68,7 @@ plugins {
     id 'java-lang'
 }
 
-apply plugin: MyAndroidPlugin
+//apply plugin: MyAndroidPlugin
 
 model {
     components {

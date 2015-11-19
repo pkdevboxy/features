@@ -1,17 +1,17 @@
 # Android library sources depend on JVM API provided by Android library
 
 
-## Executable spec
+## Usage
 
 ### Step 1. Build and fail
 
-    $ ../../gradlew myAndroidJava8
+    # ../../gradlew myAndroidJava8
 
     BUILD FAILED
 
 ### Step 2. Add android library dependency
 
-    $ perl -p -i -e 's|//||' build.gradle
+    $ perl -p -i -e 's|//library|library|' build.gradle
 
 which results in the following change:
 
@@ -29,7 +29,7 @@ $ git diff
 
 ### Step 3. Build and succeed
 
-    $ ../../gradlew myAndroidJava8
+    # ../../gradlew myAndroidJava8
 
     BUILD SUCCESSFUL
 
@@ -37,12 +37,14 @@ $ git diff
 
 ### Step 5. Build another variant of the Android library
 
-    $ ../../gradlew myAndroidJava6
+    # ../../gradlew myAndroidJava6
 
     BUILD SUCCESSFUL
-
 
 ### Step 6. Observe the correct jvm library variant being used
 
     ????
 
+### Step 7. Clean up
+
+    $ git checkout build.gradle

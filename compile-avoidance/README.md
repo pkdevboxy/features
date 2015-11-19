@@ -55,19 +55,19 @@ The performance benefits of compile avoidance are most dramatic in situations wh
 ### 2. Clean, build and run
 
     $ ../gradlew clean build run
-    :compileAvoidance:clean
-    :compileAvoidance:compileMyLibJarMyLibJava
-    :compileAvoidance:createMyLibJar
-    :compileAvoidance:createMyLibApiJar
-    :compileAvoidance:myLibJar
-    :compileAvoidance:compileMyAppJarMyAppJava
-    :compileAvoidance:createMyAppJar
-    :compileAvoidance:createMyAppApiJar
-    :compileAvoidance:myAppJar
-    :compileAvoidance:assemble
-    :compileAvoidance:check UP-TO-DATE
-    :compileAvoidance:build
-    :compileAvoidance:run
+    :compile-avoidance:clean
+    :compile-avoidance:compileMyLibJarMyLibJava
+    :compile-avoidance:createMyLibJar
+    :compile-avoidance:createMyLibApiJar
+    :compile-avoidance:myLibJar
+    :compile-avoidance:compileMyAppJarMyAppJava
+    :compile-avoidance:createMyAppJar
+    :compile-avoidance:createMyAppApiJar
+    :compile-avoidance:myAppJar
+    :compile-avoidance:assemble
+    :compile-avoidance:check UP-TO-DATE
+    :compile-avoidance:build
+    :compile-avoidance:run
     Hello, World!
 
     BUILD SUCCESSFUL
@@ -82,18 +82,18 @@ Notice the long build time, most of which is spent in compiling thousands of app
 ### 3. Build incrementally and run
 
     $ ../gradlew build run
-    :compileAvoidance:compileMyLibJarMyLibJava UP-TO-DATE
-    :compileAvoidance:createMyLibJar UP-TO-DATE
-    :compileAvoidance:createMyLibApiJar UP-TO-DATE
-    :compileAvoidance:myLibJar UP-TO-DATE
-    :compileAvoidance:compileMyAppJarMyAppJava UP-TO-DATE
-    :compileAvoidance:createMyAppJar UP-TO-DATE
-    :compileAvoidance:createMyAppApiJar UP-TO-DATE
-    :compileAvoidance:myAppJar UP-TO-DATE
-    :compileAvoidance:assemble UP-TO-DATE
-    :compileAvoidance:check UP-TO-DATE
-    :compileAvoidance:build UP-TO-DATE
-    :compileAvoidance:run
+    :compile-avoidance:compileMyLibJarMyLibJava UP-TO-DATE
+    :compile-avoidance:createMyLibJar UP-TO-DATE
+    :compile-avoidance:createMyLibApiJar UP-TO-DATE
+    :compile-avoidance:myLibJar UP-TO-DATE
+    :compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
+    :compile-avoidance:createMyAppJar UP-TO-DATE
+    :compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :compile-avoidance:myAppJar UP-TO-DATE
+    :compile-avoidance:assemble UP-TO-DATE
+    :compile-avoidance:check UP-TO-DATE
+    :compile-avoidance:build UP-TO-DATE
+    :compile-avoidance:run
     Hello, World!
 
     BUILD SUCCESSFUL
@@ -128,18 +128,18 @@ $ git diff
 Because this modification **will not** result in a change to the library's ABI, the application **will not** need to recompile against it in the next incremental build:
 
     $ ../gradlew build run
-    :compileAvoidance:compileMyLibJarMyLibJava
-    :compileAvoidance:createMyLibJar
-    :compileAvoidance:createMyLibApiJar
-    :compileAvoidance:myLibJar
-    :compileAvoidance:compileMyAppJarMyAppJava UP-TO-DATE
-    :compileAvoidance:createMyAppJar UP-TO-DATE
-    :compileAvoidance:createMyAppApiJar UP-TO-DATE
-    :compileAvoidance:myAppJar UP-TO-DATE
-    :compileAvoidance:assemble
-    :compileAvoidance:check UP-TO-DATE
-    :compileAvoidance:build
-    :compileAvoidance:run
+    :compile-avoidance:compileMyLibJarMyLibJava
+    :compile-avoidance:createMyLibJar
+    :compile-avoidance:createMyLibApiJar
+    :compile-avoidance:myLibJar
+    :compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
+    :compile-avoidance:createMyAppJar UP-TO-DATE
+    :compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :compile-avoidance:myAppJar UP-TO-DATE
+    :compile-avoidance:assemble
+    :compile-avoidance:check UP-TO-DATE
+    :compile-avoidance:build
+    :compile-avoidance:run
     Hello, Earth!
 
     BUILD SUCCESSFUL
@@ -175,18 +175,18 @@ $ git diff
 Because this modification **will** result in a change to the library's ABI, the application **will** need to recompile against it in the next incremental build:
 
     $ ../gradlew build run
-    :compileAvoidance:compileMyLibJarMyLibJava
-    :compileAvoidance:createMyLibJar
-    :compileAvoidance:createMyLibApiJar
-    :compileAvoidance:myLibJar
-    :compileAvoidance:compileMyAppJarMyAppJava
-    :compileAvoidance:createMyAppJar UP-TO-DATE
-    :compileAvoidance:createMyAppApiJar UP-TO-DATE
-    :compileAvoidance:myAppJar UP-TO-DATE
-    :compileAvoidance:assemble
-    :compileAvoidance:check UP-TO-DATE
-    :compileAvoidance:build
-    :compileAvoidance:run
+    :compile-avoidance:compileMyLibJarMyLibJava
+    :compile-avoidance:createMyLibJar
+    :compile-avoidance:createMyLibApiJar
+    :compile-avoidance:myLibJar
+    :compile-avoidance:compileMyAppJarMyAppJava
+    :compile-avoidance:createMyAppJar UP-TO-DATE
+    :compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :compile-avoidance:myAppJar UP-TO-DATE
+    :compile-avoidance:assemble
+    :compile-avoidance:check UP-TO-DATE
+    :compile-avoidance:build
+    :compile-avoidance:run
     Hello, Earth!
 
     BUILD SUCCESSFUL

@@ -7,6 +7,7 @@ plugins {
 
 model {
     components {
+
         myAndroidLib(MyAndroidLibrarySpec)
     }
 }
@@ -34,6 +35,7 @@ interface MyAndroidVariantSpec extends BinarySpec, HasClassesDirectory, HasTarge
 }
 
 class MyAndroidPlugin extends RuleSource {
+
     // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
     @Model
     void createAndroidPlatforms(ModelMap<MyAndroidPlatform> platforms, ModelMap<JavaPlatform> javaPlatforms) {
@@ -60,14 +62,17 @@ class MyAndroidPlugin extends RuleSource {
         })
     }
 
-
     // TODO: This feature could use a rule that targets the sources for every component of a type
-//    @Defaults
-//    void defaultSourceSets(@Path("components", MyAndroidLibrarySpec, "sources") ModelMap<LanguageSourceSet> sources) {
-//        sources.create("java", JavaSourceSet)
-//    }
+    /*
+    @Defaults
+    void defaultSourceSets(@Path("components", MyAndroidLibrarySpec, "sources") ModelMap<LanguageSourceSet> sources) {
+        sources.create("java", JavaSourceSet)
+    }
+    */
+
     @ComponentBinaries
-    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs, MyAndroidLibrarySpec librarySpec, ModelMap<MyAndroidPlatform> platforms) {
+    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
+                                         MyAndroidLibrarySpec librarySpec, ModelMap<MyAndroidPlatform> platforms) {
         for (MyAndroidPlatform platform : platforms) {
             variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
                 targetPlatform = platform

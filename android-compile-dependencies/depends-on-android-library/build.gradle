@@ -5,6 +5,7 @@ plugins {
 
 model {
     components {
+
         myOtherAndroidLib(MyAndroidLibrarySpec)
 
         myAndroidLib(MyAndroidLibrarySpec) {

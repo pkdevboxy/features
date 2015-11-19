@@ -5,6 +5,7 @@ plugins {
 
 model {
     components {
+
         myJvmLib(JvmLibrarySpec)
 
         myAndroidLib(MyAndroidLibrarySpec) {

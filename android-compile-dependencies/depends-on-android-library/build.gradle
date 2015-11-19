@@ -1,7 +1,3 @@
-@Managed
-interface MyAndroidLibrarySpec extends ComponentSpec {
-}
-
 plugins {
     id 'jvm-component'
     id 'java-lang'
@@ -17,4 +13,11 @@ model {
             }
         }
     }
+}
+
+
+// ----
+
+@Managed
+interface MyAndroidLibrarySpec extends ComponentSpec {
 }

@@ -1,3 +1,19 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+//apply plugin: MyAndroidPlugin
+
+model {
+    components {
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}
+
+
+// ----
+
 interface HasClassesDirectory {
 }
 
@@ -60,18 +76,5 @@ class MyAndroidPlugin extends RuleSource {
                 }
             }
         }
-    }
-}
-
-plugins {
-    id 'jvm-component'
-    id 'java-lang'
-}
-
-//apply plugin: MyAndroidPlugin
-
-model {
-    components {
-        myAndroidLib(MyAndroidLibrarySpec)
     }
 }

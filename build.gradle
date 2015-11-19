@@ -1,7 +1,8 @@
+defaultTasks 'useFeature'
 
 subprojects {
 
-    task readme {
+    task useFeature {
         def readme = file('README.md')
         if (!readme.exists()) {
             throw new GradleException("$readme does not exist!")

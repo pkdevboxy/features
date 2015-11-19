@@ -1,0 +1,11 @@
+model {
+    components {
+        myOtherAndroidLib(MyAndroidLibrarySpec)
+
+        myAndroidLib(MyAndroidLibrarySpec) {
+            dependencies {
+                //library 'myOtherAndroidLib'
+            }
+        }
+    }
+}

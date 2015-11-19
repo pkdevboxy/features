@@ -1,0 +1,18 @@
+// One changed type from '../built-from-java-sources/build.gradle'
+@Managed
+interface MyAndroidLibrarySpec {
+    DependencySpecContainer getDependencies()
+}
+
+// Build script
+model {
+    components {
+        myJvmLib(JvmLibrarySpec)
+
+        myAndroidLib(MyAndroidLibrarySpec) {
+            dependencies {
+                //library 'myJvmLib'
+            }
+        }
+    }
+}

@@ -1,0 +1,71 @@
+@Managed
+trait MyAndroidPlatform implements Platform {
+    JavaPlatform javaPlatform
+}
+
+@Managed
+interface MyAndroidLibrarySpec {
+}
+
+@Managed
+interface MyAndroidVariantSpec extends BinarySpec, HasClassesDirectory, HasTargetPlatform<MyAndroidPlatform> {
+}
+
+class MyAndroidPlugin extends RuleSource {
+    // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
+    @Model
+    void createAndroidPlatforms(ModelMap<MyAndroidPlatform> platforms, ModelMap<JavaPlatform> javaPlatforms) {
+        platforms.create("androidOnJava6") {
+            javaPlatform = javaPlatforms.get("java6")
+        }
+        platforms.create("androidOnJava7") {
+            javaPlatform = javaPlatforms.get("java7")
+        }
+    }
+
+    @Mutate
+    void createDefaultSourceSetsForAndroidLibrary(ModelMap<MyAndroidLibrarySpec> components) {
+        components.beforeEach(new Action<MyAndroidLibrarySpec>() {
+            @Override
+            void execute(MyAndroidLibrarySpec componentSpec) {
+                componentSpec.sources(new Action<ModelMap<LanguageSourceSet>>() {
+                    @Override
+                    void execute(ModelMap<LanguageSourceSet> languageSourceSets) {
+                        languageSourceSets.create("java", JavaSourceSet)
+                    }
+                })
+            }
+        })
+    }
+
+
+    // TODO: This feature could use a rule that targets the sources for every component of a type
+//    @Defaults
+//    void defaultSourceSets(@Path("components", MyAndroidLibrarySpec, "sources") ModelMap<LanguageSourceSet> sources) {
+//        sources.create("java", JavaSourceSet)
+//    }
+    @ComponentBinaries
+    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs, MyAndroidLibrarySpec librarySpec, ModelMap<MyAndroidPlatform> platforms) {
+        for (MyAndroidPlatform platform : platforms) {
+            variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
+                targetPlatform = platform
+                classesDirectory {
+                    javaPlatform = platform.javaPlatform
+                }
+            }
+        }
+    }
+}
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+apply plugin: MyAndroidPlugin
+
+model {
+    components {
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}

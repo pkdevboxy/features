@@ -7,8 +7,8 @@ interface MyAndroidPlatform extends Platform {
 interface MyAndroidLibrarySpec extends ComponentSpec {
 }
 
-// It would be nice if Android software model developers
-// could define their own classes directory concept
+// It would be nice if Android software model developers could define their own classes directory concept
+// This would require managed subtypes of `BuildableModelElement`, I think
 @Managed
 interface MyClassesDirectory extends JvmClasses {
 }

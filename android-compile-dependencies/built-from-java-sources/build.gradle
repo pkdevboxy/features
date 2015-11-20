@@ -1,29 +1,6 @@
-plugins {
-    id 'jvm-component'
-    id 'java-lang'
-}
-
-//apply plugin: MyAndroidPlugin
-
-model {
-    components {
-
-        myAndroidLib(MyAndroidLibrarySpec)
-    }
-}
-
-
-// ----
-
-interface HasClassesDirectory {
-}
-
-interface HasTargetPlatform<T> {
-}
-
 @Managed
-trait MyAndroidPlatform implements Platform {
-    JavaPlatform javaPlatform
+interface MyAndroidPlatform extends Platform {
+    JavaPlatform getJavaPlatform()
 }
 
 @Managed
@@ -83,3 +60,26 @@ class MyAndroidPlugin extends RuleSource {
         }
     }
 }
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+//apply plugin: MyAndroidPlugin
+
+model {
+    components {
+
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}
+
+// ----
+
+interface HasClassesDirectory {
+}
+
+interface HasTargetPlatform<T> {
+}
+

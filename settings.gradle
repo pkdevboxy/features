@@ -2,7 +2,7 @@ include 'template'
 
 include 'jvm:compile-avoidance'
 
-include 'jvm-test-execution'
+include 'jvm:test-execution'
 
 include 'android:compile-dependencies:built-from-java-sources'
 include 'android:compile-dependencies:depends-on-android-library'

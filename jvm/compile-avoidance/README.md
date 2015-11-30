@@ -54,20 +54,20 @@ The performance benefits of compile avoidance are most dramatic in situations wh
 
 ### 2. Clean, build and run
 
-    $ ../gradlew clean build run
-    :compile-avoidance:clean
-    :compile-avoidance:compileMyLibJarMyLibJava
-    :compile-avoidance:createMyLibJar
-    :compile-avoidance:createMyLibApiJar
-    :compile-avoidance:myLibJar
-    :compile-avoidance:compileMyAppJarMyAppJava
-    :compile-avoidance:createMyAppJar
-    :compile-avoidance:createMyAppApiJar
-    :compile-avoidance:myAppJar
-    :compile-avoidance:assemble
-    :compile-avoidance:check UP-TO-DATE
-    :compile-avoidance:build
-    :compile-avoidance:run
+    $ ../../gradlew clean build run
+    :jvm:compile-avoidance:clean
+    :jvm:compile-avoidance:compileMyLibJarMyLibJava
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:createMyLibApiJar
+    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:compileMyAppJarMyAppJava
+    :jvm:compile-avoidance:createMyAppJar
+    :jvm:compile-avoidance:createMyAppApiJar
+    :jvm:compile-avoidance:myAppJar
+    :jvm:compile-avoidance:assemble
+    :jvm:compile-avoidance:check UP-TO-DATE
+    :jvm:compile-avoidance:build
+    :jvm:compile-avoidance:run
     Hello, World!
 
     BUILD SUCCESSFUL
@@ -81,19 +81,19 @@ Notice the long build time, most of which is spent in compiling thousands of app
 
 ### 3. Build incrementally and run
 
-    $ ../gradlew build run
-    :compile-avoidance:compileMyLibJarMyLibJava UP-TO-DATE
-    :compile-avoidance:createMyLibJar UP-TO-DATE
-    :compile-avoidance:createMyLibApiJar UP-TO-DATE
-    :compile-avoidance:myLibJar UP-TO-DATE
-    :compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
-    :compile-avoidance:createMyAppJar UP-TO-DATE
-    :compile-avoidance:createMyAppApiJar UP-TO-DATE
-    :compile-avoidance:myAppJar UP-TO-DATE
-    :compile-avoidance:assemble UP-TO-DATE
-    :compile-avoidance:check UP-TO-DATE
-    :compile-avoidance:build UP-TO-DATE
-    :compile-avoidance:run
+    $ ../../gradlew build run
+    :jvm:compile-avoidance:compileMyLibJarMyLibJava UP-TO-DATE
+    :jvm:compile-avoidance:createMyLibJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyLibApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myLibJar UP-TO-DATE
+    :jvm:compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
+    :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:assemble UP-TO-DATE
+    :jvm:compile-avoidance:check UP-TO-DATE
+    :jvm:compile-avoidance:build UP-TO-DATE
+    :jvm:compile-avoidance:run
     Hello, World!
 
     BUILD SUCCESSFUL
@@ -127,19 +127,19 @@ $ git diff
 
 Because this modification **will not** result in a change to the library's ABI, the application **will not** need to recompile against it in the next incremental build:
 
-    $ ../gradlew build run
-    :compile-avoidance:compileMyLibJarMyLibJava
-    :compile-avoidance:createMyLibJar
-    :compile-avoidance:createMyLibApiJar
-    :compile-avoidance:myLibJar
-    :compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
-    :compile-avoidance:createMyAppJar UP-TO-DATE
-    :compile-avoidance:createMyAppApiJar UP-TO-DATE
-    :compile-avoidance:myAppJar UP-TO-DATE
-    :compile-avoidance:assemble
-    :compile-avoidance:check UP-TO-DATE
-    :compile-avoidance:build
-    :compile-avoidance:run
+    $ ../../gradlew build run
+    :jvm:compile-avoidance:compileMyLibJarMyLibJava
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:createMyLibApiJar
+    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
+    :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:assemble
+    :jvm:compile-avoidance:check UP-TO-DATE
+    :jvm:compile-avoidance:build
+    :jvm:compile-avoidance:run
     Hello, Earth!
 
     BUILD SUCCESSFUL
@@ -174,19 +174,19 @@ $ git diff
 
 Because this modification **will** result in a change to the library's ABI, the application **will** need to recompile against it in the next incremental build:
 
-    $ ../gradlew build run
-    :compile-avoidance:compileMyLibJarMyLibJava
-    :compile-avoidance:createMyLibJar
-    :compile-avoidance:createMyLibApiJar
-    :compile-avoidance:myLibJar
-    :compile-avoidance:compileMyAppJarMyAppJava
-    :compile-avoidance:createMyAppJar UP-TO-DATE
-    :compile-avoidance:createMyAppApiJar UP-TO-DATE
-    :compile-avoidance:myAppJar UP-TO-DATE
-    :compile-avoidance:assemble
-    :compile-avoidance:check UP-TO-DATE
-    :compile-avoidance:build
-    :compile-avoidance:run
+    $ ../../gradlew build run
+    :jvm:compile-avoidance:compileMyLibJarMyLibJava
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:createMyLibApiJar
+    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:compileMyAppJarMyAppJava
+    :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:assemble
+    :jvm:compile-avoidance:check UP-TO-DATE
+    :jvm:compile-avoidance:build
+    :jvm:compile-avoidance:run
     Hello, Earth!
 
     BUILD SUCCESSFUL

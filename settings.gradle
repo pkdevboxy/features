@@ -1,6 +1,6 @@
 include 'template'
 
-include 'compile-avoidance'
+include 'jvm:compile-avoidance'
 
 include 'jvm-test-execution'
 

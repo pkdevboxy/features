@@ -1,0 +1,33 @@
+plugins {
+    id 'jvm-component'
+    //id 'junit-test-suite'
+    id 'java-lang'
+}
+
+model {
+    components {
+
+        mySuite(JvmLibrarySpec /*JUnitTestSuiteSpec*/) {
+            sources {
+                java {
+                    source.srcDirs 'src'
+                }
+            }
+
+            // target platform(s)?
+            //   java version --> whatever the build is being run w/
+
+            // version of junit?
+            //   explicit platform, e.g. `junit(4.12)`
+            //   or inferred from dependencies { }?
+
+            // other dependencies?
+
+            // where to resolve dependencies from
+
+            // includes / excludes
+            //   default convention
+            //   configurable?
+        }
+    }
+}

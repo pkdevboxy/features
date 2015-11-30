@@ -2,6 +2,8 @@ include 'template'
 
 include 'compile-avoidance'
 
+include 'jvm-test-execution'
+
 include 'android-compile-dependencies'
 include 'android-compile-dependencies:built-from-java-sources'
 include 'android-compile-dependencies:depends-on-android-library'

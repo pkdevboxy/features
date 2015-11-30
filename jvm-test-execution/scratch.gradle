@@ -1,0 +1,56 @@
+// from https://github.com/gradle/langos/blob/bb0b20f/1/build.gradle#L27-L40
+checks {
+    checkstyle(Checkstyle) { .... }
+    test(JvmTestSuiteSpec) {
+        requires spock(1.0)
+        requires java(7)
+        dependencies {
+            library "org.deepfried:langos-test:4.12"
+        }
+        sources {
+            java {
+                checks {
+                    checkstyle(Checkstyle)  { ... }
+                }
+                source.srcDirs = ['src/${componentUnderTest.name?}/test/${sourceSet.name}']
+            }
+        }
+    }
+}
+
+// from https://github.com/gradle/langos/blob/bb0b20f/2/build.gradle#L31-L48
+tests {
+    test(JvmTestSuiteSpec) {
+        requires spock(1.0)
+        requires java(7)
+        dependencies {
+            library "org.deepfried:langos-test:4.12"
+        }
+        sources {
+            java {
+                source.srcDirs = ['src/${componentUnderTest.name?}/test/${sourceSet.name}']
+            }
+        }
+    }
+}
+
+// from https://github.com/gradle/langos/blob/bb0b20f/4/build.gradle#L32-L38
+tests {
+    junit("unit") {
+    }
+    junit("functional") {
+    }
+}
+
+// from https://gradle.slack.com/archives/langos/p1446652548000056
+test(JvmTestSuiteSpec) {
+    testedComponent = myJvmLib
+        sources {
+            java {
+                dependencies {
+                    library 'hamcrest'
+                }
+            }
+        }
+    }
+}

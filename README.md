@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository is where features for the [Gradle build system](https://github.com/gradle/gradle) are proposed and refined through a combination of _feature specification_ documents and _working code_. For an early example of this approach, see the contents of the [compile-avoidance](compile-avoidance) directory, and in particular the [Usage](compile-avoidance#Usage) section of its README.
+This repository is where features for the [Gradle build system](https://github.com/gradle/gradle) are proposed and refined through a combination of _feature specification_ documents and _working code_. For an early example of this approach, see the contents of the [jvm/compile-avoidance](jvm/compile-avoidance) directory, and in particular the [Usage](compile-avoidance#Usage) section of its README.
 
 ## Related resources
 
@@ -15,7 +15,3 @@ This approach is similar in many ways to the [design docs](https://github.com/gr
 Upon successful experimentation with this new top-level repository, we'll determine a plan for properly migrating existing design docs so as to avoid any long term overlap between these two approaches.
 
 There are also similarities between the feature specs' "executable" _Usage_ sections and the way Gradle [user guide samples](https://docs.gradle.org/nightly/userguide/sample_list.html) work. One future possibility is a unification of feature specs and samples, but any decisions or plans to this effect will be deferred until after sustained successful experimentation with this repository.
-
-## See also
-
-For more information, see [how to write a feature spec](https://github.com/gradle/flow/wiki/How%20to%20write%20a%20feature%20spec) in the [Gradle Flow wiki](https://github.com/gradle/flow/wiki).

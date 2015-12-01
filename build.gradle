@@ -51,8 +51,8 @@ String process(File file) {
                     if (isEmptyLine(outputLine)) {
                         writer.println('')
                     }
-                    else if (containsFileLocation(outputLine)) {
-                        writer.println("    ${stripFileLocation(outputLine)}")
+                    else if (containsFeaturesHome(outputLine)) {
+                        writer.println("    ${stripFeaturesHome(outputLine)}")
                     }
                     else {
                         writer.println("    $outputLine")
@@ -89,10 +89,6 @@ boolean isTotalTimeReport(String line) {
     line =~ /Total time: /
 }
 
-boolean containsFileLocation(String line) {
-    line.contains("file:")
-}
-
 boolean isStartingNewDaemonReport(String line) {
     line =~ /Starting a new Gradle Daemon for this build/
 }
@@ -105,6 +101,10 @@ boolean isEmptyLine(String line) {
     line =~ /^$/ || line =~ /^ +$/
 }
 
-String stripFileLocation(String line) {
-    line.replaceFirst("file:.*", '\\$REPORT_FILE_LOCATION')
+boolean containsFeaturesHome(String line) {
+    line.contains("${rootProject.rootDir}")
+}
+
+String stripFeaturesHome(String line) {
+    line.replaceAll("${rootProject.rootDir}", '\\$FEATURES_HOME')
 }

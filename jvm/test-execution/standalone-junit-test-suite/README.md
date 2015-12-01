@@ -6,7 +6,7 @@ As a build user, I should be able to create a project that consists of nothing m
 
 ## Usage
 
-### Clean build with tests passing
+### Clean, build, run check and suceed
 
     # ../gradlew clean check
     :jvm:test-execution:clean UP-TO-DATE
@@ -16,9 +16,8 @@ As a build user, I should be able to create a project that consists of nothing m
 
     BUILD SUCCESSFUL
 
-    Total time: 0.0 secs
 
-### Incremental build with tests passing
+### Build incrementally, run check and succeed
 
     # ../gradlew check
     :jvm:test-execution:compileMySuiteJava: UP-TO-DATE
@@ -27,9 +26,8 @@ As a build user, I should be able to create a project that consists of nothing m
 
     BUILD SUCCESSFUL
 
-    Total time: 0.0 secs
 
-### Incremental build with tests failing
+### Build incrementally, run check and fail
 
     # change assertion in test from true to false
 
@@ -38,5 +36,3 @@ As a build user, I should be able to create a project that consists of nothing m
     :jvm:test-execution:mySuiteTest
 
     BUILD FAILED
-
-    Total time: 0.0 secs

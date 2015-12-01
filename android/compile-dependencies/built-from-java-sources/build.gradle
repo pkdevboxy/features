@@ -45,12 +45,7 @@ class MyAndroidPlugin extends RuleSource {
         components.beforeEach(new Action<MyAndroidLibrarySpec>() {
             @Override
             void execute(MyAndroidLibrarySpec componentSpec) {
-                componentSpec.sources(new Action<ModelMap<LanguageSourceSet>>() {
-                    @Override
-                    void execute(ModelMap<LanguageSourceSet> languageSourceSets) {
-                        languageSourceSets.create("java", JavaSourceSet)
-                    }
-                })
+                componentSpec.sources.create("java", JavaSourceSet)
             }
         })
     }

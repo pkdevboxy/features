@@ -15,7 +15,7 @@ interface MyAndroidLibrarySpec extends ComponentSpec {
 // It would be nice if Android software model developers could define their own classes directory concept
 // This would require managed subtypes of `BuildableModelElement`, I think
 @Managed
-interface MyClassesDirectory extends JvmClasses {
+interface MyClassesDirectory extends ClassesDirectory {
 }
 
 @Managed
@@ -60,13 +60,16 @@ class MyAndroidPlugin extends RuleSource {
 
     @ComponentBinaries
     void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
-                                         MyAndroidLibrarySpec librarySpec, ModelMap<MyAndroidPlatform> platforms) {
+                                         MyAndroidLibrarySpec librarySpec,
+                                         ModelMap<MyAndroidPlatform> platforms) {
         for (MyAndroidPlatform platform : platforms) {
             variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
+                ///*
                 targetPlatform = platform
                 classesDirectory {
                     javaPlatform = platform.javaPlatform
                 }
+                //*/
             }
         }
     }
@@ -81,16 +84,21 @@ plugins {
 
 model {
     components {
-
         myAndroidLib(MyAndroidLibrarySpec)
     }
 }
 
 // ----
 
-interface HasClassesDirectory<T> {
+interface HasClassesDirectory<T extends ClassesDirectory> {
+    T getClassesDirectory()
+    void setClassesDirectory(T classesDirectory)
 }
 
-interface HasTargetPlatform<T> {
+interface HasTargetPlatform<T extends Platform> {
+    T getTargetPlatform()
+    void setTargetPlatform(T targetPlatform)
 }
 
+interface ClassesDirectory {
+}

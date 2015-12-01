@@ -4,6 +4,7 @@ plugins {
     id 'java-lang'
 }
 
+// We're mimicking what should be done through the commented out plugin above
 apply plugin: JUnitTestSuitePlugin
 
 repositories {
@@ -27,50 +28,83 @@ model {
     }
 }
 
+// For this story, a *single* JUnit version is used
 @Managed
 interface JUnitTestSuiteSpec extends JvmLibrarySpec {
     void setJunitVersion(String version)
     String getJunitVersion()
 }
 
+// This plugin implements the actual wiring of a Test task
 class JUnitTestSuitePlugin extends RuleSource {
     @BinaryTasks
     void createTestSuiteTask(ModelMap<Task> tasks, JarBinarySpecInternal binary, @Path('tasks.check') Task checkTask, @Path('buildDir') File buildDir) {
         def namingScheme = binary.namingScheme
         def taskName = namingScheme.getTaskName('test')
         tasks.create(taskName, Test) {
-            // todo: wire in Test task type
+            // hard-coded dependency. Problem is: how do we get a handle on the compile task of a binary?
+            // The way that the Java plugin solves this problem is that it does the opposite: the compile task knows
+            // that it has a Jar and ApiJar, then declares the compile task as a dependency. However this doesn't look
+            // right at all, and here we want a *separate* plugin, so no way to do this properly!
             dependsOn 'compileMySuiteJarMySuiteJava'
             testClassesDir = binary.classesDir
+
+            // the "Java Base" plugin performs a lot of "convention based" configuration. If we don't introduce the following block
+            // a NPE is thrown, with absolutely no indication of where it comes from (sigh!)
             reports.with {
                 html.destination = namingScheme.getOutputDirectory(buildDir, 'reports')
                 junitXml.destination = namingScheme.getOutputDirectory(buildDir, 'reports')
             }
+            // will fail with an exception if this is not configured properly
             binResultsDir = namingScheme.getOutputDirectory(buildDir, 'reports')
         }
+
+        // Implementation: this should in theory not be allowed. The only thing that we should be allowed
+        // to mutate is the subject, so the "tasks" container. However this seems to be a reasonable
+        // hack if you look at what the `Java` class does:
+        // https://github.com/gradle/gradle/blob/02b52b64bfc569d7de12c7abb5e0637abd252ea1/subprojects/language-java/src/main/java/org/gradle/language/java/plugins/JavaLanguagePlugin.java#L132-L133
         checkTask.dependsOn(taskName)
 
     }
 
     @Defaults
     void configureTestComponents(ModelMap<JUnitTestSuiteSpec> testSuites) {
+        // for a specific test suite, we need to configure the compile task in order to add a dependency on JUnit.
+        // This cannot be done in `createTestSuiteTask` because we need a handle on the `JUnitTestSuiteSpec`, which
+        // contains the library version information. The binary does have a `component` member which is supposed
+        // to return the owner, but it is not accessible (because we're using a view, and not an actual internal
+        // implementation).
+        // so the workaround is to iterate on all test suites, then all binaries, and add a dependency
         testSuites.beforeEach { testSuite ->
             testSuite.binaries.all { binary ->
+                // we need to use +=, which replaces the dependency set, because dependencies is immutable,
+                // so `add` will fail
                 binary.dependencies += new DefaultModuleDependencySpec('junit', 'junit', testSuite.junitVersion)
             }
         }
+
+        // last but not least: in the future, we're going to provide *multiple* junitVersion, so each specific
+        // binary will be configured with a specific junitVersion. This means that we will have a `JUnitBinarySpec`
+        // instead of a `JarBinarySpec`, and therefore the hack above will not be necessary anymore. But it raises
+        // the problem of how to tell gradle that the binary for a `JUnitTestSuiteSpec` has to be a `JUnitBinarySpec`
+        // and not a `JarBinarySpec`. How to do that?
     }
 
     @Mutate
     void configureClasspath(ModelMap<Task> tasks) {
         tasks.withType(Test).all {
             // this is terrible!
+            // We cannot configure this from the `createTestSuiteTask` because at the moment the `Test` task is created
+            // the compile task has *not* been created. So again, this raises the problem of determining the compile task
+            // of a binary.
             classpath = tasks.withType(org.gradle.language.java.tasks.PlatformJavaCompile)[0].classpath + [testClassesDir]
-
+            // the assignment above is also problematic. Gradle wants a FileCollection, and we have no such
+            // thing as project.files(...) so the `FileOperations` instance should be exposed in the model so that
+            // we can use it as an input.
         }
     }
 }
 
+// Those imports should ideally not be needed. It means that we need internal APIs to implement the test feature
 import org.gradle.jvm.internal.JarBinarySpecInternal
 import org.gradle.platform.base.internal.DefaultModuleDependencySpec
-import org.gradle.api.internal.file.AbstractFileCollection

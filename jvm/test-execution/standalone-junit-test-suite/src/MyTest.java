@@ -1,10 +1,11 @@
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
 public class MyTest {
 
-    //@Test
+    @Test
     public void test() {
-        //Assert.assertThat(true, is(true));
-        if ((2 + 2) != 4) {
-            throw new RuntimeException("Assert failed");
-        }
+        assertEquals(true, true);
     }
 }

@@ -34,15 +34,43 @@ interface JUnitTestSuiteSpec extends JvmLibrarySpec {
 }
 
 class JUnitTestSuitePlugin extends RuleSource {
-    @Mutate
-    void createTestSuiteTask(ModelMap<Task> tasks) {
-        tasks.create('mySuiteTest') {
+    @BinaryTasks
+    void createTestSuiteTask(ModelMap<Task> tasks, JarBinarySpecInternal binary, @Path('tasks.check') Task checkTask, @Path('buildDir') File buildDir) {
+        def namingScheme = binary.namingScheme
+        def taskName = namingScheme.getTaskName('test')
+        tasks.create(taskName, Test) {
             // todo: wire in Test task type
             dependsOn 'compileMySuiteJarMySuiteJava'
+            testClassesDir = binary.classesDir
+            reports.with {
+                html.destination = namingScheme.getOutputDirectory(buildDir, 'reports')
+                junitXml.destination = namingScheme.getOutputDirectory(buildDir, 'reports')
+            }
+            binResultsDir = namingScheme.getOutputDirectory(buildDir, 'reports')
         }
-        tasks.get('check').dependsOn('mySuiteTest')
+        checkTask.dependsOn(taskName)
+
     }
 
-    // todo: add Junit to compile classpath
+    @Defaults
+    void configureTestComponents(ModelMap<JUnitTestSuiteSpec> testSuites) {
+        testSuites.beforeEach { testSuite ->
+            testSuite.binaries.all { binary ->
+                binary.dependencies += new DefaultModuleDependencySpec('junit', 'junit', testSuite.junitVersion)
+            }
+        }
+    }
+
+    @Mutate
+    void configureClasspath(ModelMap<Task> tasks) {
+        tasks.withType(Test).all {
+            // this is terrible!
+            classpath = tasks.withType(org.gradle.language.java.tasks.PlatformJavaCompile)[0].classpath + [testClassesDir]
+
+        }
+    }
 }
 
+import org.gradle.jvm.internal.JarBinarySpecInternal
+import org.gradle.platform.base.internal.DefaultModuleDependencySpec
+import org.gradle.api.internal.file.AbstractFileCollection

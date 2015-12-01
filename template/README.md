@@ -18,7 +18,7 @@ MOF
     Task 'bogus' not found in project ':template'.
 
     * Try:
-    Run gradle tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+    Run gradlew tasks to get a list of available tasks. Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
 
     BUILD FAILED
 

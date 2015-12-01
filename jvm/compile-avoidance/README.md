@@ -57,13 +57,13 @@ The performance benefits of compile avoidance are most dramatic in situations wh
     $ ../../gradlew clean build run
     :jvm:compile-avoidance:clean
     :jvm:compile-avoidance:compileMyLibJarMyLibJava
-    :jvm:compile-avoidance:createMyLibJar
-    :jvm:compile-avoidance:createMyLibApiJar
-    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:myLibApiJar
     :jvm:compile-avoidance:compileMyAppJarMyAppJava
     :jvm:compile-avoidance:createMyAppJar
-    :jvm:compile-avoidance:createMyAppApiJar
+    :jvm:compile-avoidance:myAppApiJar
     :jvm:compile-avoidance:myAppJar
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:myLibJar
     :jvm:compile-avoidance:assemble
     :jvm:compile-avoidance:check UP-TO-DATE
     :jvm:compile-avoidance:build
@@ -72,7 +72,7 @@ The performance benefits of compile avoidance are most dramatic in situations wh
 
     BUILD SUCCESSFUL
 
-    Total time: 12.313 secs
+    Total time: 10.0 secs
 
 Notice the long build time, most of which is spent in compiling thousands of application classes, i.e. this task:
 
@@ -83,13 +83,13 @@ Notice the long build time, most of which is spent in compiling thousands of app
 
     $ ../../gradlew build run
     :jvm:compile-avoidance:compileMyLibJarMyLibJava UP-TO-DATE
-    :jvm:compile-avoidance:createMyLibJar UP-TO-DATE
-    :jvm:compile-avoidance:createMyLibApiJar UP-TO-DATE
-    :jvm:compile-avoidance:myLibJar UP-TO-DATE
+    :jvm:compile-avoidance:myLibApiJar UP-TO-DATE
     :jvm:compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
     :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
-    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppApiJar UP-TO-DATE
     :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyLibJar UP-TO-DATE
+    :jvm:compile-avoidance:myLibJar UP-TO-DATE
     :jvm:compile-avoidance:assemble UP-TO-DATE
     :jvm:compile-avoidance:check UP-TO-DATE
     :jvm:compile-avoidance:build UP-TO-DATE
@@ -129,13 +129,13 @@ Because this modification **will not** result in a change to the library's ABI, 
 
     $ ../../gradlew build run
     :jvm:compile-avoidance:compileMyLibJarMyLibJava
-    :jvm:compile-avoidance:createMyLibJar
-    :jvm:compile-avoidance:createMyLibApiJar
-    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:myLibApiJar
     :jvm:compile-avoidance:compileMyAppJarMyAppJava UP-TO-DATE
     :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
-    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppApiJar UP-TO-DATE
     :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:myLibJar
     :jvm:compile-avoidance:assemble
     :jvm:compile-avoidance:check UP-TO-DATE
     :jvm:compile-avoidance:build
@@ -176,13 +176,13 @@ Because this modification **will** result in a change to the library's ABI, the 
 
     $ ../../gradlew build run
     :jvm:compile-avoidance:compileMyLibJarMyLibJava
-    :jvm:compile-avoidance:createMyLibJar
-    :jvm:compile-avoidance:createMyLibApiJar
-    :jvm:compile-avoidance:myLibJar
+    :jvm:compile-avoidance:myLibApiJar
     :jvm:compile-avoidance:compileMyAppJarMyAppJava
     :jvm:compile-avoidance:createMyAppJar UP-TO-DATE
-    :jvm:compile-avoidance:createMyAppApiJar UP-TO-DATE
+    :jvm:compile-avoidance:myAppApiJar UP-TO-DATE
     :jvm:compile-avoidance:myAppJar UP-TO-DATE
+    :jvm:compile-avoidance:createMyLibJar
+    :jvm:compile-avoidance:myLibJar
     :jvm:compile-avoidance:assemble
     :jvm:compile-avoidance:check UP-TO-DATE
     :jvm:compile-avoidance:build

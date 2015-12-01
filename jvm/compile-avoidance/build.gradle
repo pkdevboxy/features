@@ -29,6 +29,6 @@ model {
 task run(type: Exec) {
     commandLine 'java',
         '-classpath',
-        'build/jars/myLibJar/myLib.jar:build/jars/myAppJar/myApp.jar',
+        'build/jars/myLib/jar/myLib.jar:build/jars/myApp/jar/myApp.jar',
         'com.myco.app.Main'
 }

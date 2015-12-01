@@ -1,6 +1,6 @@
 # Android library compilation dependencies
 
-This will enable the developers of the Android Software Model (Google Android team) to fully utilize the existing functionality in the core JVM and dependency management infrastructure. The goal is to allow an Android library to be built from Java sources, which have compile-time dependencies on both Jvm libraries and other Android libraries.
+This will enable the developers of the Android Software Model (Google Android team) to fully utilize the existing functionality in the core JVM and dependency management infrastructure. The goal is to allow an Android library to be built from Java sources, which have compile-time dependencies on both JVM libraries and other Android libraries.
 
 ## User roles
 

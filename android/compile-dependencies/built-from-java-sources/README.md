@@ -25,8 +25,8 @@ AndroidVariantSpec {
 ```
 
 - Play application has a `ClassesDirectory` and 'scala-lang' plugin configures the scala compilation
-    - Replace what's current `JvmClasses` in the play plugin by the Jvm equivalent `ClassDirectory`
-    - Modify `scala-lang` plugin to be aware of `ClassDirectory`
+    - Replace what's currently `JvmClasses` in the play plugin by the JVM equivalent `ClassDirectory`
+    - Modify `scala-lang` plugin to be aware of `ClassesDirectory`
     - Need the ability to joint compile multiple scala and java source sets
 - Android library can define a `ClassesDirectory` and 'java-lang' plugin configures the java compilation
     - Fail build when 'java-lang' plugin is applied, and component has a `JavaSourceSet` but no `ClassesDirectory`

@@ -51,6 +51,9 @@ String process(File file) {
                     if (isEmptyLine(outputLine)) {
                         writer.println('')
                     }
+                    else if (containsFileLocation(outputLine)) {
+                        writer.println("    ${stripFileLocation(outputLine)}")
+                    }
                     else {
                         writer.println("    $outputLine")
                     }
@@ -86,6 +89,10 @@ boolean isTotalTimeReport(String line) {
     line =~ /Total time: /
 }
 
+boolean containsFileLocation(String line) {
+    line.contains("file:")
+}
+
 boolean isStartingNewDaemonReport(String line) {
     line =~ /Starting a new Gradle Daemon for this build/
 }
@@ -96,4 +103,8 @@ Float extractTotalTime(String line) {
 
 boolean isEmptyLine(String line) {
     line =~ /^$/ || line =~ /^ +$/
+}
+
+String stripFileLocation(String line) {
+    line.replaceFirst("file:.*", '\\$REPORT_FILE_LOCATION')
 }

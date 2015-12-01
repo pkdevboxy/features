@@ -1,6 +1,6 @@
 BOF
 
-    $ gradle hello
+    $ ../gradlew hello
     :template:hello
     Hello, World!
 
@@ -10,7 +10,7 @@ BOF
 
 MOF
 
-    $ gradle bogus
+    $ ../gradlew bogus
 
     FAILURE: Build failed with an exception.
 

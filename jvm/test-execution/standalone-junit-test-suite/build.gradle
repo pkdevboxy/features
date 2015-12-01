@@ -1,0 +1,48 @@
+plugins {
+    id 'jvm-component'
+    //id 'junit-test-suite'
+    id 'java-lang'
+}
+
+apply plugin: JUnitTestSuitePlugin
+
+repositories {
+    jcenter()
+}
+
+model {
+    components {
+
+        mySuite(JUnitTestSuiteSpec) {
+            sources {
+                java {
+                    source.srcDirs 'src'
+                }
+            }
+
+            // defines the version of JUnit that we want to compile against and execute
+            junitVersion '4.12'
+
+        }
+    }
+}
+
+@Managed
+interface JUnitTestSuiteSpec extends JvmLibrarySpec {
+    void setJunitVersion(String version)
+    String getJunitVersion()
+}
+
+class JUnitTestSuitePlugin extends RuleSource {
+    @Mutate
+    void createTestSuiteTask(ModelMap<Task> tasks) {
+        tasks.create('mySuiteTest') {
+            // todo: wire in Test task type
+            dependsOn 'compileMySuiteJarMySuiteJava'
+        }
+        tasks.get('check').dependsOn('mySuiteTest')
+    }
+
+    // todo: add Junit to compile classpath
+}
+

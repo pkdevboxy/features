@@ -7,6 +7,9 @@
 
 ./gradlew useFeature
 
-git status -sb
-
-git diff
+let changed_files=$(git status -s | wc -l | sed "s/ //g")
+if [[ $changed_files > 0 ]]; then
+    git status -s
+    git diff
+    exit 255
+fi

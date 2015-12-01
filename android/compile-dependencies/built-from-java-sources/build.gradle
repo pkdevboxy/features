@@ -1,6 +1,11 @@
+import org.gradle.platform.base.internal.PlatformResolvers
+import org.gradle.platform.base.internal.DefaultPlatformRequirement
+
 @Managed
 interface MyAndroidPlatform extends Platform {
+    @Unmanaged
     JavaPlatform getJavaPlatform()
+    void setJavaPlatform(JavaPlatform javaPlatform)
 }
 
 @Managed
@@ -23,12 +28,15 @@ class MyAndroidPlugin extends RuleSource {
 
     // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
     @Model
-    void createAndroidPlatforms(ModelMap<MyAndroidPlatform> platforms, ModelMap<JavaPlatform> javaPlatforms) {
+    void androidPlatforms(ModelMap<MyAndroidPlatform> platforms, PlatformResolvers platformResolvers) {
+        def javaPlatformFor = { name ->
+            platformResolvers.resolve(JavaPlatform, DefaultPlatformRequirement.create(name))
+        }
         platforms.create("androidOnJava6") {
-            javaPlatform = javaPlatforms.get("java6")
+            javaPlatform = javaPlatformFor("java6")
         }
         platforms.create("androidOnJava7") {
-            javaPlatform = javaPlatforms.get("java7")
+            javaPlatform = javaPlatformFor("java7")
         }
     }
 

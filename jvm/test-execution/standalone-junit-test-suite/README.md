@@ -8,31 +8,77 @@ As a build user, I should be able to create a project that consists of nothing m
 
 ### Clean, build, run check and suceed
 
-    # ../gradlew clean check
-    :jvm:test-execution:clean UP-TO-DATE
-    :jvm:test-execution:compileMySuiteJava
-    :jvm:test-execution:mySuiteTest
-    :jvm:test-execution:check
+    $ ../../../gradlew clean check
+    Build file '/Users/cbeams/Work/gradle/features/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
+    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
+    :jvm:test-execution:standalone-junit-test-suite:clean
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava
+    :jvm:test-execution:standalone-junit-test-suite:testMySuiteJar
+    :jvm:test-execution:standalone-junit-test-suite:check
 
     BUILD SUCCESSFUL
 
 
 ### Build incrementally, run check and succeed
 
-    # ../gradlew check
-    :jvm:test-execution:compileMySuiteJava: UP-TO-DATE
-    :jvm:test-execution:mySuiteTest: UP-TO-DATE
-    :jvm:test-execution:check UP-TO-DATE
+    $ ../../../gradlew check
+    Build file '/Users/cbeams/Work/gradle/features/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
+    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava UP-TO-DATE
+    :jvm:test-execution:standalone-junit-test-suite:testMySuiteJar UP-TO-DATE
+    :jvm:test-execution:standalone-junit-test-suite:check UP-TO-DATE
 
     BUILD SUCCESSFUL
 
 
+### Modify test so that it will fail
+
+    $ perl -p -i -e 's/true/false/' src/MyTest.java
+
+and notice it results in the following diff:
+
+```diff
+$ git diff
+diff --git jvm/test-execution/standalone-junit-test-suite/src/MyTest.java jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+index 6528c6a..91f3528 100644
+--- jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
++++ jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+@@ -6,6 +6,6 @@ public class MyTest {
+
+     @Test
+     public void test() {
+-        assertEquals(true, true);
++        assertEquals(false, true);
+     }
+ }
+```
+
 ### Build incrementally, run check and fail
 
-    # change assertion in test from true to false
+    $ ../../../gradlew check
+    Build file '/Users/cbeams/Work/gradle/features/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
+    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava
+    :jvm:test-execution:standalone-junit-test-suite:testMySuiteJar
 
-    # ../gradlew check
-    :jvm:test-execution:compileMySuiteJava
-    :jvm:test-execution:mySuiteTest
+    MyTest > test FAILED
+        java.lang.AssertionError at MyTest.java:9
+
+    1 test completed, 1 failed
+    :jvm:test-execution:standalone-junit-test-suite:testMySuiteJar FAILED
+
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Execution failed for task ':jvm:test-execution:standalone-junit-test-suite:testMySuiteJar'.
+    > There were failing tests. See the report at: $REPORT_FILE_LOCATION
+
+    * Try:
+    Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
 
     BUILD FAILED
+
+
+### Clean up
+
+    $ git checkout src

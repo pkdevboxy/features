@@ -2,4 +2,4 @@ language:
   - java
 
 script:
-  - ./gradlew useFeature && git diff
+  - ./use-features.sh

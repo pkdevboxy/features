@@ -14,16 +14,14 @@ model {
                 }
             }
 
-            // target platform(s)?
-            //   java version --> whatever the build is being run w/
+            // can define multiple target versions of JUnit
+            // junitVersion '4.11'
+            // junitVersion '4.12'
 
-            // version of junit?
-            //   explicit platform, e.g. `junit(4.12)`
-            //   or inferred from dependencies { }?
-
-            // other dependencies?
-
-            // where to resolve dependencies from
+            // runtime platform(s)?
+            //  runtimePlatform 'java8'
+            // vs targetPlaftorm (inherited from JvmLibrarySpec)
+            // targetPlatform 'java7'
 
             // includes / excludes
             //   default convention

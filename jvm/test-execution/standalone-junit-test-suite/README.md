@@ -82,3 +82,18 @@ index 6528c6a..91f3528 100644
 ### Clean up
 
     $ git checkout src
+
+## Test cases
+
+- Should fail if no junitVersion is specified
+- Should fail if no version of JUnit is specified, even if junit is found in the dependencies
+- Test suite containing a true assertion should pass : makes sure compilation passes, but doesn't make sure that tests are actually executed
+- Test suite containing a false assertion should fail, and build fails as a consequence : makes sure that tests are really executed
+- Build log should include the link to the report : makes sure that we reuse the `Test` task and configure it with reasonable defaults
+- test execution doesn't depend on the test component Jar : make sure that we build the minimal thing. We don't need the jar of the test component, only its classes
+- test can use resources: makes sure that test resources are found on classpath
+- Test component can depend on a local library : makes sure that a test suite is also a regular JVM library
+- Test component can depend on an external library
+- Test cannot use (aka test) a non-API class of a dependency : makes sure that we make the difference between a dependency and a component under test. A dependency is used only to build and execute tests, but has nothing to do with a component under test, for which we will want to test non-API classes too.
+
+

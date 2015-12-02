@@ -35,10 +35,22 @@ interface JUnitTestSuiteSpec extends JvmLibrarySpec {
     String getJunitVersion()
 }
 
+@Managed
+interface JUnitBinarySpec extends JarBinarySpecInternal {
+    @Variant
+    String getJUnitVersion()
+    void setJUnitVersion(String version)
+}
+
 // This plugin implements the actual wiring of a Test task
 class JUnitTestSuitePlugin extends RuleSource {
+    @BinaryType
+    void register(BinaryTypeBuilder<JarBinarySpec> builder) {
+        builder.internalView(JUnitBinarySpec)
+    }
+
     @BinaryTasks
-    void createTestSuiteTask(ModelMap<Task> tasks, JarBinarySpecInternal binary, @Path('tasks.check') Task checkTask, @Path('buildDir') File buildDir) {
+    void createTestSuiteTask(ModelMap<Task> tasks, JUnitBinarySpec binary, @Path('tasks.check') Task checkTask, @Path('buildDir') File buildDir) {
         def namingScheme = binary.namingScheme
         def taskName = namingScheme.getTaskName('test')
         tasks.create(taskName, Test) {

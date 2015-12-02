@@ -1,0 +1,68 @@
+//
+// The simplest possible way of integrating a new platform that provides
+// its own componet and variant model with the Java compilation
+// infrastructure provided by Gradle.
+//
+
+@Managed
+interface MyAndroidPlatform extends Platform, HasJavaPlatform {
+}
+
+@Managed
+interface MyAndroidLibrarySpec extends ComponentSpec {
+}
+
+@Managed
+interface MyAndroidVariantSpec extends BinarySpec, HasJvmAssembly {
+}
+
+class MyAndroidPlugin extends RuleSource {
+
+    @Model
+    void androidPlatforms(ModelMap<MyAndroidPlatform> platforms, ModelMap<JavaPlatform> javaPlatforms) {
+        platforms.create("androidOnJava6") {
+            javaPlatform = javaPlatforms.get("java6")
+        }
+        platforms.create("androidOnJava7") {
+            javaPlatform = javaPlatforms.get("java7")
+        }
+    }
+
+    @Mutate
+    void createDefaultSourceSetsForAndroidLibrary(ModelMap<MyAndroidLibrarySpec> components) {
+        components.beforeEach(new Action<MyAndroidLibrarySpec>() {
+            @Override
+            void execute(MyAndroidLibrarySpec componentSpec) {
+                componentSpec.sources.create("java", JavaSourceSet)
+                componentSpec.sources.create("resources", JvmResourceSet)
+            }
+        })
+    }
+
+    @ComponentBinaries
+    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
+                                         MyAndroidLibrarySpec librarySpec,
+                                         ModelMap<MyAndroidPlatform> platforms,
+                                         @Path("buildDir") File buildDir) {
+        for (MyAndroidPlatform platform : platforms) {
+            variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
+                jvmAssembly.targetPlatform = platform
+                jvmAssembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
+                jvmAssembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
+            }
+        }
+    }
+}
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+apply plugin: MyAndroidPlugin
+
+model {
+    components {
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}

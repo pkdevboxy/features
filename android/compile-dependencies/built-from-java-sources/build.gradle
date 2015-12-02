@@ -1,31 +1,16 @@
-import org.gradle.platform.base.internal.PlatformResolvers
-import org.gradle.platform.base.internal.DefaultPlatformRequirement
-
 @Managed
-interface MyAndroidPlatform extends Platform {
-    @Unmanaged
-    JavaPlatform getJavaPlatform()
-    void setJavaPlatform(JavaPlatform javaPlatform)
+interface MyAndroidPlatform extends Platform, HasJavaPlatform {
 }
 
 @Managed
 interface MyAndroidLibrarySpec extends ComponentSpec {
 }
 
-// It would be nice if Android software model developers could define their own classes directory concept
-// This would require managed subtypes of `BuildableModelElement`, I think
 @Managed
-interface MyClassesDirectory extends ClassesDirectory {
-}
-
-@Managed
-interface MyAndroidVariantSpec extends BinarySpec,
-                                       HasClassesDirectory<MyClassesDirectory>,
-                                       HasTargetPlatform<MyAndroidPlatform> {
+interface MyAndroidVariantSpec extends BinarySpec, HasJvmAssembly {
 }
 
 class MyAndroidPlugin extends RuleSource {
-
     // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
     @Model
     void androidPlatforms(ModelMap<MyAndroidPlatform> platforms, PlatformResolvers platformResolvers) {
@@ -46,6 +31,7 @@ class MyAndroidPlugin extends RuleSource {
             @Override
             void execute(MyAndroidLibrarySpec componentSpec) {
                 componentSpec.sources.create("java", JavaSourceSet)
+                componentSpec.sources.create("resources", JvmResourceSet)
             }
         })
     }
@@ -61,15 +47,15 @@ class MyAndroidPlugin extends RuleSource {
     @ComponentBinaries
     void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
                                          MyAndroidLibrarySpec librarySpec,
-                                         ModelMap<MyAndroidPlatform> platforms) {
+                                         ModelMap<MyAndroidPlatform> platforms,
+                                         @Path("buildDir") File buildDir) {
         for (MyAndroidPlatform platform : platforms) {
             variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
-                ///*
-                targetPlatform = platform
-                classesDirectory {
-                    javaPlatform = platform.javaPlatform
-                }
-                //*/
+                // TODO: DefaultJvmAssembly instantiation should happen automatically
+                jvmAssembly = new DefaultJvmAssembly()
+                jvmAssembly.targetPlatform = platform
+                jvmAssembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
+                jvmAssembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
             }
         }
     }
@@ -80,7 +66,7 @@ plugins {
     id 'java-lang'
 }
 
-//apply plugin: MyAndroidPlugin
+apply plugin: MyAndroidPlugin
 
 model {
     components {
@@ -89,16 +75,74 @@ model {
 }
 
 // ----
+// Provided by Gradle
 
-interface HasClassesDirectory<T extends ClassesDirectory> {
-    T getClassesDirectory()
-    void setClassesDirectory(T classesDirectory)
+/**
+ * Declares the {@link JavaPlatform} of an extended platform.
+ */
+@Managed
+interface HasJavaPlatform extends Platform {
+    @Unmanaged
+    JavaPlatform getJavaPlatform()
+    void setJavaPlatform(JavaPlatform javaPlatform)
 }
 
+/**
+ * Declares the {@link JvmAssembly} of a variant.
+ */
+@Managed
+interface HasJvmAssembly {
+    @Unmanaged
+    JvmAssembly getJvmAssembly()
+    // TODO: shouldn't be necessary
+    // the model runtime must be able to automatically instantiate DefaultJvmAssembly somehow
+    void setJvmAssembly(JvmAssembly assembly)
+}
+
+/**
+ * Declares the target platform of a build item.
+ */
+@Managed
 interface HasTargetPlatform<T extends Platform> {
+    @Unmanaged
     T getTargetPlatform()
     void setTargetPlatform(T targetPlatform)
 }
 
-interface ClassesDirectory {
+/**
+ * The smallest unit of deployment of a JVM component:
+ *  - a set of directories containing class files
+ *  - a set of directories containing resource files
+ */
+interface JvmAssembly extends HasTargetPlatform<HasJavaPlatform> {
+    /**
+     * Set of directoring containing the class files that
+     * belong to this assembly.
+     *
+     * Modeled as a Set<File> for future proofnes but the
+     * first implementation can assume a single class directory.
+     */
+    Set<File> getClassDirectories()
+
+    /**
+     * Set of directoring containing the resource files that
+     * belong to this assembly.
+     */
+    Set<File> getResourceDirectories()
 }
+
+// Not part of the API
+class DefaultJvmAssembly implements JvmAssembly {
+    Set<File> classDirectories
+    Set<File> resourceDirectories
+    HasJavaPlatform targetPlatform
+
+    DefaultJvmAssembly() {
+        classDirectories = new HashSet<File>()
+        resourceDirectories = new HashSet<File>()
+    }
+}
+
+// TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
+import org.gradle.platform.base.internal.PlatformResolvers
+import org.gradle.platform.base.internal.DefaultPlatformRequirement

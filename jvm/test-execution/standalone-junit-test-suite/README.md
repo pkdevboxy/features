@@ -6,7 +6,7 @@ As a build user, I should be able to create a project that consists of nothing m
 
 ## Usage
 
-### Clean, build, run check and suceed
+### Clean, build, run check and succeed
 
     $ ../../../gradlew clean check
     Build file '$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100

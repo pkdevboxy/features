@@ -3,3 +3,7 @@ language:
 
 script:
   - ./use-features.sh
+
+branches:
+  only:
+    - master

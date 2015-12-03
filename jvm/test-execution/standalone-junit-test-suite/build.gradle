@@ -40,7 +40,7 @@ class JUnitTestSuitePlugin extends RuleSource {
     @BinaryTasks
     void createTestSuiteTask(ModelMap<Task> tasks, JarBinarySpecInternal binary, @Path('tasks.check') Task checkTask, @Path('buildDir') File buildDir) {
         def namingScheme = binary.namingScheme
-        def taskName = namingScheme.getTaskName('test')
+        def taskName = "mySuiteTest" // namingScheme.getTaskName('test')
         tasks.create(taskName, Test) {
             // hard-coded dependency. Problem is: how do we get a handle on the compile task of a binary?
             // The way that the Java plugin solves this problem is that it does the opposite: the compile task knows

@@ -126,7 +126,7 @@ interface JvmAssembly extends WithTargetPlatform<WithJavaPlatform> {
     Set<File> getClassDirectories()
 
     /**
-     * Set of directoring containing the resource files that
+     * Set of directories containing the resource files that
      * belong to this assembly.
      */
     Set<File> getResourceDirectories()

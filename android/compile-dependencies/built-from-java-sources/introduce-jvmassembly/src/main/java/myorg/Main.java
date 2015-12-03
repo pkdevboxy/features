@@ -1,0 +1,3 @@
+package myorg;
+
+class Main {}

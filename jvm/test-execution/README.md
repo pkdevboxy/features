@@ -15,3 +15,34 @@ In design.
 
 ## Stories
  - [standalone-junit-test-suite](standalone-junit-test-suite)
+
+## Debt
+Certain refactorings are necessary to implement `standalone-junit-test-suite` correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:
+ - A way to reuse compilation infrastructure already in use by JvmLibrary and co
+   - all the stuff that knows how to go from source code to byte code
+   - but leave behind the stuff that's library-specific, e.g. api jar
+   - for a library, we assemble all the compiled bits
+   - for a test suite, we execute the compiled bits
+ - Use native-style `testSuites {}` container vs `components {}` container
+   - per https://github.com/gradle/features/commit/4afb68#commitcomment-14750921
+   - avoids building the test suite classes on `gradle assemble`
+   - and with this in place, we can return to using `gradle check` vs `gradle mySuiteTest`
+
+We'll likely fork off dedicated debt card(s) for the above when `standalone-junit-test-suite` is complete, but tracking them here for now.
+
+## Not in Scope
+ - Test suite-specific dependencies blocks
+ - Targeting multiple platforms
+ - Integration with standard lifecycle (check task)
+ - Reporting
+   - should have some 'generic reporting' already by virtue of being a component
+   - need to think about what testing-specific reporting we want to do
+   - per https://github.com/gradle/features/commit/2078f2#commitcomment-14750784, `gradle components` should have something useful for the test suite
+ - User can express whether tests are parallelizable
+ - Should the test order be preserved?
+ - Can we support just running tests that previously failed?
+ - Are different failure modes supported?
+ - Can (some of) the tests be run in parallel?
+ - Should a subset of tests be run using filters/groups/categories?
+ - Can we better describe declaratively what we are testing? All main src classes? An application? A web app? (Opens up potentially powerful additional testing plugins even if Gradle might not plan to use this information internally any time soon)
+ - Is coverage a completely orthogonal issue? Clover does bi-directional coverage for instance. Could we harness that to run just the tests for code that has recently changed?

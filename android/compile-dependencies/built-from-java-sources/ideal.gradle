@@ -5,7 +5,7 @@
 //
 
 @Managed
-interface MyAndroidPlatform extends Platform, HasJavaPlatform {
+interface MyAndroidPlatform extends Platform, WithJavaPlatform {
 }
 
 @Managed
@@ -13,7 +13,7 @@ interface MyAndroidLibrarySpec extends ComponentSpec {
 }
 
 @Managed
-interface MyAndroidVariantSpec extends BinarySpec, HasJvmAssembly {
+interface MyAndroidVariantSpec extends BinarySpec, WithJvmAssembly {
 }
 
 class MyAndroidPlugin extends RuleSource {

@@ -1,5 +1,5 @@
 @Managed
-interface MyAndroidPlatform extends Platform, HasJavaPlatform {
+interface MyAndroidPlatform extends Platform, WithJavaPlatform {
 }
 
 @Managed
@@ -7,7 +7,7 @@ interface MyAndroidLibrarySpec extends ComponentSpec {
 }
 
 @Managed
-interface MyAndroidVariantSpec extends BinarySpec, HasJvmAssembly {
+interface MyAndroidVariantSpec extends BinarySpec, WithJvmAssembly {
 }
 
 class MyAndroidPlugin extends RuleSource {
@@ -81,7 +81,7 @@ model {
  * Declares the {@link JavaPlatform} of an extended platform.
  */
 @Managed
-interface HasJavaPlatform extends Platform {
+interface WithJavaPlatform extends Platform {
     @Unmanaged
     JavaPlatform getJavaPlatform()
     void setJavaPlatform(JavaPlatform javaPlatform)
@@ -91,7 +91,7 @@ interface HasJavaPlatform extends Platform {
  * Declares the {@link JvmAssembly} of a variant.
  */
 @Managed
-interface HasJvmAssembly {
+interface WithJvmAssembly {
     @Unmanaged
     JvmAssembly getJvmAssembly()
     // TODO: shouldn't be necessary
@@ -103,8 +103,9 @@ interface HasJvmAssembly {
  * Declares the target platform of a build item.
  */
 @Managed
-interface HasTargetPlatform<T extends Platform> {
+interface WithTargetPlatform<T extends Platform> {
     @Unmanaged
+    @Variant
     T getTargetPlatform()
     void setTargetPlatform(T targetPlatform)
 }
@@ -114,7 +115,7 @@ interface HasTargetPlatform<T extends Platform> {
  *  - a set of directories containing class files
  *  - a set of directories containing resource files
  */
-interface JvmAssembly extends HasTargetPlatform<HasJavaPlatform> {
+interface JvmAssembly extends WithTargetPlatform<WithJavaPlatform> {
     /**
      * Set of directoring containing the class files that
      * belong to this assembly.
@@ -135,7 +136,7 @@ interface JvmAssembly extends HasTargetPlatform<HasJavaPlatform> {
 class DefaultJvmAssembly implements JvmAssembly {
     Set<File> classDirectories
     Set<File> resourceDirectories
-    HasJavaPlatform targetPlatform
+    WithJavaPlatform targetPlatform
 
     DefaultJvmAssembly() {
         classDirectories = new HashSet<File>()

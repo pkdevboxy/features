@@ -1,10 +1,10 @@
-# Android library plugin development
+# Android Software Model development
 
 This will enable the developers of the Android Software Model (Google Android team) to fully utilize the existing functionality in the core JVM and dependency management infrastructure. The goal is to allow an Android library to be built from Java sources, which have compile-time dependencies on both JVM libraries and other Android libraries.
 
 ## User roles
 
- - **Android Software Model producer** : A team of developers building the core plugins that provide the Android Software model and support the Android ecosystem
+ - **Android Software Model developer** : A team of developers building the core plugins that provide the Android Software Model and support the Android ecosystem
  - **Android application developer** : A developer using the core plugins developed by the Android Software Model foundation developers
 
 ## Terminology
@@ -24,7 +24,7 @@ e.g. The Cobertura coverage plugin is built atop the JVM Software Model
 
 ## Features
 
-In all cases, the feature in _Gradle_ is to enable the **Android Software Model producer** to develop plugins and types that will allow an **Android application developer** to use the specified feature.
+In all cases, the feature in _Gradle_ is to enable the **Android Software Model developer** to develop plugins and types that will allow an **Android application developer** to use the specified feature.
 
 ### [Android library variant is built from Java sources](./1-built-from-java-sources)
 

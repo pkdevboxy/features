@@ -36,14 +36,6 @@ class MyAndroidPlugin extends RuleSource {
         })
     }
 
-    // TODO: This feature could use a rule that targets the sources for every component of a type
-    /*
-    @Defaults
-    void defaultSourceSets(@Path("components", MyAndroidLibrarySpec, "sources") ModelMap<LanguageSourceSet> sources) {
-        sources.create("java", JavaSourceSet)
-    }
-    */
-
     @ComponentBinaries
     void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
                                          MyAndroidLibrarySpec librarySpec,
@@ -52,10 +44,10 @@ class MyAndroidPlugin extends RuleSource {
         for (MyAndroidPlatform platform : platforms) {
             variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
                 // TODO: DefaultJvmAssembly instantiation should happen automatically
-                jvmAssembly = new DefaultJvmAssembly()
-                jvmAssembly.targetPlatform = platform
-                jvmAssembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
-                jvmAssembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
+                assembly = new DefaultJvmAssembly()
+                assembly.targetPlatform = platform
+                assembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
+                assembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
             }
         }
     }
@@ -94,20 +86,6 @@ interface WithJavaPlatform extends Platform {
 interface WithJvmAssembly {
     @Unmanaged
     JvmAssembly getJvmAssembly()
-    // TODO: shouldn't be necessary
-    // the model runtime must be able to automatically instantiate DefaultJvmAssembly somehow
-    void setJvmAssembly(JvmAssembly assembly)
-}
-
-/**
- * Declares the target platform of a build item.
- */
-@Managed
-interface WithTargetPlatform<T extends Platform> {
-    @Unmanaged
-    @Variant
-    T getTargetPlatform()
-    void setTargetPlatform(T targetPlatform)
 }
 
 /**
@@ -115,7 +93,7 @@ interface WithTargetPlatform<T extends Platform> {
  *  - a set of directories containing class files
  *  - a set of directories containing resource files
  */
-interface JvmAssembly extends WithTargetPlatform<WithJavaPlatform> {
+interface JvmAssembly extends BuildableModelElement {
     /**
      * Set of directoring containing the class files that
      * belong to this assembly.
@@ -130,13 +108,24 @@ interface JvmAssembly extends WithTargetPlatform<WithJavaPlatform> {
      * belong to this assembly.
      */
     Set<File> getResourceDirectories()
+
+    /**
+     * Returns the {@link org.gradle.jvm.toolchain.JavaToolChain} that will be used to build this assembly.
+     */
+    JavaToolChain getToolChain();
+
+    /**
+     * The target platform for this assembly.
+     */
+    JavaPlatform getTargetPlatform();
 }
 
 // Not part of the API
-class DefaultJvmAssembly implements JvmAssembly {
+class DefaultJvmAssembly extends AbstractBuildableModelElement implements JvmAssembly {
     Set<File> classDirectories
     Set<File> resourceDirectories
-    WithJavaPlatform targetPlatform
+    JavaPlatform targetPlatform
+    JavaToolChain toolChain
 
     DefaultJvmAssembly() {
         classDirectories = new HashSet<File>()
@@ -145,5 +134,5 @@ class DefaultJvmAssembly implements JvmAssembly {
 }
 
 // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
-import org.gradle.platform.base.internal.PlatformResolvers
-import org.gradle.platform.base.internal.DefaultPlatformRequirement
+import org.gradle.api.internal.*
+import org.gradle.platform.base.internal.*

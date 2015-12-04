@@ -36,9 +36,6 @@ model {
 interface WithJvmAssembly {
     @Unmanaged
     JvmAssembly getJvmAssembly()
-    // TODO: shouldn't be necessary
-    // the model runtime must be able to automatically instantiate DefaultJvmAssembly somehow
-    void setJvmAssembly(JvmAssembly assembly)
 }
 
 /**
@@ -61,12 +58,24 @@ interface JvmAssembly extends BuildableModelElement {
      * belong to this assembly.
      */
     Set<File> getResourceDirectories()
+
+    /**
+     * Returns the {@link org.gradle.jvm.toolchain.JavaToolChain} that will be used to build this assembly.
+     */
+    JavaToolChain getToolChain();
+
+    /**
+     * The target platform for this assembly.
+     */
+    JavaPlatform getTargetPlatform();
 }
 
 // Not part of the API
 class DefaultJvmAssembly extends AbstractBuildableModelElement implements JvmAssembly {
     Set<File> classDirectories
     Set<File> resourceDirectories
+    JavaPlatform targetPlatform
+    JavaToolChain toolChain
 
     DefaultJvmAssembly() {
         classDirectories = new HashSet<File>()
@@ -74,4 +83,4 @@ class DefaultJvmAssembly extends AbstractBuildableModelElement implements JvmAss
     }
 }
 
-import org.gradle.api.internal.*
+import org.gradle.api.internal.AbstractBuildableModelElement

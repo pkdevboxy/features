@@ -85,20 +85,20 @@ index 6528c6a..91f3528 100644
 
  - Should fail if no junitVersion is specified
  - Should fail if no version of JUnit is specified, even if junit is found in the dependencies
- - Test suite containing a true assertion should pass
-   - makes sure compilation passes, but doesn't make sure that tests are actually executed
- - Test suite containing a false assertion should fail, and build fails as a consequence
-   - makes sure that tests are really executed
- - Build log should include the link to the report
-   - makes sure that we reuse the `Test` task and configure it with reasonable defaults
+ - ~~Test suite containing a true assertion should pass~~
+   - ~~makes sure compilation passes, but doesn't make sure that tests are actually executed~~
+ - ~~Test suite containing a false assertion should fail, and build fails as a consequence~~
+   - ~~makes sure that tests are really executed~~
+ - ~~Build log should include the link to the report~~
+   - ~~makes sure that we reuse the `Test` task and configure it with reasonable defaults~~
  - Test suite should not have a jar
  - test can use resources: makes sure that test resources are found on classpath
- - Test component can depend on a local library
-   - makes sure that a test suite is also a regular JVM library
- - Test component can depend on an external library
+ - ~~Test component can depend on a local library~~
+   - ~~makes sure that a test suite is also a regular JVM library~~
+ - ~~Test component can depend on an external library~~
  - Test cannot use (aka test) a non-API class of a dependency
    - makes sure that we make the difference between a dependency and a component under test. A dependency is used only to build and execute tests, but has nothing to do with a component under test, for which we will want to test non-API classes too.
- - Should fall back to a conventional source location if no source dirs are explicitly declared
+ - ~~Should fall back to a conventional source location if no source dirs are explicitly declared~~
  - Running `gradle assemble` does not build or run the test suite
  - Decent error message when another JVM component declares a dependency on a test suite.
  - Decent error message when another JVM component declares a dependency a project that contains only a test suite.

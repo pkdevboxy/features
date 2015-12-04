@@ -15,6 +15,7 @@ In design.
 
 ## Stories
  - [Build author can declare a standalone JUnit test suite](standalone-junit-test-suite)
+ - [Build author can declare a test suite with dependencies](suite-with-dependencies)
 
 ## Debt
 Certain refactorings are necessary to implement `standalone-junit-test-suite` correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:
@@ -31,7 +32,6 @@ Certain refactorings are necessary to implement `standalone-junit-test-suite` co
 We'll likely fork off dedicated debt card(s) for the above when `standalone-junit-test-suite` is complete, but tracking them here for now.
 
 ## Not in Scope
- - Test suite-specific dependencies blocks
  - Targeting multiple platforms
  - Integration with standard lifecycle (check task)
  - Reporting

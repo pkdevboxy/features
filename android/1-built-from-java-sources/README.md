@@ -3,7 +3,7 @@
 ## User stories
 
 - [x] Android library can include a `JavaSourceSet` and it appears in the 'components' report
-- [ ] [Build author can define task that depends on the compiled classes of a JVM variant](./introduce-jvmassembly)
+- [ ] [Build author can define task that depends on the compiled classes of a JVM variant](./1a-introduce-jvmassembly)
 - [ ] Update PlayApplicationPlugin to use `JvmAssembly`
     - Play application has a `JvmAssembly` and `scala-lang` plugin configures the scala compilation
     - Update `scala-lang` plugin to transform `ScalaSourceSet` to `JvmAssembly`
@@ -29,7 +29,7 @@
 
 ### Dependent features
 
-- [Android library sources depend on JVM library](../depends-on-jvm-library/README.md)
+- [Android library sources depend on JVM library](../2-depends-on-jvm-library/README.md)
 
 ----
 

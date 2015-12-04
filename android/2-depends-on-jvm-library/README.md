@@ -18,9 +18,11 @@
 
 ### Prerequisite features
 
-- [Android library variant is built from Java sources](../built-from-java-sources/README.md)
+- [Android library variant is built from Java sources](../1-built-from-java-sources/README.md)
 
 ### Dependent features
+
+- [Android library variant is built from Java sources](../3-depends-on-android-library/README.md)
 
 ----
 

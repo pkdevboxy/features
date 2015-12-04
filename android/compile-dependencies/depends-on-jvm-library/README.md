@@ -11,6 +11,8 @@
   - Will need a way to either:
     - Have the android plugin provide a variant compatibility rule for matching `AndroidPlatform` to `JavaPlatform`
     - OR Have the android library expose the `JavaPlatform` directly as a variant axis
+- [ ] Allow language transform to apply directly to `JvmAssembly` instead of applying to `BinarySpec` `WithJvmAssembly`
+    - This will require that all context be provided by the `LanguageSourceSet` or `JvmAssembly`
 
 ## Related work
 

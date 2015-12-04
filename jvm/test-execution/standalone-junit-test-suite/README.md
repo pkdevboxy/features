@@ -9,10 +9,8 @@ As a build user, I should be able to create a project that consists of nothing m
 ### Clean, build, run mySuiteTest and succeed
 
     $ ../../../gradlew clean mySuiteTest
-    Build file '$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
-    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
     :jvm:test-execution:standalone-junit-test-suite:clean
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava
     :jvm:test-execution:standalone-junit-test-suite:mySuiteTest
 
     BUILD SUCCESSFUL
@@ -21,9 +19,7 @@ As a build user, I should be able to create a project that consists of nothing m
 ### Build incrementally, run mySuiteTest and succeed
 
     $ ../../../gradlew mySuiteTest
-    Build file '$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
-    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava UP-TO-DATE
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava UP-TO-DATE
     :jvm:test-execution:standalone-junit-test-suite:mySuiteTest UP-TO-DATE
 
     BUILD SUCCESSFUL
@@ -54,9 +50,7 @@ index 6528c6a..91f3528 100644
 ### Build incrementally, run mySuiteTest and fail
 
     $ ../../../gradlew mySuiteTest
-    Build file '$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build.gradle': line 100
-    The plus(Iterable<FileCollection>) method and using the '+' operator in conjunction with an Iterable<FileCollection> object have been deprecated and are scheduled to be removed in 3.0.  Please use the plus(FileCollection) method or the '+' operator with a FileCollection object instead.
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteJarMySuiteJava
+    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava
     :jvm:test-execution:standalone-junit-test-suite:mySuiteTest
 
     MyTest > test FAILED
@@ -69,7 +63,7 @@ index 6528c6a..91f3528 100644
 
     * What went wrong:
     Execution failed for task ':jvm:test-execution:standalone-junit-test-suite:mySuiteTest'.
-    > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build/reports/mySuite/index.html
+    > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build/reports/tests/index.html
 
     * Try:
     Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.

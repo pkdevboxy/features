@@ -4,11 +4,19 @@
 
 - [ ] Android library can have a source-set dependency on a JVM library API, which is used for compiling Java sources
 - [ ] Android library can have a component dependency on a JVM library API, which is used for compiling Java sources
+    - `DependencySpecContainer` instance should be automatically constructed for a read-only `@Unmanaged` property on a `@Managed` type
+    - Use rules to merge dependency sets defined for component/variant/source-set
+    - Test coverage for local library and external dependencies, defined at the component and source-set level
 - [ ] Android library sources are compiled with the JVM variant corresponding to the Android platform of a consuming variant
+  - Will need a way to either:
+    - Have the android plugin provide a variant compatibility rule for matching `AndroidPlatform` to `JavaPlatform`
+    - OR Have the android library expose the `JavaPlatform` directly as a variant axis
 
 ## Related work
 
 ### Prerequisite features
+
+- [Android library variant is built from Java sources](../built-from-java-sources/README.md)
 
 ### Dependent features
 

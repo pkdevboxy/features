@@ -1,5 +1,28 @@
 # Android library sources depend on JVM API provided by Android library
 
+## User stories
+
+- [ ] Android library variant has a JVM API
+  - Model the variant API as a first class buildable thing
+  - Include artifact and dependencies
+  - Show API 'jar' in the component report
+  - Can be a target for dependency management
+- [ ] Android library gets correct variant of Android library when resolving
+- [ ] Jvm library gets correct variant of Android library when resolving
+- [ ] JVM API variant jar is automatically built based on presence of `JvmAssembly` and `JvmApiSpec` on Android library
+
+## Related work
+
+### Prerequisite features
+
+- [Android library sources depend on JVM library](../depends-on-jvm-library/README.md)
+
+### Dependent features
+
+## Not in scope
+
+- Different APIs per variant
+- Public instantiation of JvmApi instance
 
 ## Usage
 

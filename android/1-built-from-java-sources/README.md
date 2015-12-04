@@ -29,7 +29,7 @@
 
 ### Dependent features
 
-- [Android library sources depend on JVM library](../2-depends-on-jvm-library/README.md)
+- [Android library sources depend on JVM library](../2-depends-on-jvm-library)
 
 ----
 

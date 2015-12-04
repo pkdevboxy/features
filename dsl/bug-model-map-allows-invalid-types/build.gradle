@@ -1,0 +1,29 @@
+@Managed
+interface Thing {
+    String getValue()
+    void setValue(String v)
+}
+
+class MyPlugin extends RuleSource {
+    @Model
+    void things(ModelMap<Thing> things) { }
+}
+
+apply plugin: MyPlugin
+
+model {
+    things {
+        good(Thing) {
+            value = '4'
+        }
+        bad(FunctionalSourceSet)
+    }
+    tasks {
+        show(Task) {
+            doLast {
+                println "good = " + $.things.good
+                println "bad = " + $.things.bad
+            }
+        }
+    }
+}

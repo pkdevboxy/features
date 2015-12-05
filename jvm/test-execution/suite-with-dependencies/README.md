@@ -20,12 +20,6 @@ Create a new build script that does not contain the hamcrest dependency.
 
     $ grep -v hamcrest build.gradle > build.nodep.gradle
 
-Afterward, the two build scripts should differ as follows:
-
-    $ diff build.gradle build.nodep.gradle
-    20d19
-    <                         module 'org.hamcrest:hamcrest-all:1.3'
-
 ### Attempt to execute tests and fail to compile
 Now run against the new build script and fail to compile as expected.
 
@@ -61,8 +55,7 @@ Now run against the new build script and fail to compile as expected.
 
 ### Clean up
 
-    $ rm -v build.nodep.gradle
-    build.nodep.gradle
+    $ rm build.nodep.gradle
 
 ----
 

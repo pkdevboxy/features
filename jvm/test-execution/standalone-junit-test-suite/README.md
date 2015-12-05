@@ -31,21 +31,19 @@ As a build user, I should be able to create a project that consists of nothing m
 
 and notice it results in the following diff:
 
-```diff
-$ git diff
-diff --git jvm/test-execution/standalone-junit-test-suite/src/MyTest.java jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
-index 6528c6a..91f3528 100644
---- jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
-+++ jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
-@@ -6,6 +6,6 @@ public class MyTest {
+    $ git diff .
+    diff --git jvm/test-execution/standalone-junit-test-suite/src/MyTest.java jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+    index 6528c6a..91f3528 100644
+    --- jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+    +++ jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+    @@ -6,6 +6,6 @@ public class MyTest {
 
-     @Test
-     public void test() {
--        assertEquals(true, true);
-+        assertEquals(false, true);
+         @Test
+         public void test() {
+    -        assertEquals(true, true);
+    +        assertEquals(false, true);
+         }
      }
- }
-```
 
 ### Build incrementally, run mySuiteTest and fail
 

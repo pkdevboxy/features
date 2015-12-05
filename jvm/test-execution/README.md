@@ -15,7 +15,7 @@ In design.
 
 ## Stories
  - [Build author can declare a JUnit test suite](with-junit)
- - [Build author can declare a test suite with dependencies](suite-with-dependencies)
+ - [Build author can declare a test suite with dependencies](with-dependencies)
  - [Build author can declare a test suite with resources](suite-with-resources)
 
 ## Debt

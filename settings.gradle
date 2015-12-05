@@ -3,7 +3,7 @@ include 'template'
 include 'jvm:compile-avoidance'
 
 include 'jvm:test-execution:with-junit'
-include 'jvm:test-execution:suite-with-dependencies'
+include 'jvm:test-execution:with-dependencies'
 //include 'jvm:test-execution:suite-with-resources'
 
 include 'android:compile-dependencies:built-from-java-sources'

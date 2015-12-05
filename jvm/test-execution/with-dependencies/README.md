@@ -1,6 +1,8 @@
-# Build author can declare a test suite with dependencies
+# Build author can declare dependencies for test suite sources
 
 ## Summary
+As a build author, I should be able to declare which dependencies (internal or external) my test suite sources depend on.
+
 The JUnit test class in this project depends on an external library (hamcrest). It should be possible to declare that dependency in the build script, then compile and execute the test successfully. If the dependency is missing from the build script, the test suite should fail to compile.
 
 ## Usage

@@ -13,7 +13,7 @@ model {
 
         mySuite(JUnitTestSuiteSpec) {
             sources {
-                java(JavaSourceSet) {
+                java {
                     source.srcDirs 'src'
                 }
             }

@@ -14,12 +14,12 @@ This feature aims at completing the minimal amount of feature set that is requir
 In design.
 
 ## Stories
- - [Build author can declare a standalone JUnit test suite](standalone-junit-test-suite)
+ - [Build author can declare a JUnit test suite](with-junit)
  - [Build author can declare a test suite with dependencies](suite-with-dependencies)
  - [Build author can declare a test suite with resources](suite-with-resources)
 
 ## Debt
-Certain refactorings are necessary to implement `standalone-junit-test-suite` correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:
+Certain refactorings are necessary to implement the first story correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:
  - A way to reuse compilation infrastructure already in use by JvmLibrary and co
    - all the stuff that knows how to go from source code to byte code
    - but leave behind the stuff that's library-specific, e.g. api jar
@@ -30,7 +30,7 @@ Certain refactorings are necessary to implement `standalone-junit-test-suite` co
    - avoids building the test suite classes on `gradle assemble`
    - and with this in place, we can return to using `gradle check` vs `gradle mySuiteTest`
 
-We'll likely fork off dedicated debt card(s) for the above when `standalone-junit-test-suite` is complete, but tracking them here for now.
+We'll likely fork off dedicated debt card(s) for the above when the first story is complete, but tracking them here for now.
 
 ## Not in Scope
  - Targeting multiple platforms

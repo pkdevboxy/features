@@ -1,17 +1,19 @@
-# Build author can declare a standalone JUnit test suite
+# Build author can declare a JUnit test suite
 
 ## Summary
 
-As a build user, I should be able to create a project that consists of nothing more than a test suite with a single JUnit test. I should be able to execute that test using `gradle mySuiteTest`, and should be able to skip executing that test if all inputs are `UP-TO-DATE`.
+As a build user, I should be able to create a project that consists of a standalone JUnit test suite. I should be able to execute that test suite using `gradle mySuiteTest`, and should be able to skip executing if all inputs are `UP-TO-DATE`.
+
+To be clear, there is no component under test in this story. Just a test suite.
 
 ## Usage
 
 ### Clean, build, run mySuiteTest and succeed
 
     $ ../../../gradlew clean mySuiteTest
-    :jvm:test-execution:standalone-junit-test-suite:clean
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:standalone-junit-test-suite:mySuiteTest
+    :jvm:test-execution:with-junit:clean
+    :jvm:test-execution:with-junit:compileMySuiteMySuiteMySuiteJava
+    :jvm:test-execution:with-junit:mySuiteTest
 
     BUILD SUCCESSFUL
 
@@ -19,8 +21,8 @@ As a build user, I should be able to create a project that consists of nothing m
 ### Build incrementally, run mySuiteTest and succeed
 
     $ ../../../gradlew mySuiteTest
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava UP-TO-DATE
-    :jvm:test-execution:standalone-junit-test-suite:mySuiteTest UP-TO-DATE
+    :jvm:test-execution:with-junit:compileMySuiteMySuiteMySuiteJava UP-TO-DATE
+    :jvm:test-execution:with-junit:mySuiteTest UP-TO-DATE
 
     BUILD SUCCESSFUL
 
@@ -32,10 +34,10 @@ As a build user, I should be able to create a project that consists of nothing m
 and notice it results in the following diff:
 
     $ git diff .
-    diff --git jvm/test-execution/standalone-junit-test-suite/src/MyTest.java jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+    diff --git jvm/test-execution/with-junit/src/MyTest.java jvm/test-execution/with-junit/src/MyTest.java
     index 6528c6a..91f3528 100644
-    --- jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
-    +++ jvm/test-execution/standalone-junit-test-suite/src/MyTest.java
+    --- jvm/test-execution/with-junit/src/MyTest.java
+    +++ jvm/test-execution/with-junit/src/MyTest.java
     @@ -6,6 +6,6 @@ public class MyTest {
 
          @Test
@@ -48,20 +50,20 @@ and notice it results in the following diff:
 ### Build incrementally, run mySuiteTest and fail
 
     $ ../../../gradlew mySuiteTest
-    :jvm:test-execution:standalone-junit-test-suite:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:standalone-junit-test-suite:mySuiteTest
+    :jvm:test-execution:with-junit:compileMySuiteMySuiteMySuiteJava
+    :jvm:test-execution:with-junit:mySuiteTest
 
     MyTest > test FAILED
         java.lang.AssertionError at MyTest.java:9
 
     1 test completed, 1 failed
-    :jvm:test-execution:standalone-junit-test-suite:mySuiteTest FAILED
+    :jvm:test-execution:with-junit:mySuiteTest FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':jvm:test-execution:standalone-junit-test-suite:mySuiteTest'.
-    > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/standalone-junit-test-suite/build/reports/tests/index.html
+    Execution failed for task ':jvm:test-execution:with-junit:mySuiteTest'.
+    > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/with-junit/build/reports/tests/index.html
 
     * Try:
     Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.

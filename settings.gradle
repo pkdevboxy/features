@@ -4,7 +4,7 @@ include 'jvm:compile-avoidance'
 
 include 'jvm:test-execution:with-junit'
 include 'jvm:test-execution:with-dependencies'
-//include 'jvm:test-execution:with-resources'
+include 'jvm:test-execution:with-resources'
 
 include 'android:compile-dependencies:built-from-java-sources'
 include 'android:compile-dependencies:depends-on-android-library'

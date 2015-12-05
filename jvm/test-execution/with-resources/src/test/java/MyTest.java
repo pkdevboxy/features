@@ -8,17 +8,15 @@ import static org.junit.Assert.*;
 public class MyTest {
 
     @Test
-    public void test() {
-        String value;
-        try {
-           Properties properties = new Properties();
-           InputStream in = MyTest.class.getResourceAsStream("test.properties");
-           properties.load(in);
-           value = properties.getProperty("value");
-           in.close();
-        } catch (Throwable e) {
-            throw new RuntimeException("Test resource not found", e);
-        }
+    public void test() throws Exception {
+        Properties properties = new Properties();
+        InputStream in = MyTest.class.getResourceAsStream("test.properties");
+        assertNotNull("Test resource not found", in);
+
+        properties.load(in);
+        String value = properties.getProperty("value");
+        in.close();
+
         assertEquals(value, "42");
     }
 }

@@ -1,4 +1,4 @@
-# Build user can declare a standalone JUnit test suite and execute it with `gradle mySuiteTest`
+# Build author can declare a standalone JUnit test suite
 
 ## Summary
 

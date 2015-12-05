@@ -14,7 +14,7 @@ This feature aims at completing the minimal amount of feature set that is requir
 In design.
 
 ## Stories
- - [standalone-junit-test-suite](standalone-junit-test-suite)
+ - [Build author can declare a standalone JUnit test suite](standalone-junit-test-suite)
 
 ## Debt
 Certain refactorings are necessary to implement `standalone-junit-test-suite` correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:

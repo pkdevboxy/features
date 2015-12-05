@@ -67,7 +67,7 @@ Now run against the new build script and fail to compile as expected.
 ----
 
 ## Test cases
- - [ ] Test suite can depend on an external library
+ - [x] Test suite can depend on an external library
  - [ ] Test suite can depend on a local library
    - this makes sure that a test suite is also a regular JVM library
  - [ ] Test classes cannot consume (aka test) a non-API class of a dependency

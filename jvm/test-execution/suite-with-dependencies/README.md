@@ -70,5 +70,5 @@ Now run against the new build script and fail to compile as expected.
  - [x] Test suite can depend on an external library
  - [x] Test suite can depend on a local library
    - this makes sure that a test suite is also a regular JVM library
- - [ ] Test classes cannot consume (aka test) a non-API class of a dependency
+ - [x] Test classes cannot consume (aka test) a non-API class of a dependency
    - this makes sure that we make the difference between a dependency and a component under test. A dependency is used only to build and execute tests, but has nothing to do with a component under test, for which we will want to test non-API classes too.

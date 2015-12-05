@@ -36,6 +36,7 @@ String process(File file) {
             def command = extractCommand(line)
             def process = command.execute(null, file.getParentFile())
             def output = new StringBuilder()
+            def skipDiffOutput = true
             process.consumeProcessOutput(output, output)
             process.waitFor()
             new BufferedReader(new StringReader(output.toString())).with { reader ->
@@ -43,6 +44,14 @@ String process(File file) {
                 while ((outputLine = reader.readLine()) != null) {
                     if (isTotalTimeReport(outputLine) || isStartingNewDaemonReport(outputLine)) {
                         continue
+                    }
+                    if (isGitDiffCommand(command)) {
+                        if (isFirstLineOfDiffContext(outputLine)) {
+                            skipDiffOutput = false
+                        }
+                        if (skipDiffOutput) {
+                            continue
+                        }
                     }
                     if (isEmptyLine(outputLine)) {
                         writer.println('')
@@ -103,4 +112,13 @@ boolean containsFeaturesHome(String line) {
 
 String stripFeaturesHome(String line) {
     line.replaceAll("${rootProject.rootDir}", '\\$FEATURES_HOME')
+}
+
+boolean isGitDiffCommand(List command) {
+    String origCommand = command[command.size()-1]
+    origCommand.startsWith('git diff')
+}
+
+boolean isFirstLineOfDiffContext(String line) {
+    line.startsWith('@@')
 }

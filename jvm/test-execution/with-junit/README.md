@@ -34,10 +34,6 @@ To be clear, there is no component under test in this story. Just a test suite.
 and notice it results in the following diff:
 
     $ git diff .
-    diff --git jvm/test-execution/with-junit/src/MyTest.java jvm/test-execution/with-junit/src/MyTest.java
-    index 6528c6a..91f3528 100644
-    --- jvm/test-execution/with-junit/src/MyTest.java
-    +++ jvm/test-execution/with-junit/src/MyTest.java
     @@ -6,6 +6,6 @@ public class MyTest {
 
          @Test

@@ -10,7 +10,7 @@ _**Note**: The build script and presence of files in `src/test/resources` in thi
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    A problem occurred configuring root project 'suite-with-resources'.
+    A problem occurred configuring root project 'with-resources'.
     > Exception thrown while executing model rule: ComponentModelBasePlugin.Rules#createSourceTransformTasks
        > java.lang.NullPointerException (no error message)
 
@@ -28,9 +28,9 @@ _For this reason, this project is currently excluded from the root `settings.gra
 ### Attempt to execute tests and succeed
 
     $ ../../../gradlew clean mySuiteTest
-    :jvm:test-execution:suite-with-dependencies:clean
-    :jvm:test-execution:suite-with-dependencies:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:suite-with-dependencies:mySuiteTest
+    :jvm:test-execution:with-resources:clean
+    :jvm:test-execution:with-resources:compileMySuiteMySuiteMySuiteJava
+    :jvm:test-execution:with-resources:mySuiteTest
 
     BUILD SUCCESSFUL
 

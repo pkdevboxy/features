@@ -16,6 +16,7 @@ In design.
 ## Stories
  - [Build author can declare a standalone JUnit test suite](standalone-junit-test-suite)
  - [Build author can declare a test suite with dependencies](suite-with-dependencies)
+ - [Build author can declare a test suite with resources](suite-with-resources)
 
 ## Debt
 Certain refactorings are necessary to implement `standalone-junit-test-suite` correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:

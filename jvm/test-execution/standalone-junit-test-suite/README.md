@@ -90,7 +90,6 @@ index 6528c6a..91f3528 100644
  - ~~Decent error message when another JVM component declares a dependency on a test suite.~~
  - ~~Decent error message when another JVM component declares a dependency a project that contains only a test suite.~~
  - Running `gradle assemble` does not build or run the test suite
- - test can use resources: makes sure that test resources are found on classpath
 
 
 ## Implementation notes

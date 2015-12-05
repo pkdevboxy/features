@@ -33,15 +33,17 @@ To be clear, there is no component under test in this story. Just a test suite.
 
 and notice it results in the following diff:
 
-    $ git diff .
-    @@ -6,6 +6,6 @@ public class MyTest {
+```diff
+$ git diff .
+@@ -6,6 +6,6 @@ public class MyTest {
 
-         @Test
-         public void test() {
-    -        assertEquals(true, true);
-    +        assertEquals(false, true);
-         }
+     @Test
+     public void test() {
+-        assertEquals(true, true);
++        assertEquals(false, true);
      }
+ }
+```
 
 ### Build incrementally, run mySuiteTest and fail
 

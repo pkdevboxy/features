@@ -17,6 +17,7 @@ In design.
  - [Build author can declare a JUnit test suite](with-junit)
  - [Build author can declare dependencies for test suite sources](with-dependencies)
  - [Build author can declare a test suite with resources](with-resources)
+ - Build author can declare a test suite with a component under test
 
 ## Debt
 Certain refactorings are necessary to implement the first story correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:

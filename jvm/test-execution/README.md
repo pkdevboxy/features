@@ -15,6 +15,7 @@ In design.
 
 ## Stories
 _The stories (and other cards) below are listed according to the order in which they should be implemented._
+
  - [Build author can declare a JUnit test suite](with-junit)
  - [Build author can declare dependencies for test suite sources](with-dependencies)
  - [Build author can declare a test suite with resources](with-resources)
@@ -22,8 +23,8 @@ _The stories (and other cards) below are listed according to the order in which 
    - this will allow us a proper way to avoid building and executing tests when `gradle assemble` is run
  - Build user can execute tests using `gradle check`
    - up to this point, users have been required to run tests with `<<suitename>>Test`, e.g. `mySuiteTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
- - (`chore`) Add user guide documentation covering test execution stories implemented so far
  - Build author can declare a test suite with a component under test
+ - (`chore`) Add user guide documentation covering test execution stories implemented so far
 
 ## Debt
  - We need a way to reuse compilation infrastructure already in use by JvmLibrary and co

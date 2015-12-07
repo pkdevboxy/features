@@ -87,7 +87,6 @@ $ git diff .
  - ~~Should fall back to a conventional source location if no source dirs are explicitly declared~~
  - ~~Decent error message when another JVM component declares a dependency on a test suite.~~
  - ~~Decent error message when another JVM component declares a dependency a project that contains only a test suite.~~
- - Running `gradle assemble` does not build or run the test suite
 
 
 ## Implementation notes

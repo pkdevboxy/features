@@ -4,18 +4,10 @@
 
 - [x] Android library can include a `JavaSourceSet` and it appears in the 'components' report
 - [ ] [Build author can define task that depends on the compiled classes of a JVM variant](./1a-introduce-jvmassembly)
-- [ ] Update PlayApplicationPlugin to use `JvmAssembly`
-    - Play application has a `JvmAssembly` and `scala-lang` plugin configures the scala compilation
-    - Update `scala-lang` plugin to transform `ScalaSourceSet` to `JvmAssembly`
-    - Will need a way to specify that multiple source-sets for a component should be joint-compiled
-- [ ] Android library can define a `JvmAssembly` and `java-lang` plugin configures the java compilation
-    - Fail build when `java-lang` plugin is applied, and component has a `JavaSourceSet` but no `JvmAssembly`
-        - From Adam: Please do this generally: fail when a build item has a source set as input that cannot be transformed. Also fix the int test for this that we already have that no longer tests this (the behaviour is broken but the test is not telling us this).
-    - `JvmAssembly` instance should be automatically constructed for a read-only `@Unmanaged` property on a `@Managed` type
-- [ ] Android library variant can have an associated Android platform
-    - Android platform appears in the `components` report
-    - Android library sources are compiled for the Java platform corresponding to the Java platform of a variant
-    - Java ToolChain that will be used to build Android variant is displayed in the 'components' report
+- [ ] [Android library can define a `JvmAssembly` and `java-lang` plugin configures the java compilation](./1b-library-can-define-jvmassembly)
+- [ ] [Android library variant can have an associated Android platform](./1c-variant-can-have-platform)
+- [ ] (`debt`) Use separate output directory for each compile task
+    - Model each output directory as a build item
 - [?] Update Native component model and language plugins to use a `NativeAssembly` to represent the intermediate files
 - [?] Rule can target 'sources' container of all components of a particular type
 

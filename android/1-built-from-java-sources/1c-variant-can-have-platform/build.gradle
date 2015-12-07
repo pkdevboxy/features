@@ -1,0 +1,82 @@
+@Managed
+interface MyAndroidPlatform extends Platform, WithJavaPlatform {
+}
+
+@Managed
+interface MyAndroidLibrarySpec extends ComponentSpec {
+}
+
+@Managed
+interface MyAndroidVariantSpec extends BinarySpec, WithJvmAssembly {
+}
+
+class MyAndroidPlugin extends RuleSource {
+    // TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
+    @Model
+    void androidPlatforms(ModelMap<MyAndroidPlatform> platforms, PlatformResolvers platformResolvers) {
+        def javaPlatformFor = { name ->
+            platformResolvers.resolve(JavaPlatform, DefaultPlatformRequirement.create(name))
+        }
+        platforms.create("androidOnJava6") {
+            javaPlatform = javaPlatformFor("java6")
+        }
+        platforms.create("androidOnJava7") {
+            javaPlatform = javaPlatformFor("java7")
+        }
+    }
+
+    @Mutate
+    void createDefaultSourceSetsForAndroidLibrary(ModelMap<MyAndroidLibrarySpec> components) {
+        components.beforeEach(new Action<MyAndroidLibrarySpec>() {
+            @Override
+            void execute(MyAndroidLibrarySpec componentSpec) {
+                componentSpec.sources.create("java", JavaSourceSet)
+                componentSpec.sources.create("resources", JvmResourceSet)
+            }
+        })
+    }
+
+    @ComponentBinaries
+    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
+                                         MyAndroidLibrarySpec librarySpec,
+                                         ModelMap<MyAndroidPlatform> platforms,
+                                         @Path("buildDir") File buildDir) {
+        for (MyAndroidPlatform platform : platforms) {
+            variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
+                assembly.targetPlatform = platform
+                assembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
+                assembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
+            }
+        }
+    }
+}
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+apply plugin: MyAndroidPlugin
+
+model {
+    components {
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}
+
+// ----
+// Provided by Gradle
+
+/**
+ * Declares the {@link JavaPlatform} of an extended platform.
+ */
+@Managed
+interface WithJavaPlatform extends Platform {
+    @Unmanaged
+    JavaPlatform getJavaPlatform()
+    void setJavaPlatform(JavaPlatform javaPlatform)
+}
+
+import org.gradle.jvm.internal.*
+import org.gradle.api.internal.*
+import org.gradle.platform.base.internal.*

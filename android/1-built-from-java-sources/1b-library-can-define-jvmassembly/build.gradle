@@ -1,0 +1,57 @@
+
+@Managed
+interface MyAndroidLibrarySpec extends ComponentSpec {
+}
+
+@Managed
+interface MyAndroidVariantSpec extends BinarySpec, WithJvmAssembly {
+    JvmAssembly getAssembly()
+}
+
+class MyAndroidPlugin extends RuleSource {
+    @Mutate
+    void createDefaultSourceSetsForAndroidLibrary(ModelMap<MyAndroidLibrarySpec> components) {
+        components.beforeEach(new Action<MyAndroidLibrarySpec>() {
+            @Override
+            void execute(MyAndroidLibrarySpec componentSpec) {
+                componentSpec.sources.create("java", JavaSourceSet)
+                componentSpec.sources.create("resources", JvmResourceSet)
+            }
+        })
+    }
+
+    @ComponentBinaries
+    void createAndroidVariantPerPlatform(ModelMap<MyAndroidVariantSpec> variantSpecs,
+                                         MyAndroidLibrarySpec librarySpec,
+                                         @Path("buildDir") File buildDir) {
+        ["free", "paid"].each { flavor ->
+            variantSpecs.create("${librarySpec.name}For${flavor.capitalize()}") {
+                assembly.targetPlatform = org.gradle.jvm.platform.internal.DefaultJavaPlatform.current()
+                assembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
+                assembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
+                sources.create("java${flavor.capitalize()}", JavaSourceSet)
+                sources.create("resources${flavor.capitalize()}", JvmResourceSet)
+            }
+        }
+    }
+}
+
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+apply plugin: MyAndroidPlugin
+
+model {
+    components {
+        myAndroidLib(MyAndroidLibrarySpec)
+    }
+}
+
+// ----
+// Provided by Gradle
+
+// TODO: remove the need for the following import by making JvmAssembly and
+// family public
+import org.gradle.jvm.internal.*

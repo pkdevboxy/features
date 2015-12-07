@@ -1,0 +1,95 @@
+/**
+ * A custom component with per sourceset and per component
+ * dependencies.
+ */
+interface MyComponentSpec extends ComponentSpec {
+    DependencySpecContainer getDependencies()
+}
+
+@Managed
+interface MyBinarySpec extends BinarySpec {
+}
+
+interface MySourceSet extends DependentSourceSet {
+}
+
+class DefaultMyComponentSpec extends BaseComponentSpec implements MyComponentSpec {
+    DependencySpecContainer dependencies = new DefaultDependencySpecContainer()
+}
+
+class DefaultMyLanguageSourceSet extends BaseLanguageSourceSet implements MySourceSet {
+    DependencySpecContainer dependencies = new DefaultDependencySpecContainer()
+
+    @Override String getTypeName() {
+        "My source"
+    }
+}
+
+class MyLanguagePlugin extends RuleSource {
+    @LanguageType
+    void registerMyLanguage(LanguageTypeBuilder<MySourceSet> builder) {
+        builder.languageName = "My"
+        builder.defaultImplementation(DefaultMyLanguageSourceSet)
+    }
+
+    @ComponentType
+    void registerMyComponent(ComponentTypeBuilder<MyComponentSpec> builder) {
+        builder.defaultImplementation(DefaultMyComponentSpec)
+    }
+
+    @Mutate
+    void createMySourceSets(ModelMap<MyComponentSpec> components) {
+        components.beforeEach(new Action<MyComponentSpec>() {
+            @Override
+            void execute(MyComponentSpec componentSpec) {
+                componentSpec.sources.create("my", MySourceSet)
+            }
+        })
+    }
+
+    @ComponentBinaries
+    void createMyBinary(ModelMap<MyBinarySpec> binaries, MyComponentSpec component) {
+        binaries.create("binary")
+    }
+
+    @BinaryTasks
+    void createMyCompileTask(ModelMap<Task> tasks, MyBinarySpec binary) {
+        def compileTaskName = binary.getTasks().taskName("compile", "My")
+        tasks.create(compileTaskName, DefaultTask, new Action<DefaultTask>() {
+            void execute(DefaultTask compile) {
+                compile.description = "Compiles My sources for ${binary.displayName}."
+                compile << { println "compiling ${binary.name}" }
+                binary.builtBy(compile)
+            }
+        })
+    }
+}
+
+apply plugin: MyLanguagePlugin
+
+model {
+    components {
+        main(MyComponentSpec) {
+            sources.my.dependencies {
+                library 'core'
+                library 'utils'
+            }
+        }
+
+        core(MyComponentSpec) {
+            sources.my.dependencies {
+                library 'utils'
+            }
+        }
+
+        utils(MyComponentSpec) {
+            dependencies.module 'com.acme:modules:1.0'
+        }
+    }
+}
+
+repositories {
+    ivy { url 'artifacts' }
+}
+
+import org.gradle.platform.base.internal.DefaultDependencySpecContainer

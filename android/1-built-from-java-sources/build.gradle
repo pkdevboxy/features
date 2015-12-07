@@ -43,8 +43,6 @@ class MyAndroidPlugin extends RuleSource {
                                          @Path("buildDir") File buildDir) {
         for (MyAndroidPlatform platform : platforms) {
             variantSpecs.create("${librarySpec.name}For${platform.name.capitalize()}") {
-                // TODO: DefaultJvmAssembly instantiation should happen automatically
-                assembly = new DefaultJvmAssembly()
                 assembly.targetPlatform = platform
                 assembly.classDirectories << namingScheme.getOutputDirectory(buildDir, "classes")
                 assembly.resourceDirectories << namingScheme.getOutputDirectory(buildDir, "resources")
@@ -79,60 +77,6 @@ interface WithJavaPlatform extends Platform {
     void setJavaPlatform(JavaPlatform javaPlatform)
 }
 
-/**
- * Declares the {@link JvmAssembly} of a variant.
- */
-@Managed
-interface WithJvmAssembly {
-    @Unmanaged
-    JvmAssembly getJvmAssembly()
-}
-
-/**
- * The smallest unit of deployment of a JVM component:
- *  - a set of directories containing class files
- *  - a set of directories containing resource files
- */
-interface JvmAssembly extends BuildableModelElement {
-    /**
-     * Set of directoring containing the class files that
-     * belong to this assembly.
-     *
-     * Modeled as a Set<File> for future proofnes but the
-     * first implementation can assume a single class directory.
-     */
-    Set<File> getClassDirectories()
-
-    /**
-     * Set of directories containing the resource files that
-     * belong to this assembly.
-     */
-    Set<File> getResourceDirectories()
-
-    /**
-     * Returns the {@link org.gradle.jvm.toolchain.JavaToolChain} that will be used to build this assembly.
-     */
-    JavaToolChain getToolChain();
-
-    /**
-     * The target platform for this assembly.
-     */
-    JavaPlatform getTargetPlatform();
-}
-
-// Not part of the API
-class DefaultJvmAssembly extends AbstractBuildableModelElement implements JvmAssembly {
-    Set<File> classDirectories
-    Set<File> resourceDirectories
-    JavaPlatform targetPlatform
-    JavaToolChain toolChain
-
-    DefaultJvmAssembly() {
-        classDirectories = new HashSet<File>()
-        resourceDirectories = new HashSet<File>()
-    }
-}
-
-// TODO: Decide on a reasonable public way to resolve `JavaPlatform` instances
+import org.gradle.jvm.internal.*
 import org.gradle.api.internal.*
 import org.gradle.platform.base.internal.*

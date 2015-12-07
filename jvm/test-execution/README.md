@@ -21,21 +21,20 @@ _The stories (and other cards) below are listed according to the order in which 
  - [Build author can declare a test suite with resources](with-resources)
  - (`debt`) Introduce a `testSuites` container to the JVM DSL
    - this will allow us a proper way to avoid building and executing tests when `gradle assemble` is run
+   - Must extract common infrastrurcture from 'testing-native', and share a single `TestSuiteContainer` instance
+   - Test should verify ability add multiple test suites of different types (`CUnit`, `JUnit`)
+   - Test should verify rendering of `JUnitTestSuite` in components report (see `TestingNativeComponentReportIntegrationTest`)
  - Build user can execute tests using `gradle check`
    - up to this point, users have been required to run tests with `<<suitename>>Test`, e.g. `mySuiteTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
+   - Will need to extract a common concept of a 'run' task for all test suite binaries, so that [this rule](https://github.com/gradle/gradle/blob/229d8c7ef9995277e06362675606a0dfb90b9d5e/subprojects/platform-native/src/main/groovy/org/gradle/nativeplatform/test/plugins/NativeBinariesTestPlugin.java#L94-L94) can be pulled up into common infrastructure.
  - Build author can declare a test suite with a component under test
  - (`chore`) Add user guide documentation covering test execution stories implemented so far
+   - Must include a sample.
 
 ## Debt
- - We need a way to reuse compilation infrastructure already in use by JvmLibrary and co
-   - all the stuff that knows how to go from source code to byte code
-   - but leave behind the stuff that's library-specific, e.g. api jar
-   - for a library, we assemble all the compiled bits
-   - for a test suite, we execute the compiled bits
 
 ## Not in Scope
  - Targeting multiple platforms
- - Integration with standard lifecycle (check task)
  - Reporting
    - should have some 'generic reporting' already by virtue of being a component
    - need to think about what testing-specific reporting we want to do

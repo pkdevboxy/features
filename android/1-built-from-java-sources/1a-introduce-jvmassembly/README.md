@@ -25,9 +25,9 @@ Notice no jar was built.
 
 ## Test cases
 
-- [ ] User can create task that depends on the assembly and the jar is *not* built
-    - [ ] classes are generated
-    - [ ] resources are processed
+- [x] User can create task that depends on the assembly and the jar is *not* built
+    - [x] classes are generated
+    - [x] resources are processed
 - [ ] User can specify additional resource directory with preprocessed resources and it will end up in the jar
 - [ ] User can specify additional class directory with precompiled classes and:
     - [ ] it will end up in the runtime jar

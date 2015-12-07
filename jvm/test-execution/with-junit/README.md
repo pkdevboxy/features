@@ -75,18 +75,18 @@ $ git diff .
 
 ## Test cases
 
- - ~~Should fail if no junitVersion is specified~~
- - ~~Should fail if no version of JUnit is specified, even if junit is found in the dependencies~~
- - ~~Test suite containing a true assertion should pass~~
-   - ~~makes sure compilation passes, but doesn't make sure that tests are actually executed~~
- - ~~Test suite containing a false assertion should fail, and build fails as a consequence~~
-   - ~~makes sure that tests are really executed~~
- - ~~Build log should include the link to the report~~
-   - ~~makes sure that we reuse the `Test` task and configure it with reasonable defaults~~
- - ~~Test suite should not have a jar~~
- - ~~Should fall back to a conventional source location if no source dirs are explicitly declared~~
- - ~~Decent error message when another JVM component declares a dependency on a test suite.~~
- - ~~Decent error message when another JVM component declares a dependency a project that contains only a test suite.~~
+ - [x] Should fail if no junitVersion is specified
+ - [x] Should fail if no version of JUnit is specified, even if junit is found in the dependencies
+ - [x] Test suite containing a true assertion should pass
+   - this ensures compilation passes, but doesn't make sure that tests are actually executed
+ - [x] Test suite containing a false assertion should fail, and build fails as a consequence
+   - this ensures that tests are really executed
+ - [x] Build log should include the link to the report
+   - this ensures that we reuse the `Test` task and configure it with reasonable defaults
+ - [x] Test suite should not have a jar
+ - [x] Should fall back to a conventional source location if no source dirs are explicitly declared
+ - [x] Decent error message when another JVM component declares a dependency on a test suite.
+ - [x] Decent error message when another JVM component declares a dependency a project that contains only a test suite.
 
 
 ## Implementation notes

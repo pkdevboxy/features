@@ -14,24 +14,23 @@ This feature aims at completing the minimal amount of feature set that is requir
 In design.
 
 ## Stories
+_The stories (and other cards) below are listed according to the order in which they should be implemented._
  - [Build author can declare a JUnit test suite](with-junit)
  - [Build author can declare dependencies for test suite sources](with-dependencies)
  - [Build author can declare a test suite with resources](with-resources)
+ - (`debt`) Introduce a `testSuites` container to the JVM DSL
+   - this will allow us a proper way to avoid building and executing tests when `gradle assemble` is run
+ - Build user can execute tests using `gradle check`
+   - up to this point, users have been required to run tests with `<<suitename>>Test`, e.g. `mySuiteTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
+ - (`chore`) Add user guide documentation covering test execution stories implemented so far
  - Build author can declare a test suite with a component under test
 
 ## Debt
-Certain refactorings are necessary to implement the first story correctly, but are being deferred until just after it is complete in order to avoid scope creep. These refactorings include:
- - A way to reuse compilation infrastructure already in use by JvmLibrary and co
+ - We need a way to reuse compilation infrastructure already in use by JvmLibrary and co
    - all the stuff that knows how to go from source code to byte code
    - but leave behind the stuff that's library-specific, e.g. api jar
    - for a library, we assemble all the compiled bits
    - for a test suite, we execute the compiled bits
- - Use native-style `testSuites {}` container vs `components {}` container
-   - per https://github.com/gradle/features/commit/4afb68#commitcomment-14750921
-   - avoids building the test suite classes on `gradle assemble`
-   - and with this in place, we can return to using `gradle check` vs `gradle mySuiteTest`
-
-We'll likely fork off dedicated debt card(s) for the above when the first story is complete, but tracking them here for now.
 
 ## Not in Scope
  - Targeting multiple platforms

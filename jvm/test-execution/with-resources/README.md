@@ -55,5 +55,5 @@ As a build author, I should be able to place resources (properties files, etc) i
  - [x] Test can consume resources
    - this ensures that test resources are present on the classpath
  - [x] Test resources can be found in a conventional location if not explicitly specified
- - [ ] Test resources can be found in a non-conventional location if explicitly specified
- - [ ] Resources supplied to test execution are processed via the `ProcessResources` task
+ - [x] Test resources can be found in a non-conventional location if explicitly specified
+ - [x] Resources supplied to test execution are processed via the `ProcessResources` task

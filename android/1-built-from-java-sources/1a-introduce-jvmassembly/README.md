@@ -1,6 +1,6 @@
 # Build author can define task that depends on the compiled classes of a JVM variant
 
-This story introduces a `JvmAssembly` build item that represents the compiled classes and processed resources for a Jvm variant. The `java-lang` plugin will configure compilation for components that have both a `JavaSourceSet` and a `JvmAssembly`.
+This story introduces a `JvmAssembly` build item that represents the compiled classes and processed resources for a JVM variant. The `java-lang` plugin will configure compilation for components that have both a `JavaSourceSet` and a `JvmAssembly`.
 
 This change will have a number of benefits:
 - The `JvmResourcesPlugin` will process resources for any variant with a `JvmResourceSet` and a `JvmAssembly`

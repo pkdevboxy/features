@@ -10,13 +10,14 @@ This change will have a number of benefits:
 
 ## Usage
 
-### Run task that depends on compiled classes
+### Run task that depends on compiled classes and processed resources
 
     $ ../../../gradlew clean printClassesForMainJar
     :compileMainJarMainJava
     :printClassesForMainJar
     myorg
     Main.class
+    answer.txt
 
     BUILD SUCCESSFUL
 

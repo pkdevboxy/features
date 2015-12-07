@@ -14,11 +14,13 @@ model {
                 t.create(printTask) {
                     dependsOn binary.assembly
                     doFirst {
-                        binary.assembly.classDirectories.each { classDir ->
-                            classDir.eachFileRecurse { file ->
-                                println file.name
+                        def printEachFileNameIn = { dirs ->
+                            dirs.each { dir ->
+                                dir.eachFileRecurse { println it.name }
                             }
                         }
+                        printEachFileNameIn binary.assembly.classDirectories
+                        printEachFileNameIn binary.assembly.resourceDirectories
                     }
                 }
             }

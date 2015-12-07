@@ -24,29 +24,29 @@ Notice no jar was built.
 
 ## Test cases
 
-- User can create task that depends on the assembly and the jar is *not* built
-    - classes are generated
-    - resources are processed
-- User can specify additional resource directory with preprocessed resources and it will end up in the jar
-- User can specify additional class directory with precompiled classes and:
-    - it will end up in the runtime jar
-    - it will end up in the API jar
+- [ ] User can create task that depends on the assembly and the jar is *not* built
+    - [ ] classes are generated
+    - [ ] resources are processed
+- [ ] User can specify additional resource directory with preprocessed resources and it will end up in the jar
+- [ ] User can specify additional class directory with precompiled classes and:
+    - [ ] it will end up in the runtime jar
+    - [ ] it will end up in the API jar
 
 ## Implementation plan
 
-- Add `JvmAssembly` and implementation
-- Use `JvmAssembly` as a backing store for configuration of `JarBinarySpec`: will have `classesDir`, `resourcesDir`, `targetPlatform` and `toolChain` from `JarBinarySpec`
-- Change `java-lang` plugin so that it will apply a transform for every `JavaSourceSet` of a component with a `JvmAssembly`
-- Change `JvmResourcesPlugin` to create a `ProcessResources` task for every `JvmResourceSet` of a component with a `JvmAssembly`
-- Replace usages of `JvmBinarySpec#getClassDir` by `JvmAssembly#getClassDirectories`
-- Replace usages of `JvmBinarySpec#getResourceDir` by `JvmAssembly#getResourceDirectories`
-- Consider updating the components report to display `JvmAssembly`
+- [ ] Add `JvmAssembly` and implementation
+- [ ] Use `JvmAssembly` as a backing store for configuration of `JarBinarySpec`: will have `classesDir`, `resourcesDir`, `targetPlatform` and `toolChain` from `JarBinarySpec`
+- [ ] Change `java-lang` plugin so that it will apply a transform for every `JavaSourceSet` of a component with a `JvmAssembly`
+- [ ] Change `JvmResourcesPlugin` to create a `ProcessResources` task for every `JvmResourceSet` of a component with a `JvmAssembly`
+- [ ] Replace usages of `JvmBinarySpec#getClassDir` by `JvmAssembly#getClassDirectories`
+- [ ] Replace usages of `JvmBinarySpec#getResourceDir` by `JvmAssembly#getResourceDirectories`
+- [ ] Consider updating the components report to display `JvmAssembly`
 
 ### Breaking changes and renames
 
-- Rename `JarBinarySpec` to `JvmVariantSpec` (consider removing the `Spec`, too)
-- Remove or deprecate `JarBinarySpec#getClassDir` and `JarBinarySpec#getResourceDir`
-- Rename `LibaryBinaryIdentifier` to `VariantIdentifier` (or similar)
+- [ ] Rename `JarBinarySpec` to `JvmVariantSpec` (consider removing the `Spec`, too)
+- [ ] Remove or deprecate `JarBinarySpec#getClassDir` and `JarBinarySpec#getResourceDir`
+- [ ] Rename `LibaryBinaryIdentifier` to `VariantIdentifier` (or similar)
 
 ## Out of scope (later stories)
 

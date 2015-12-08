@@ -9,10 +9,11 @@ The JUnit test class in this project depends on an external library (hamcrest). 
 
 ### Attempt to execute tests and succeed
 
-    $ ../../../gradlew clean mySuiteTest
+    $ ../../../gradlew clean mySuiteSuite
     :jvm:test-execution:with-dependencies:clean
-    :jvm:test-execution:with-dependencies:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:with-dependencies:mySuiteTest
+    :jvm:test-execution:with-dependencies:compileMySuiteSuiteMySuiteJava
+    :jvm:test-execution:with-dependencies:mySuiteSuiteTest
+    :jvm:test-execution:with-dependencies:mySuiteSuite
 
     BUILD SUCCESSFUL
 
@@ -25,7 +26,7 @@ Create a new build script that does not contain the hamcrest dependency.
 ### Attempt to execute tests and fail to compile
 Now run against the new build script and fail to compile as expected.
 
-    $ ../../../gradlew -b build.nodep.gradle clean mySuiteTest
+    $ ../../../gradlew -b build.nodep.gradle clean mySuiteSuite
     :clean
     $FEATURES_HOME/jvm/test-execution/with-dependencies/src/test/java/MyTest.java:3: error: cannot find symbol
     import static org.hamcrest.Matchers.is;
@@ -41,12 +42,12 @@ Now run against the new build script and fail to compile as expected.
       symbol:   method is(int)
       location: class MyTest
     3 errors
-    :compileMySuiteMySuiteMySuiteJava FAILED
+    :compileMySuiteSuiteMySuiteJava FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':compileMySuiteMySuiteMySuiteJava'.
+    Execution failed for task ':compileMySuiteSuiteMySuiteJava'.
     > Compilation failed; see the compiler error output for details.
 
     * Try:

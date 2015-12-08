@@ -7,11 +7,12 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Attempt to execute tests and succeed
 
-    $ ../../../gradlew clean mySuiteTest
+    $ ../../../gradlew clean mySuiteSuite
     :jvm:test-execution:with-resources:clean
-    :jvm:test-execution:with-resources:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:with-resources:processMySuiteMySuiteMySuiteResources
-    :jvm:test-execution:with-resources:mySuiteTest
+    :jvm:test-execution:with-resources:compileMySuiteSuiteMySuiteJava
+    :jvm:test-execution:with-resources:processMySuiteSuiteMySuiteResources
+    :jvm:test-execution:with-resources:mySuiteSuiteTest
+    :jvm:test-execution:with-resources:mySuiteSuite
 
     BUILD SUCCESSFUL
 
@@ -22,21 +23,21 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Attempt to execute tests and fail
 
-    $ ../../../gradlew clean mySuiteTest
+    $ ../../../gradlew clean mySuiteSuite
     :jvm:test-execution:with-resources:clean
-    :jvm:test-execution:with-resources:compileMySuiteMySuiteMySuiteJava
-    :jvm:test-execution:with-resources:mySuiteTest
+    :jvm:test-execution:with-resources:compileMySuiteSuiteMySuiteJava
+    :jvm:test-execution:with-resources:mySuiteSuiteTest
 
     MyTest > test FAILED
         java.lang.AssertionError at MyTest.java:14
 
     1 test completed, 1 failed
-    :jvm:test-execution:with-resources:mySuiteTest FAILED
+    :jvm:test-execution:with-resources:mySuiteSuiteTest FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':jvm:test-execution:with-resources:mySuiteTest'.
+    Execution failed for task ':jvm:test-execution:with-resources:mySuiteSuiteTest'.
     > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/with-resources/build/reports/tests/index.html
 
     * Try:

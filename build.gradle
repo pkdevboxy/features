@@ -15,6 +15,13 @@ subprojects {
     }
 }
 
+wrapper {
+    // e.g.: `gradle wrapper -PlocalDistro=file:///path/to/gradle-<version>-bin.zip`
+    if (project.hasProperty('localDistro')) {
+        distributionUrl localDistro
+    }
+}
+
 String process(File file) {
     def temp = tempFile(file)
     def writer = new PrintWriter(temp)

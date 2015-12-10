@@ -47,7 +47,7 @@ Notice no jar was built.
 
 - [ ] Rename `JarBinarySpec` to `JvmVariantSpec` (consider removing the `Spec`, too)
 - [ ] Remove or deprecate `JarBinarySpec#getClassDir` and `JarBinarySpec#getResourceDir`
-- [ ] Rename `LibaryBinaryIdentifier` to `VariantIdentifier` (or similar)
+- [ ] Rename `LibraryBinaryIdentifier` to `VariantIdentifier` (or similar)
 
 ## Out of scope (later stories)
 

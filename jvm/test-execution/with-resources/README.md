@@ -7,12 +7,12 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Attempt to execute tests and succeed
 
-    $ ../../../gradlew clean mySuiteSuite
+    $ ../../../gradlew clean mySuiteBinary
     :jvm:test-execution:with-resources:clean
-    :jvm:test-execution:with-resources:compileMySuiteSuiteMySuiteJava
-    :jvm:test-execution:with-resources:processMySuiteSuiteMySuiteResources
-    :jvm:test-execution:with-resources:mySuiteSuiteTest
-    :jvm:test-execution:with-resources:mySuiteSuite
+    :jvm:test-execution:with-resources:compileMySuiteBinaryMySuiteJava
+    :jvm:test-execution:with-resources:processMySuiteBinaryMySuiteResources
+    :jvm:test-execution:with-resources:mySuiteBinaryTest
+    :jvm:test-execution:with-resources:mySuiteBinary
 
     BUILD SUCCESSFUL
 
@@ -23,21 +23,21 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Attempt to execute tests and fail
 
-    $ ../../../gradlew clean mySuiteSuite
+    $ ../../../gradlew clean mySuiteBinary
     :jvm:test-execution:with-resources:clean
-    :jvm:test-execution:with-resources:compileMySuiteSuiteMySuiteJava
-    :jvm:test-execution:with-resources:mySuiteSuiteTest
+    :jvm:test-execution:with-resources:compileMySuiteBinaryMySuiteJava
+    :jvm:test-execution:with-resources:mySuiteBinaryTest
 
     MyTest > test FAILED
         java.lang.AssertionError at MyTest.java:14
 
     1 test completed, 1 failed
-    :jvm:test-execution:with-resources:mySuiteSuiteTest FAILED
+    :jvm:test-execution:with-resources:mySuiteBinaryTest FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':jvm:test-execution:with-resources:mySuiteSuiteTest'.
+    Execution failed for task ':jvm:test-execution:with-resources:mySuiteBinaryTest'.
     > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/with-resources/build/reports/tests/index.html
 
     * Try:

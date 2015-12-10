@@ -2,29 +2,29 @@
 
 ## Summary
 
-As a build user, I should be able to create a project that consists of a standalone JUnit test suite. I should be able to execute that test suite using `gradle mySuiteSuite`, and should be able to skip executing if all inputs are `UP-TO-DATE`.
+As a build user, I should be able to create a project that consists of a standalone JUnit test suite. I should be able to execute that test suite using `gradle mySuiteBinary`, and should be able to skip executing if all inputs are `UP-TO-DATE`.
 
 To be clear, there is no component under test in this story. Just a test suite.
 
 ## Usage
 
-### Clean, build, run mySuiteSuite and succeed
+### Clean, build, run mySuiteBinary and succeed
 
-    $ ../../../gradlew clean mySuiteSuite
+    $ ../../../gradlew clean mySuiteBinary
     :jvm:test-execution:with-junit:clean
-    :jvm:test-execution:with-junit:compileMySuiteSuiteMySuiteJava
-    :jvm:test-execution:with-junit:mySuiteSuiteTest
-    :jvm:test-execution:with-junit:mySuiteSuite
+    :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava
+    :jvm:test-execution:with-junit:mySuiteBinaryTest
+    :jvm:test-execution:with-junit:mySuiteBinary
 
     BUILD SUCCESSFUL
 
 
-### Build incrementally, run mySuiteSuite and succeed
+### Build incrementally, run mySuiteBinary and succeed
 
-    $ ../../../gradlew mySuiteSuite
-    :jvm:test-execution:with-junit:compileMySuiteSuiteMySuiteJava UP-TO-DATE
-    :jvm:test-execution:with-junit:mySuiteSuiteTest UP-TO-DATE
-    :jvm:test-execution:with-junit:mySuiteSuite UP-TO-DATE
+    $ ../../../gradlew mySuiteBinary
+    :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava UP-TO-DATE
+    :jvm:test-execution:with-junit:mySuiteBinaryTest UP-TO-DATE
+    :jvm:test-execution:with-junit:mySuiteBinary UP-TO-DATE
 
     BUILD SUCCESSFUL
 
@@ -47,22 +47,22 @@ $ git diff .
  }
 ```
 
-### Build incrementally, run mySuiteSuite and fail
+### Build incrementally, run mySuiteBinary and fail
 
-    $ ../../../gradlew mySuiteSuite
-    :jvm:test-execution:with-junit:compileMySuiteSuiteMySuiteJava
-    :jvm:test-execution:with-junit:mySuiteSuiteTest
+    $ ../../../gradlew mySuiteBinary
+    :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava
+    :jvm:test-execution:with-junit:mySuiteBinaryTest
 
     MyTest > test FAILED
         java.lang.AssertionError at MyTest.java:9
 
     1 test completed, 1 failed
-    :jvm:test-execution:with-junit:mySuiteSuiteTest FAILED
+    :jvm:test-execution:with-junit:mySuiteBinaryTest FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':jvm:test-execution:with-junit:mySuiteSuiteTest'.
+    Execution failed for task ':jvm:test-execution:with-junit:mySuiteBinaryTest'.
     > There were failing tests. See the report at: file://$FEATURES_HOME/jvm/test-execution/with-junit/build/reports/tests/index.html
 
     * Try:

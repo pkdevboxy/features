@@ -60,4 +60,7 @@ Notice no jar was built.
 ## Implementation plan
 
 - [ ] User guide and samples
+    - Good point: we should copy the sample from the feature spec into the codebase
 - [ ] Public API to query the `JvmAssembly` for a `JarBinarySpec`
+    - We were hoping to keep `JvmAssembly` internal for this feature, but clearly we need a public API that can be
+      depended on by a task. The public API can be simply `extends BuildableModelElement` for now.

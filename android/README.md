@@ -38,3 +38,7 @@ An Android library is built from Java sources which have a compilation dependenc
 
 An Android library produces a JVM API, that can be used as a dependency for Java source compilation, with the dependency being satisfied with a variant having a compatible Android platform.
 
+## Debt
+
+- Documentation and samples
+- Replace Play specific `JvmClasses` with `JvmAssembly`

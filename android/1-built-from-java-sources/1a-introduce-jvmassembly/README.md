@@ -54,3 +54,10 @@ Notice no jar was built.
 - Public construction of `JvmAssembly`: this will be an internal implementation.
     - A later story will allow this to be used in the Android plugin
 - Make `scala-lang` take advantage of `JvmAssembly`
+
+# Should be included
+
+## Implementation plan
+
+- [ ] User guide and samples
+- [ ] Public API to query the `JvmAssembly` for a `JarBinarySpec`

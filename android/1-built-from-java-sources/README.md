@@ -11,6 +11,10 @@
 - [?] Update Native component model and language plugins to use a `NativeAssembly` to represent the intermediate files
 - [?] Rule can target 'sources' container of all components of a particular type
 
+## Debt
+
+- A source set for each supported JVM language should, by convention, be added to the sources of the library component, as it is for a JVM library.
+
 ## Out of scope
 
 - Resolution of compile dependencies for Android: see Dependent features.

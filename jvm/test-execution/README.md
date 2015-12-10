@@ -32,13 +32,19 @@ _The stories (and other cards) below are listed according to the order in which 
    - Must include a sample.
 
 ## Debt
+- TestNG suites.
+- `gradle runMySuite` should run all buildable variants of `mySuite`.
+- `gradle mySuite` should assemble, but not run, all buildable variants of `mySuite`.
+- Declare a standalone CUnit or Google test suite.
 
 ## Not in Scope
  - Targeting multiple platforms
+ - User defined variants (eg 'run for these different database types and versions')
  - Reporting
    - should have some 'generic reporting' already by virtue of being a component
    - need to think about what testing-specific reporting we want to do
    - per https://github.com/gradle/features/commit/2078f2#commitcomment-14750784, `gradle components` should have something useful for the test suite
+   - dependencies
  - User can express whether tests are parallelizable
  - Should the test order be preserved?
  - Can we support just running tests that previously failed?

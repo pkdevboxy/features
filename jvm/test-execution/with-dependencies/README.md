@@ -68,3 +68,9 @@ Now run against the new build script and fail to compile as expected.
    - this makes sure that a test suite is also a regular JVM library
  - [x] Test classes cannot consume (aka test) a non-API class of a dependency
    - this makes sure that we make the difference between a dependency and a component under test. A dependency is used only to build and execute tests, but has nothing to do with a component under test, for which we will want to test non-API classes too.
+   
+## New test cases
+
+- [ ] Verify runtime variant of local library is used at test execution time, and that its runtime dependencies are available
+- [ ] Verify runtime dependencies of external library are available at test execution time
+- [ ] Extend incremental build test from previous story to include a dependency on local library

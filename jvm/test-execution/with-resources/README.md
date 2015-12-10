@@ -58,3 +58,6 @@ As a build author, I should be able to place resources (properties files, etc) i
  - [x] Test resources can be found in a conventional location if not explicitly specified
  - [x] Test resources can be found in a non-conventional location if explicitly specified
  - [x] Resources supplied to test execution are processed via the `ProcessResources` task
+
+## New test cases
+- [ ] Extend incremental build test case from previous stories to include some test resources

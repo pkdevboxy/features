@@ -35,11 +35,13 @@ _The stories (and other cards) below are listed according to the order in which 
 - TestNG suites.
 - `gradle runMySuite` should run all buildable variants of `mySuite`.
 - `gradle mySuite` should assemble, but not run, all buildable variants of `mySuite`.
+- Can declare and execute multiple test suites
 - Declare a standalone CUnit or Google test suite.
 
 ## Not in Scope
  - Targeting multiple platforms
  - User defined variants (eg 'run for these different database types and versions')
+ - Additional runtime dependencies (ie only the runtime variants of those libraries used at compile time will be available)
  - Reporting
    - should have some 'generic reporting' already by virtue of being a component
    - need to think about what testing-specific reporting we want to do

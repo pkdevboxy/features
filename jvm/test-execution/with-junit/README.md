@@ -91,6 +91,8 @@ $ git diff .
  - [x] Decent error message when another JVM component declares a dependency a project that contains only a test suite.
  - [x] Conventional location is used for test sources if none declared
  - [x] Decent error message when no repositories declared
+ - [x] Should re-execute test when source file changes
+ - [x] Should *not* re-execute test when no source file changes
 
 ## Implementation notes
 

@@ -89,11 +89,8 @@ $ git diff .
  - [x] Should fall back to a conventional source location if no source dirs are explicitly declared
  - [x] Decent error message when another JVM component declares a dependency on a test suite.
  - [x] Decent error message when another JVM component declares a dependency a project that contains only a test suite.
-
-## New test cases
-
-- [ ] Conventional location is used for test sources if none declared
-- [ ] Decent error message when no repositories declared
+ - [x] Conventional location is used for test sources if none declared
+ - [x] Decent error message when no repositories declared
 
 ## Implementation notes
 

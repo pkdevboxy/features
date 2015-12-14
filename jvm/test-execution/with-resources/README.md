@@ -19,7 +19,7 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Remove a resource
 
-    $ rm src/test/resources/test.properties
+    $ rm src/mySuite/resources/test.properties
 
 ### Attempt to execute tests and fail
 

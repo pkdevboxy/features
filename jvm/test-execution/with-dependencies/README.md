@@ -28,15 +28,15 @@ Now run against the new build script and fail to compile as expected.
 
     $ ../../../gradlew -b build.nodep.gradle clean mySuiteBinary
     :clean
-    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/test/java/MyTest.java:3: error: cannot find symbol
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/mySuite/java/MyTest.java:3: error: cannot find symbol
     import static org.hamcrest.Matchers.is;
                               ^
       symbol:   class Matchers
       location: package org.hamcrest
-    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/test/java/MyTest.java:3: error: static import only from classes and interfaces
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/mySuite/java/MyTest.java:3: error: static import only from classes and interfaces
     import static org.hamcrest.Matchers.is;
     ^
-    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/test/java/MyTest.java:10: error: cannot find symbol
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/src/mySuite/java/MyTest.java:10: error: cannot find symbol
             assertThat(2 + 2, is(4));
                               ^
       symbol:   method is(int)

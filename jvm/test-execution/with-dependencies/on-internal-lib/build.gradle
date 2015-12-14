@@ -1,0 +1,41 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+    id 'junit-test-suite'
+}
+
+repositories {
+    jcenter()
+}
+
+model {
+    components {
+        myTestingUtils(JvmLibrarySpec) {
+            api {
+                dependencies {
+                    module 'org.hamcrest:hamcrest-all:1.3'
+                }
+            }
+        }
+
+        myTestingLib(JvmLibrarySpec) {
+            api {
+                dependencies {
+                    library 'myTestingUtils'
+                }
+            }
+        }
+
+        mySuite(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+
+            sources {
+                java {
+                    dependencies {
+                        library 'myTestingLib'
+                    }
+                }
+            }
+        }
+    }
+}

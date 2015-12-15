@@ -26,9 +26,7 @@ Create a new build script that does not contain the hamcrest dependency.
 ### Attempt to execute tests and fail to compile
 
     $ ../../../../../gradlew -b build.nodep.gradle clean mySuiteBinary
-    Now run against the new build script and fail to compile as expected.
     :clean
-    :compileMySuiteBinaryMySuiteMySrc1
     $FEATURES_HOME/jvm/test-execution/with-dependencies/on-external-lib/scoped-to-suite/src/mySuite/mySrc1/MyTest1.java:3: error: cannot find symbol
     import static org.hamcrest.Matchers.is;
                               ^

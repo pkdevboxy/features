@@ -12,13 +12,13 @@ model {
     components {
 
         mySuite(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+
             sources {
                 java {
                     source.srcDirs 'src'
                 }
             }
-
-            jUnitVersion '4.12'
         }
     }
 }

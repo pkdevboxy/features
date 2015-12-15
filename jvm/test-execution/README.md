@@ -1,5 +1,7 @@
 # JVM Test Execution
 
+Feature: [#102](https://github.com/gradle/langos/issues/102)
+
 ## Summary
 This feature brings test execution as a first class citizen to the JVM software model. Build authors can declare test suites as components, just like JVM libraries are components. Doing this, test suites benefit from the same advantages as everything done in the software model, with additional capabilities, like defining a test framework as a variant, or runtime environment requirements.
 
@@ -10,26 +12,22 @@ This feature aims at completing the minimal amount of feature set that is requir
  - Similar test component modeling and execution work has already been done in the Native Software Model for CUnit and Google Test. That work should be generalized where possible.
  - This feature will reuse the existing `Test` tasks as the low-level infrastructure for executing tests, but will make sure that tests are components of their own in the software model.
 
-## Status
-In design.
-
 ## Stories
 _The stories (and other cards) below are listed according to the order in which they should be implemented._
 
- - [Build author can declare a JUnit test suite](with-junit)
- - [Build author can declare dependencies for test suite sources](with-dependencies)
- - [Build author can declare a test suite with resources](with-resources)
- - (`debt`) Introduce a `testSuites` container to the JVM DSL
+ - [ ] [Build author can declare a JUnit test suite](with-junit)
+ - [ ] [Build author can declare dependencies for test suite sources](with-dependencies)
+ - [ ] [Build author can declare a test suite with resources](with-resources)
+ - [ ] Reuse the existing `testSuites` container in the the JVM software model [#117](https://github.com/gradle/langos/issues/117) (`debt`)
    - this will allow us a proper way to avoid building and executing tests when `gradle assemble` is run
    - Must extract common infrastrurcture from 'testing-native', and share a single `TestSuiteContainer` instance
    - Test should verify ability add multiple test suites of different types (`CUnit`, `JUnit`)
    - Test should verify rendering of `JUnitTestSuite` in components report (see `TestingNativeComponentReportIntegrationTest`)
- - Build user can execute tests using `gradle check`
+   - When this is complete, bug #118 should be fixed as a side effect
+ - [ ] Build user can execute tests using `gradle check`
    - up to this point, users have been required to run tests with `<<suitename>>BinaryTest`, e.g. `mySuiteBinaryTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
    - Will need to extract a common concept of a 'run' task for all test suite binaries, so that [this rule](https://github.com/gradle/gradle/blob/229d8c7ef9995277e06362675606a0dfb90b9d5e/subprojects/platform-native/src/main/groovy/org/gradle/nativeplatform/test/plugins/NativeBinariesTestPlugin.java#L94-L94) can be pulled up into common infrastructure.
- - Build author can declare a test suite with a component under test
- - (`chore`) Add user guide documentation covering test execution stories implemented so far
-   - Must include a sample.
+ - [ ] Build author can declare a test suite with a component under test [#113](https://github.com/gradle/langos/issues/113)
 
 ## Not in Scope
  - Fix "the Binary problem"
@@ -38,6 +36,7 @@ _The stories (and other cards) below are listed according to the order in which 
    - This is a cross-cutting naming concern, but the assertion is that it is more natural for a user to type `gradle runMySuite`, or `gradle runIntegTests` than it is to type `gradle mySuiteTest` or `gradle integTestsTest`. Basically, tasks should lead with a verb.
    - `gradle runMySuite` should run all buildable variants of `mySuite`.
    - `gradle mySuite` should assemble, but not run, all buildable variants of `mySuite`.
+   - See pull request https://github.com/gradle/features/pull/3
  - User defined variants (eg 'run for these different database types and versions')
  - Targeting multiple platforms
  - TestNG suites

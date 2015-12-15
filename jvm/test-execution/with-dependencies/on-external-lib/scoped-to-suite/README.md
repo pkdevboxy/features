@@ -9,7 +9,7 @@ As a build author, I can declare that an entire test suite depends on an externa
 
 ### Attempt to execute tests and succeed
 
-    # ../../../../../gradlew clean mySuiteBinary
+    ../../../../../gradlew clean mySuiteBinary
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteMySrc1
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteMySrc2
@@ -65,4 +65,4 @@ Create a new build script that does not contain the hamcrest dependency.
 
 ## Test cases
 
- - [ ] Test suite can depend on an external library and all source sets can compile against external library's API
+ - [x] Test suite can depend on an external library and all source sets can compile against external library's API

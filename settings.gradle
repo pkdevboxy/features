@@ -4,8 +4,8 @@ include 'jvm:compile-avoidance'
 
 include 'jvm:test-execution:with-junit'
 include 'jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set'
-include 'jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite'
-include 'jvm:test-execution:with-dependencies:on-internal-lib'
+//include 'jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite'
+//include 'jvm:test-execution:with-dependencies:on-internal-lib'
 include 'jvm:test-execution:with-resources'
 
 //include 'android:1-built-from-java-sources'

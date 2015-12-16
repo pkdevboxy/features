@@ -9,12 +9,12 @@ repositories {
 }
 
 model {
-    components {
-
+    testSuites {
         mySuite(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
         }
-
+    }
+    components {
         myLib(JvmLibrarySpec)
     }
 }

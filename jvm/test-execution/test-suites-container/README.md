@@ -77,5 +77,6 @@ This will allow us a proper way to avoid building and executing tests when `grad
 
 ## Test cases
 
+ - [ ] running `gradle assemble` does not build or run the test suite
  - [ ] `testSuites` container should accept multiple test suites of different types (`CUnit`, `JUnit`)
  - [ ] test suites should appear in components report (see `TestingNativeComponentReportIntegrationTest`)

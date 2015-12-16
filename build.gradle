@@ -42,10 +42,9 @@ String process(File file) {
             handlingCommand = true
             def command = extractCommand(line)
             def process = command.execute(null, file.getParentFile())
-            def output = new StringBuilder()
+            def output = new StringBuffer()
             def skipDiffOutput = true
-            process.consumeProcessOutput(output, output)
-            process.waitFor()
+            process.waitForProcessOutput(output, output)
             new BufferedReader(new StringReader(output.toString())).with { reader ->
                 def outputLine
                 while ((outputLine = reader.readLine()) != null) {

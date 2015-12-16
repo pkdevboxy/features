@@ -9,14 +9,15 @@ As a build author, I can declare that an entire test suite depends on an externa
 
 ### Attempt to execute tests and succeed
 
-    ../../../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteMySrc1
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteMySrc2
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinaryTest
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinary
+    $ ../../../../../gradlew clean mySuiteBinary
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:clean
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:compileMySuiteBinaryMySuiteMySrc1
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:compileMySuiteBinaryMySuiteMySrc2
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:mySuiteBinaryTest
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:mySuiteBinary
 
     BUILD SUCCESSFUL
+
 
 ### Remove dependency from build script
 Create a new build script that does not contain the hamcrest dependency.

@@ -26,10 +26,47 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
     BUILD SUCCESSFUL
 
 ### Remove dependency from build script
-TODO
+
+    $ grep -v "library 'myTestingLib'" build.gradle > build.nodep.gradle
 
 ### Attempt to execute tests and fail to compile
-TODO
+
+    $ ../../../../gradlew -b build.nodep.gradle clean mySuiteBinary
+    :clean
+    :compileMySuiteBinaryMySuiteJava
+    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:4: error: package my.testing does not exist
+    import static my.testing.Utils.*;
+                            ^
+    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:5: error: package my.testing does not exist
+    import static my.testing.Lib.*;
+                            ^
+    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
+            assertThat(FORTY_TWO, isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything());
+                       ^
+      symbol:   variable FORTY_TWO
+      location: class MyTest
+    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
+            assertThat(FORTY_TWO, isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything());
+                                  ^
+      symbol:   method isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything()
+      location: class MyTest
+    4 errors
+    :compileMySuiteBinaryMySuiteJava FAILED
+
+    FAILURE: Build failed with an exception.
+
+    * What went wrong:
+    Execution failed for task ':compileMySuiteBinaryMySuiteJava'.
+    > Compilation failed; see the compiler error output for details.
+
+    * Try:
+    Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
+
+    BUILD FAILED
+
+## Cleanup
+
+    $ rm build.nodep.gradle
 
 ## Test cases
 

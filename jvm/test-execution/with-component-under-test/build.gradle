@@ -1,0 +1,22 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+    id 'junit-test-suite'
+}
+
+repositories {
+    jcenter()
+}
+
+model {
+    components {
+
+	myLib(JvmLibrarySpec) {
+	    
+        }
+        
+        myTest(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+        }
+    }
+}

@@ -11,12 +11,13 @@ repositories {
 model {
     components {
 
-	myLib(JvmLibrarySpec) {
-	    
+        myLib(JvmLibrarySpec) {
         }
-        
+
         myTest(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
+
+            // componentUnderTest project(':') library('myLib')
         }
     }
 }

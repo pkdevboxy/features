@@ -34,7 +34,7 @@ As a build author, I can declare a component under test for a test suite, making
 
 ### Add component under test from build script
 
-TODO
+    # $ sed -ri 's,// ,,' build.gradle
 
 ### Attempt to execute tests and see test failing
 
@@ -62,7 +62,7 @@ TODO
 
 ### Fix the code of the component under test
 
-TODO
+    # $ echo "answerToTheUltimateQuestionOfLifeTheUniverseAndEverything=42" > src/myLib/resources/answers.properties
 
 ### Attempt to execute tests and see them passing
 
@@ -78,7 +78,7 @@ TODO
 
 ### Clean up
 
-TODO
+    # $ git reset --hard
 
 ----
 

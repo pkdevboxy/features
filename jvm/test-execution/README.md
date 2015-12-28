@@ -23,15 +23,15 @@ _The stories (and other cards) below are listed according to the order in which 
    - up to this point, users have been required to run tests with `<<suitename>>BinaryTest`, e.g. `mySuiteBinaryTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
    - Will need to extract a common concept of a 'run' task for all test suite binaries, so that [this rule](https://github.com/gradle/gradle/blob/229d8c7ef9995277e06362675606a0dfb90b9d5e/subprojects/platform-native/src/main/groovy/org/gradle/nativeplatform/test/plugins/NativeBinariesTestPlugin.java#L94-L94) can be pulled up into common infrastructure.
  - [ ] [Build author can declare a test suite with a component under test](with-component-under-test)
-
-## Not in Scope
- - Fix "the Binary problem"
-   - All test execution-related tasks currently include `Binary` in the name. This reflects the reality that we "deal in binaries" in the Gradle software model, but in fact the concept of a "binary" makes little sense in the context of executing a test suite. We need to find a better way to capture this concept and then let it bubble up to the level of task naming, so that users have a better experience.
  - Use `run<<Suitename>>` vs `<<suitename>>(Binary|Whatever)Test`
    - This is a cross-cutting naming concern, but the assertion is that it is more natural for a user to type `gradle runMySuite`, or `gradle runIntegTests` than it is to type `gradle mySuiteTest` or `gradle integTestsTest`. Basically, tasks should lead with a verb.
    - `gradle runMySuite` should run all buildable variants of `mySuite`.
    - `gradle mySuite` should assemble, but not run, all buildable variants of `mySuite`.
    - See pull request https://github.com/gradle/features/pull/3
+
+## Not in Scope
+ - Fix "the Binary problem"
+   - All test execution-related tasks currently include `Binary` in the name. This reflects the reality that we "deal in binaries" in the Gradle software model, but in fact the concept of a "binary" makes little sense in the context of executing a test suite. We need to find a better way to capture this concept and then let it bubble up to the level of task naming, so that users have a better experience.
  - User defined variants (eg 'run for these different database types and versions')
  - Targeting multiple platforms
  - TestNG suites

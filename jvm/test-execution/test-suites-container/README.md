@@ -55,7 +55,6 @@ This will allow us a proper way to avoid building and executing tests when `grad
     Source sets
         Java source 'mySuite:java'
             srcDir: src/mySuite/java
-            dependencies:
         JVM resources 'mySuite:resources'
             srcDir: src/mySuite/resources
 
@@ -73,10 +72,10 @@ This will allow us a proper way to avoid building and executing tests when `grad
 
 ## Implementation Goals
 
- - Must extract common infrastructure from 'testing-native', and share a single `TestSuiteContainer` instance
+ - [x] Must extract common infrastructure from 'testing-native', and share a single `TestSuiteContainer` instance
 
 ## Test cases
 
- - [ ] running `gradle assemble` does not build or run the test suite
- - [ ] `testSuites` container should accept multiple test suites of different types (`CUnit`, `JUnit`)
- - [ ] test suites should appear in components report (see `TestingNativeComponentReportIntegrationTest`)
+ - [x] running `gradle assemble` does not build or run the test suite
+ - [x] `testSuites` container should accept multiple test suites of different types (`CUnit`, `JUnit`)
+ - [x] test suites should appear in components report (see `TestingNativeComponentReportIntegrationTest`)

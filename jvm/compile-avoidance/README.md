@@ -52,10 +52,9 @@ The performance benefits of compile avoidance are most dramatic in situations wh
 
     $ for i in $(seq 1 5000); do echo "package com.myco.gen; class C$i {}" > src/app/com/myco/gen/C$i.java; done
 
-### 2. Clean, build and run
+### 2. Build and run
 
-    $ ../../gradlew clean build run
-    :jvm:compile-avoidance:clean
+    $ ../../gradlew build run
     :jvm:compile-avoidance:compileMyLibJarMyLibJava
     :jvm:compile-avoidance:myLibApiJar
     :jvm:compile-avoidance:compileMyAppJarMyAppJava

@@ -2,7 +2,7 @@ language:
   - java
 
 install:
-  - ./gradlew noop
+  - ./gradlew clean
 
 script:
   - ./use-features.sh

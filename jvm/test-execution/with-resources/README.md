@@ -7,11 +7,10 @@ As a build author, I should be able to place resources (properties files, etc) i
 
 ### Attempt to execute tests and succeed
 
-    $ ../../../gradlew clean mySuiteBinary
+    $ ../../../gradlew mySuiteBinary
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
-    :jvm:test-execution:with-resources:clean
     :jvm:test-execution:with-resources:compileMySuiteBinaryMySuiteJava
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar

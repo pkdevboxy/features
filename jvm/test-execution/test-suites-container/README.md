@@ -9,8 +9,7 @@ This will allow us a proper way to avoid building and executing tests when `grad
 
 ### Assemble and succeed with no test suite being compiled or executed
 
-    $ ../../../gradlew clean assemble
-    :clean
+    $ ../../../gradlew assemble
     :createMyLibJar
     :myLibApiJar UP-TO-DATE
     :myLibJar

@@ -8,13 +8,12 @@ To be clear, there is no component under test in this story. Just a test suite.
 
 ## Usage
 
-### Clean, build, run mySuiteBinary and succeed
+### run mySuiteBinary and succeed
 
-    $ ../../../gradlew clean mySuiteBinary
+    $ ../../../gradlew mySuiteBinary
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
-    :jvm:test-execution:with-junit:clean
     :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
@@ -24,7 +23,7 @@ To be clear, there is no component under test in this story. Just a test suite.
     BUILD SUCCESSFUL
 
 
-### Build incrementally, run mySuiteBinary and succeed
+### run mySuiteBinary incrementally and succeed
 
     $ ../../../gradlew mySuiteBinary
     :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava UP-TO-DATE
@@ -52,7 +51,7 @@ $ git diff .
  }
 ```
 
-### Build incrementally, run mySuiteBinary and fail
+### run mySuiteBinary incrementally and fail
 
     $ ../../../gradlew mySuiteBinary
     :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava

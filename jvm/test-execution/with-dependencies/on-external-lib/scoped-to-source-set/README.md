@@ -9,12 +9,11 @@ As a build author, I can declare that a specific source set of a test suite depe
 
 ### Attempt to execute tests and succeed
 
-    $ ../../../../../gradlew clean mySuiteBinary
+    $ ../../../../../gradlew mySuiteBinary
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteJava
     Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar
     Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
@@ -33,8 +32,7 @@ Create a new build script that does not contain the hamcrest dependency.
 ### Attempt to execute tests and fail to compile
 Now run against the new build script and fail to compile as expected.
 
-    $ ../../../../../gradlew -b build.nodep.gradle clean mySuiteBinary
-    :clean
+    $ ../../../../../gradlew -b build.nodep.gradle mySuiteBinary
     $FEATURES_HOME/jvm/test-execution/with-dependencies/on-external-lib/scoped-to-source-set/src/mySuite/java/MyTest.java:3: error: cannot find symbol
     import static org.hamcrest.Matchers.is;
                               ^

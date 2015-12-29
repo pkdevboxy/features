@@ -13,8 +13,7 @@ Note that this story assumes an internal library dependency scoped at the source
 
 Note: the following fails with `UnsupportedOperationException` due to running against API jar (see corresponding test case below).
 
-    # ../../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-dependencies:on-internal-lib:clean UP-TO-DATE
+    # ../../../../gradlew mySuiteBinary
     :jvm:test-execution:with-dependencies:on-internal-lib:compileMyTestingUtilsJarMyTestingUtilsJava
     :jvm:test-execution:with-dependencies:on-internal-lib:myTestingUtilsApiJar
     :jvm:test-execution:with-dependencies:on-internal-lib:compileMyTestingLibJarMyTestingLibJava
@@ -31,8 +30,7 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
 
 ### Attempt to execute tests and fail to compile
 
-    $ ../../../../gradlew -b build.nodep.gradle clean mySuiteBinary
-    :clean
+    $ ../../../../gradlew -b build.nodep.gradle mySuiteBinary
     :compileMySuiteBinaryMySuiteJava
     /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:4: error: package my.testing does not exist
     import static my.testing.Utils.*;

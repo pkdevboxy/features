@@ -5,9 +5,11 @@
 #
 # See: .travis.yml
 
-./gradlew useFeature
+rootDir=$(dirname $0)
 
-let changed_files=$(git status -s | wc -l | sed "s/ //g")
+$rootDir/gradlew useFeature
+
+let changed_files=$(git status -s $rootDir | wc -l | sed "s/ //g")
 if [[ $changed_files > 0 ]]; then
     git status -s
     git diff

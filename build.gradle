@@ -25,12 +25,12 @@ wrapper {
     }
 }
 
-String process(File file) {
-    def temp = tempFile(file)
-    def writer = new PrintWriter(temp)
+String process(File readme) {
+    def tempReadme = createTempFile(readme)
+    def writer = new PrintWriter(tempReadme)
     def handlingCommand = false
 
-    file.eachLine { line ->
+    readme.eachLine { line ->
         if (handlingCommand && !isCommandOutput(line)) {
             handlingCommand = false
             writer.println('')
@@ -45,7 +45,7 @@ String process(File file) {
             handlingCommand = true
             def command = stripCommandPrompt(line)
             def bashCommand = wrapCommandWithBash(command)
-            def process = bashCommand.execute(null, file.getParentFile())
+            def process = bashCommand.execute(null, readme.getParentFile())
             def output = new StringBuffer()
             def skipDiffOutput = true
             process.waitForProcessOutput(output, output)
@@ -78,13 +78,13 @@ String process(File file) {
     }
 
     writer.close()
-    return temp.text
+    return tempReadme.text
 }
 
-File tempFile(File file) {
-    File temp = File.createTempFile(file.name, '.tmp')
-    temp.deleteOnExit()
-    return temp
+File createTempFile(File origFile) {
+    File tempFile = File.createTempFile(origFile.name, '.tmp')
+    tempFile.deleteOnExit()
+    return tempFile
 }
 
 boolean isCommand(String line) {

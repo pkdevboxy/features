@@ -10,7 +10,7 @@ As a build author, I can declare that a specific source set of a test suite depe
 ### Attempt to execute tests and succeed
 
     $ ../../../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean UP-TO-DATE
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteJava
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinaryTest
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinary

@@ -11,7 +11,7 @@ To be clear, there is no component under test in this story. Just a test suite.
 ### Clean, build, run mySuiteBinary and succeed
 
     $ ../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-junit:clean
+    :jvm:test-execution:with-junit:clean UP-TO-DATE
     :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava
     :jvm:test-execution:with-junit:mySuiteBinaryTest
     :jvm:test-execution:with-junit:mySuiteBinary

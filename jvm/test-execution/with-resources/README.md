@@ -8,7 +8,7 @@ As a build author, I should be able to place resources (properties files, etc) i
 ### Attempt to execute tests and succeed
 
     $ ../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-resources:clean
+    :jvm:test-execution:with-resources:clean UP-TO-DATE
     :jvm:test-execution:with-resources:compileMySuiteBinaryMySuiteJava
     :jvm:test-execution:with-resources:processMySuiteBinaryMySuiteResources
     :jvm:test-execution:with-resources:mySuiteBinaryTest

@@ -18,7 +18,7 @@ _The stories (and other cards) below are listed according to the order in which 
  - [ ] [Build author can declare a JUnit test suite](with-junit)
  - [ ] [Build author can declare dependencies for test suite sources](with-dependencies)
  - [ ] [Build author can declare a test suite with resources](with-resources)
- - [ ] [Reuse the existing `testSuites` container in the JVM software model](test-suites-container) (`debt`)
+ - [x] [Reuse the existing `testSuites` container in the JVM software model](test-suites-container) (`debt`)
  - [ ] Build user can execute tests using `gradle check`
    - up to this point, users have been required to run tests with `<<suitename>>BinaryTest`, e.g. `mySuiteBinaryTest`. With the `testSuites` container in place, it should now be possible to tie test execution into the conventional `check` task lifecycle.
    - Will need to extract a common concept of a 'run' task for all test suite binaries, so that [this rule](https://github.com/gradle/gradle/blob/229d8c7ef9995277e06362675606a0dfb90b9d5e/subprojects/platform-native/src/main/groovy/org/gradle/nativeplatform/test/plugins/NativeBinariesTestPlugin.java#L94-L94) can be pulled up into common infrastructure.

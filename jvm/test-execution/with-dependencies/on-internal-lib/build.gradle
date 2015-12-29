@@ -9,7 +9,7 @@ repositories {
 }
 
 model {
-    components {
+    testSuites {
 
         mySuite(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
@@ -22,6 +22,9 @@ model {
                 }
             }
         }
+    }
+
+    components {
 
         myTestingLib(JvmLibrarySpec) {
             api {

@@ -43,8 +43,9 @@ String process(File file) {
         }
         if (isCommand(line)) {
             handlingCommand = true
-            def command = extractCommand(line)
-            def process = command.execute(null, file.getParentFile())
+            def command = stripCommandPrompt(line)
+            def bashCommand = wrapCommandWithBash(command)
+            def process = bashCommand.execute(null, file.getParentFile())
             def output = new StringBuffer()
             def skipDiffOutput = true
             process.waitForProcessOutput(output, output)
@@ -90,9 +91,12 @@ boolean isCommand(String line) {
     line.startsWith('    $ ')
 }
 
-def extractCommand(String line) {
-    def command = line.replace('    $ ', '')
-    return ['bash', '-c', command]
+List wrapCommandWithBash(String command) {
+    ['bash', '-c', command]
+}
+
+String stripCommandPrompt(String line) {
+    line.replace('    $ ', '')
 }
 
 boolean isCommandOutput(String line) {
@@ -123,9 +127,8 @@ String stripFeaturesHome(String line) {
     line.replaceAll("${rootProject.rootDir}", '\\$FEATURES_HOME')
 }
 
-boolean isGitDiffCommand(List command) {
-    String origCommand = command[command.size()-1]
-    origCommand.startsWith('git diff')
+boolean isGitDiffCommand(String command) {
+    command.startsWith('git diff')
 }
 
 boolean isFirstLineOfDiffContext(String line) {

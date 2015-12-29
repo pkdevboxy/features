@@ -1,5 +1,8 @@
 defaultTasks 'useFeature'
 
+task noop {
+}
+
 subprojects {
 
     task useFeature {

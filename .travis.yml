@@ -1,6 +1,9 @@
 language:
   - java
 
+install:
+  - ./gradlew noop
+
 script:
   - ./use-features.sh
 

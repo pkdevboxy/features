@@ -10,8 +10,15 @@ As a build author, I can declare that an entire test suite depends on an externa
 ### Attempt to execute tests and succeed
 
     $ ../../../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:clean UP-TO-DATE
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:clean
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:compileMySuiteBinaryMySuiteMySrc1
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:compileMySuiteBinaryMySuiteMySrc2
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:mySuiteBinaryTest
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite:mySuiteBinary

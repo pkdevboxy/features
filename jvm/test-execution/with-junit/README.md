@@ -11,8 +11,13 @@ To be clear, there is no component under test in this story. Just a test suite.
 ### Clean, build, run mySuiteBinary and succeed
 
     $ ../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-junit:clean UP-TO-DATE
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
+    :jvm:test-execution:with-junit:clean
     :jvm:test-execution:with-junit:compileMySuiteBinaryMySuiteJava
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
     :jvm:test-execution:with-junit:mySuiteBinaryTest
     :jvm:test-execution:with-junit:mySuiteBinary
 

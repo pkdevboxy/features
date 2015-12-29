@@ -10,8 +10,15 @@ As a build author, I can declare that a specific source set of a test suite depe
 ### Attempt to execute tests and succeed
 
     $ ../../../../../gradlew clean mySuiteBinary
-    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean UP-TO-DATE
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
+    :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:clean
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:compileMySuiteBinaryMySuiteJava
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinaryTest
     :jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set:mySuiteBinary
 

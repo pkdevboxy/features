@@ -28,6 +28,7 @@ wrapper {
 String process(File readme) {
     def tempReadme = createTempFile(readme)
     def writer = new PrintWriter(tempReadme)
+    def gradleUserHome = createTempGradleUserHome()
     def handlingCommand = false
 
     readme.eachLine { line ->
@@ -44,6 +45,9 @@ String process(File readme) {
         if (isCommand(line)) {
             handlingCommand = true
             def command = stripCommandPrompt(line)
+            if (isGradleCommand(command)) {
+                command = configureGradleUserHome(command, gradleUserHome)
+            }
             def bashCommand = wrapCommandWithBash(command)
             def process = bashCommand.execute(null, readme.getParentFile())
             def output = new StringBuffer()
@@ -78,6 +82,7 @@ String process(File readme) {
     }
 
     writer.close()
+    gradleUserHome.deleteDir()
     return tempReadme.text
 }
 
@@ -97,6 +102,18 @@ List wrapCommandWithBash(String command) {
 
 String stripCommandPrompt(String line) {
     line.replace('    $ ', '')
+}
+
+File createTempGradleUserHome() {
+   File.createTempDir('gradle-features', 'gradle-user-home')
+}
+
+boolean isGradleCommand(String command) {
+    command =~ /gradlew/
+}
+
+String configureGradleUserHome(String command, File gradleUserHome) {
+    "$command --gradle-user-home $gradleUserHome"
 }
 
 boolean isCommandOutput(String line) {

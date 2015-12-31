@@ -1,0 +1,77 @@
+plugins {
+    id 'jvm-component'
+}
+
+model {
+
+    // including 0..* external repository managed libraries (also called modules)
+    myExternalLibraries(DependencySet) {
+
+        // the first identifier, `library` in this case,
+        // denotes the role the dependency plays
+        // in the consuming end and not how or where it's
+        // identified
+
+        // the argument to library is the identifier
+
+        // the identifier can be a simple string
+        // that gets resolved by a chain of command
+        // contributed by plugins (say, GAV syntax is contributed
+        // by the jvm-component plugin)
+        library 'org.slf4j:slf4j-ext:1.7.13'
+
+        // the identifier can also be a "strongly typed"
+        // set of properties contributed by plugins
+        // via model node views
+        library {
+            group 'org.slf4j'
+            artifact 'slf4j-api'
+        }
+    }
+
+    // including 0..* internal libraries
+    myLibraries(DependencySet) {
+        library 'myLib1'
+        library 'myLib2'
+    }
+
+    myResources(DependencySet) {
+        // `resource` means the resolved artifact is used
+        // but not as part of the compilation classpath
+        resource 'myLib1'
+        resource $.myProcessedResources // referencing something like a `JvmResources` component
+        resource 'file://./resources/message.txt'
+    }
+
+    // referencing 0..* dependency sets
+    myComposedDependencies(DependencySet) {
+        library $.myExternalLibraries
+        library $.myLibraries
+        resource $.myResources
+    }
+
+    // including 0..*
+    myMixedDependencies(DependencySet) {
+        library 'org.slf4j:slf4j-api:1.7.13'
+        library 'myLib1'
+        library $.myLibraries
+        library 'myClasses'
+    }
+
+    tasks {
+        list(Task) {
+            doLast {
+                def deps = $.myMixedDependencies
+                deps.each {
+                    println it
+                }
+            }
+        }
+
+        install(Copy) {
+            // from 'resources'
+            from $.myMixedDependencies
+            into "$buildDir/assets"
+        }
+    }
+}

@@ -72,7 +72,8 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
    - this makes sure that a test suite is also a regular JVM library
  - [x] Test classes cannot consume (aka test) a non-API class of a dependency
    - this makes sure that we make the difference between a dependency and a component under test. A dependency is used only to build and execute tests, but has nothing to do with a component under test, for which we will want to test non-API classes too.
- - [ ] Test suite should execute against runtime jar of internal library and its transitive dependencies
- - [ ] Extend incremental build test case from previous story to include a dependency on internal library
+ - [x] Test suite should execute against runtime jar of internal library
+ - [x] Test suite should execute against runtime jar of internal library and its transitive dependencies
+ - [x] Extend incremental build test case from previous story to include a dependency on internal library
  - [ ] Verify runtime dependencies of external library are available at test execution time
    - even though this story is fundamentally about test suite dependencies on an internal library, it currently includes dependencies on internal *and* external libraries, where the latter brings in transitive 'runtime' dependencies, so it is a good candidate for dealing with this test case.

@@ -31,19 +31,24 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
 ### Attempt to execute tests and fail to compile
 
     $ ../../../../gradlew -b build.nodep.gradle mySuiteBinary
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.pom
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-parent/1.3/hamcrest-parent-1.3.pom
     :compileMySuiteBinaryMySuiteJava
-    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:4: error: package my.testing does not exist
+    Download https://jcenter.bintray.com/junit/junit/4.12/junit-4.12.jar
+    Download https://jcenter.bintray.com/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:4: error: package my.testing does not exist
     import static my.testing.Utils.*;
                             ^
-    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:5: error: package my.testing does not exist
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:5: error: package my.testing does not exist
     import static my.testing.Lib.*;
                             ^
-    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
             assertThat(FORTY_TWO, isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything());
                        ^
       symbol:   variable FORTY_TWO
       location: class MyTest
-    /home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
+    $FEATURES_HOME/jvm/test-execution/with-dependencies/on-internal-lib/src/mySuite/java/MyTest.java:11: error: cannot find symbol
             assertThat(FORTY_TWO, isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything());
                                   ^
       symbol:   method isTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything()
@@ -61,6 +66,7 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
     Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output.
 
     BUILD FAILED
+
 
 ## Cleanup
 

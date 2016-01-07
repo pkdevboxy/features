@@ -29,9 +29,9 @@ Notice no jar was built.
     - [x] classes are generated
     - [x] resources are processed
 - [x] User can specify additional resource directory with preprocessed resources and it will end up in the jar
-- [ ] User can specify additional class directory with precompiled classes and:
-    - [ ] it will end up in the runtime jar
-    - [ ] it will end up in the API jar
+- [x] User can specify additional class directory with precompiled classes and:
+    - [x] it will end up in the runtime jar
+    - [x] it will end up in the API jar
 
 ## Implementation plan
 

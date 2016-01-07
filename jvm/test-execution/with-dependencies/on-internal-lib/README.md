@@ -75,5 +75,5 @@ Note: the following fails with `UnsupportedOperationException` due to running ag
  - [x] Test suite should execute against runtime jar of internal library
  - [x] Test suite should execute against runtime jar of internal library and its transitive dependencies
  - [x] Extend incremental build test case from previous story to include a dependency on internal library
- - [ ] Verify runtime dependencies of external library are available at test execution time
+ - [x] Verify runtime dependencies of external library are available at test execution time
    - even though this story is fundamentally about test suite dependencies on an internal library, it currently includes dependencies on internal *and* external libraries, where the latter brings in transitive 'runtime' dependencies, so it is a good candidate for dealing with this test case.

@@ -39,6 +39,11 @@ Notice no jar was built.
 - [x] Use `JvmAssembly` as a backing store for configuration of `JarBinarySpec`: will have `classesDir`, `resourcesDir`, `targetPlatform` and `toolChain` from `JarBinarySpec`
 - [x] Change `java-lang` plugin so that it will apply a transform for every `JavaSourceSet` of a component with a `JvmAssembly`
 - [x] Change `JvmResourcesPlugin` to create a `ProcessResources` task for every `JvmResourceSet` of a component with a `JvmAssembly`
+
+## Postponed
+
+### Implementation Plan
+
 - [ ] Replace usages of `JvmBinarySpec#getClassDir` by `JvmAssembly#getClassDirectories`
 - [ ] Replace usages of `JvmBinarySpec#getResourceDir` by `JvmAssembly#getResourceDirectories`
 - [ ] Consider updating the components report to display `JvmAssembly`

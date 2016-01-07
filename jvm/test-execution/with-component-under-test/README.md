@@ -91,3 +91,5 @@ As a build author, I can declare a component under test for a test suite, making
  - [ ] API jar and runtime jar of the component under test are not built when test suite is executed
  - [ ] Updating sources of the component under test should trigger execution of the tests
  - [ ] Tests should not be executed if sources of component under test haven't changed
+ - [ ] Reasonable error message if component under test doesn't exist
+

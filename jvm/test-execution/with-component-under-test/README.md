@@ -9,7 +9,7 @@ As a build author, I can declare a component under test for a test suite, making
 
 ### Attempt to execute tests and fail to compile
 
-    # $ ../../../gradlew myTestBinary
+    # $ ../../../gradlew myTestBinaryTest
     :compileMyLibJarMyLibJava
     :processMyLibJarMyLibResources
     :compileMyTestBinaryMyTestJava
@@ -38,21 +38,22 @@ As a build author, I can declare a component under test for a test suite, making
 
 ### Attempt to execute tests and see test failing
 
-    # $ ../../../gradlew myTestBinary
-    :compileMyTestBinaryMyTestJava
-    :processMyTestBinaryMyTestResources
-    :myTestBinaryTest
+    # $ ../../../gradlew myTestMyLibJarBinaryTest
+    :compileMyLibJarMyLibJava UP-TO-DATE
+    :processMyLibJarMyLibResources UP-TO-DATE
+    :compileMyTestMyLibJarBinaryMyTestJava UP-TO-DATE
+    :myTestMyLibJarBinaryTest
 
     com.acme.BlackBoxTest > shouldFindTheAnswerToTheUltimateQuestionOfLifeTheUniverseAndEverything FAILED
         java.lang.AssertionError at BlackBoxTest.java:9
 
     1 test completed, 1 failed
-    :myTestBinaryTest FAILED
+    :myTestMyLibJarBinaryTest FAILED
 
     FAILURE: Build failed with an exception.
 
     * What went wrong:
-    Execution failed for task ':myTestBinaryTest'.
+    Execution failed for task ':myTestMyLibJarBinaryTest'.
     > There were failing tests. See the report at: file:///home/cchampeau/DEV/PROJECTS/GITHUB/gradle-features/jvm/test-execution/with-component-under-test/build/reports/tests/index.html
 
     * Try:
@@ -66,11 +67,11 @@ As a build author, I can declare a component under test for a test suite, making
 
 ### Attempt to execute tests and see them passing
 
-    # $ ../../../gradlew myTestBinary
-    :compileMyTestBinaryMyTestJava UP-TO-DATE
-    :processMyTestBinaryMyTestResources
-    :myTestBinaryTest
-    :myTestBinary
+    # $ ../../../gradlew myTestMyLibJarBinaryTest
+    :compileMyLibJarMyLibJava UP-TO-DATE
+    :processMyLibJarMyLibResources
+    :compileMyTestMyLibJarBinaryMyTestJava
+    :myTestMyLibJarBinaryTest
 
     BUILD SUCCESSFUL
 
@@ -84,12 +85,12 @@ As a build author, I can declare a component under test for a test suite, making
 
 ## Test cases
 
- - [ ] Test suite can use an API class defined in the component under test
- - [ ] Test suite can use a non-API class defined in the component under test
- - [ ] Test suite is executed against the runtime classes of the component under test
- - [ ] Test suite can see (use) resources of the component under test
- - [ ] API jar and runtime jar of the component under test are not built when test suite is executed
+ - [x] Test suite can use an API class defined in the component under test
+ - [x] Test suite can use a non-API class defined in the component under test
+ - [x] Test suite is executed against the runtime classes of the component under test
+ - [x] Test suite can see (use) resources of the component under test
+ - [x] API jar and runtime jar of the component under test are not built when test suite is executed
  - [ ] Updating sources of the component under test should trigger execution of the tests
  - [ ] Tests should not be executed if sources of component under test haven't changed
- - [ ] Reasonable error message if component under test doesn't exist
+ - [x] Reasonable error message if component under test doesn't exist
 

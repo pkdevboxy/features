@@ -90,7 +90,8 @@ As a build author, I can declare a component under test for a test suite, making
  - [x] Test suite is executed against the runtime classes of the component under test
  - [x] Test suite can see (use) resources of the component under test
  - [x] API jar and runtime jar of the component under test are not built when test suite is executed
- - [ ] Updating sources of the component under test should trigger execution of the tests
- - [ ] Tests should not be executed if sources of component under test haven't changed
+ - [x] Updating sources of the component under test should trigger execution of the tests
+ - [x] Tests should not be executed if sources of component under test haven't changed
  - [x] Reasonable error message if component under test doesn't exist
+ - [x] A test suite which component under test has multiple binaries should have corresponding test binaries
 

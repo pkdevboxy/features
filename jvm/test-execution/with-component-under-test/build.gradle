@@ -14,7 +14,7 @@ model {
         myTest(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
 
-            // testing 'myLib'
+            // testing $.components.myLib
         }
     }
 

@@ -40,32 +40,9 @@ Notice no jar was built.
 - [x] Change `java-lang` plugin so that it will apply a transform for every `JavaSourceSet` of a component with a `JvmAssembly`
 - [x] Change `JvmResourcesPlugin` to create a `ProcessResources` task for every `JvmResourceSet` of a component with a `JvmAssembly`
 
-## Postponed
-
-### Implementation Plan
-
-- [ ] Replace usages of `JvmBinarySpec#getClassDir` by `JvmAssembly#getClassDirectories`
-- [ ] Replace usages of `JvmBinarySpec#getResourceDir` by `JvmAssembly#getResourceDirectories`
-- [ ] Consider updating the components report to display `JvmAssembly`
-
-### Breaking changes and renames
-
-- [ ] Rename `JarBinarySpec` to `JvmVariantSpec` (consider removing the `Spec`, too)
-- [ ] Remove or deprecate `JarBinarySpec#getClassDir` and `JarBinarySpec#getResourceDir`
-- [ ] Rename `LibraryBinaryIdentifier` to `VariantIdentifier` (or similar)
-
 ## Out of scope (later stories)
 
+- Public API and required renames should be done as part of [#136](https://github.com/gradle/langos/issues/136)
 - Public construction of `JvmAssembly`: this will be an internal implementation.
     - A later story will allow this to be used in the Android plugin
 - Make `scala-lang` take advantage of `JvmAssembly`
-
-# Should be included
-
-## Implementation plan
-
-- [ ] User guide and samples
-    - Good point: we should copy the sample from the feature spec into the codebase
-- [ ] Public API to query the `JvmAssembly` for a `JarBinarySpec`
-    - We were hoping to keep `JvmAssembly` internal for this feature, but clearly we need a public API that can be
-      depended on by a task. The public API can be simply `extends BuildableModelElement` for now.

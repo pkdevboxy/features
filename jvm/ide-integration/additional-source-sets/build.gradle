@@ -1,0 +1,25 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+model {
+    components {
+        myLib(JvmLibrarySpec) {
+            sources {
+                compLevel(JavaSourceSet)
+            }
+        }
+    }
+    components {
+        myOtherLib(JvmLibrarySpec) {
+        	targetPlatform 'java7'
+        	targetPlatform 'java8'
+            binaries.all {
+                sources {
+                    binLevel(JavaSourceSet)
+                }
+            }
+        }
+    }
+}

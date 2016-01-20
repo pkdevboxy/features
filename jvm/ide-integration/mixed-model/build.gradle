@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'jvm-component'
+    id 'java-lang'
+    id 'junit-test-suite'
+}
+
+model {
+    components {
+        myLib(JvmLibrarySpec) {}
+        myOtherLib(JvmLibrarySpec) {}
+    }
+    testSuite {
+        myTestSuite(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+            testing $.components.myLib
+        }
+        myOtherTestSuite(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+            testing $.components.myOtherLib
+        }
+    }
+}

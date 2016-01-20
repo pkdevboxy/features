@@ -1,0 +1,32 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+model {
+    components {
+        myLib(JvmLibrarySpec) {
+            dependencies {
+                module 'commons-lang:commons-lang:2.6'
+            }
+            sources {
+                java {
+                    dependencies {
+                        module 'commons-io:commons-io:2.4'
+                    }
+                }
+            }
+        }
+    }
+    components {
+        myOtherLib(JvmLibrarySpec) {
+        	targetPlatform 'java7'
+        	targetPlatform 'java8'
+            binaries.all {
+                dependencies {
+                    module 'commons-net:commons-net:3.4'
+                }
+            }
+        }
+    }
+}

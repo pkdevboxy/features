@@ -1,0 +1,19 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+model {
+    components {
+        myLib(JvmLibrarySpec) {
+        	targetPlatform 'java7'
+        	targetPlatform 'java6'
+        }
+    }
+    components {
+        myOtherLib(JvmLibrarySpec) {
+        	targetPlatform 'java7'
+        	targetPlatform 'java8'
+        }
+    }
+}

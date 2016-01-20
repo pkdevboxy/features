@@ -1,0 +1,13 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+}
+
+model {
+    components {
+        myLib(JvmLibrarySpec)
+    }
+    components {
+        myOtherLib(JvmLibrarySpec)
+    }
+}

@@ -5,12 +5,18 @@ plugins {
 }
 
 model {
+    components {
+        myLib(JvmLibrarySpec) {}
+    }
+
     testSuite {
         myTestSuite(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
         }
-        myOtherTestSuite(JUnitTestSuiteSpec) {
+
+        myLibTestSuite(JUnitTestSuiteSpec) {
             jUnitVersion '4.12'
+            testing $.components.myLib
         }
     }
 }

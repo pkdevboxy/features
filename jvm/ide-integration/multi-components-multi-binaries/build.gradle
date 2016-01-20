@@ -12,8 +12,11 @@ model {
     }
     components {
         myOtherLib(JvmLibrarySpec) {
-        	targetPlatform 'java7'
-        	targetPlatform 'java8'
+            binaries {
+              myCustomBinary(JarBinarySpec) {
+                  // TBC
+              }
+            }
         }
     }
 }

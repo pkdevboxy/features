@@ -2,6 +2,11 @@
 
 ## Tests
 
+- IDEA content root and Eclipse project directory should be the project directory of the Gradle project containing the component/binary
+- Module/Project should have reasonable Java source settings (JDK, language level, target)
+- Eclipse should have basic Java natures and builders
+- Sources directories for the binary are correctly mapped
+- Classpath should include all binary sources only
 - Sources directories for the binary of each component are correctly mapped
 
 ## Out of scope
@@ -11,4 +16,3 @@
 - Test suites
 - External dependencies
 - Generated sources
-

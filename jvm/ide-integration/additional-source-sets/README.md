@@ -3,7 +3,7 @@
 ## Tests
 
 - Additional source sets on components are properly mapped
-- Additional source sets on binaries are property mapped
+- Additional source sets on "development" binaries are properly mapped while source sets on non "development" binaries are not mapped
 
 ## Out of scope
 

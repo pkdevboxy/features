@@ -5,6 +5,5 @@
 
 - Components dependencies are properly mapped
 - Test suites dependencies are properly mapped
-- Binaries dependencies are property mapped
+- "Development" binary dependencies are properly mapped
 - If available, each external dependency has Javadoc and Sources attached
-

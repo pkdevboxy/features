@@ -64,6 +64,7 @@ AKA simplify how we write the rules that we need to implement all the other feat
 # Next
 
 - IDE import
+- Library publish and resolve
 - Java application
 - JEE web and ejb application
 - Code quality

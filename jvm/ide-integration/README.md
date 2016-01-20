@@ -2,30 +2,22 @@
 
 ## Summary
 
+This feature brings import of JVM software model projects into IDEs.
+Build users can import JVM projects based on the Gradle software model in their IDEs. One final story allows to mix old java plugins and JVM software model components.
+
 ## Motivation
+
+`TBD`
 
 ## Status
 
-Stories proposal in progress.
+- Spike for IDEA failed
+- Spike for Eclipse succeeded
+- Stories proposal in progress
 
-## Related Work
+## Spikes
 
-### Eclipse Model
-
-An Eclipse Project has:
-
-- a root directory
-- sources directories
-- a single catch-all classpath
-- Java language settings
-
-A quite simple model, modelled into our existing EclipseModel. Eclipse, through Buildship, nicely use TAPI to get the existing EclipseModel.
-
-This model allows users to do things like importing test external dependencies in production code without notifying any problem. Raw Eclipse projects and Maven imported projects behave in the same way, it’s the Eclipse model itself that leaks here.
-
-The spike succeeded. See the `pm-sm-eclipse-import` in the main `gradle` repository.
-
-### IDEA Model
+### IDEA Spike
 
 An IDEA Module has:
 
@@ -41,6 +33,22 @@ A convenient model, modelled into our existing IdeaModel. Scoped dependencies al
 BUT IDEA kind of abuse TAPI and figure out a lot of things on his own by inspecting the Project and ignoring most of IdeaModel, including source directories when importing a Gradle project.
 
 The spike failed. We will need insight from JetBrains before knowing if import is possible without changes in IDEA itself. One fallback would be to map the JVM Software Model to generated IDEA files.
+
+### Eclipse Spike
+
+An Eclipse Project has:
+
+- a root directory
+- sources directories
+- a single catch-all classpath
+- Java language settings
+
+A quite simple model, modelled into our existing EclipseModel. Eclipse, through Buildship, nicely use TAPI to get the existing EclipseModel.
+
+This model allows users to do things like importing test external dependencies in production code without notifying any problem. Raw Eclipse projects and Maven imported projects behave in the same way, it’s the Eclipse model itself that leaks here.
+
+The spike succeeded. See the [`pm-sm-eclipse-import`](https://github.com/gradle/gradle/commits/pm-sm-eclipse-import) in the main `gradle` repository.
+
 
 ## Stories
 

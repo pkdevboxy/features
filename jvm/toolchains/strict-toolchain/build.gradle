@@ -14,9 +14,10 @@ model {
             targetPlatform 'java6'
             path '/usr/lib/jvm/java-6-openjdk-amd64'
         }
-        oracleJdk7(JdkSpec) {
+        oracleJdk8(JdkSpec) {
             targetPlatform 'java7'
-            path '/usr/lib/jvm/java-7-oracle'
+            targetPlatform 'java8'
+            path '/usr/lib/jvm/java-8-oracle'
         }
     }
     components {

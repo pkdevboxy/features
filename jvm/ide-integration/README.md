@@ -30,11 +30,11 @@ An IDEA Module has:
 
 A convenient model, modeled into our existing IdeaModel. Scoped dependencies allows distinction between compilation, runtime, test and “provided” dependencies but does not allows modeling dependencies between components of a single Gradle project inside a single IDEA module.
 
-BUT IDEA kind of abuse TAPI and figure out a lot of things on his own by inspecting the Project and ignoring most of IdeaModel, [including source directories when importing a Gradle project](https://github.com/JetBrains/intellij-community/blob/e154dbccda96d3f19afff5433109cef9f00a61d0/plugins/gradle/src/org/jetbrains/plugins/gradle/service/project/BaseGradleProjectResolverExtension.java#L285-L285).
+BUT, on import, IDEA kind of abuse TAPI and figures out a lot of things on his own by inspecting the Project, ignoring most of IdeaModel [including source directories](https://github.com/JetBrains/intellij-community/blob/e154dbccda96d3f19afff5433109cef9f00a61d0/plugins/gradle/src/org/jetbrains/plugins/gradle/service/project/BaseGradleProjectResolverExtension.java#L285-L285).
 
-The spike failed. We will need insight from JetBrains before knowing if import is possible without changes in IDEA itself. As a fallback we also experimented with mapping the JVM Software Model to generated IDEA files and that was success.
+The spike failed. We will need insight from JetBrains before knowing if import is possible without changes in IDEA itself. As a fallback we also experimented with mapping the JVM software model to generated IDEA files and that was a success.
 
-When TAPI reports several IDEA Modules for the same directory, IDEA present theses Modules to the user so he can choose the one he wants to use. In other words, we could provide users with different views of the same Gradle project per variant/component etc.. and thus modeling the software model better. If we fallback to generated IDEA files then we would have to see if IDEA behave in the same way.
+When TAPI reports several IDEA Modules for the same directory, IDEA present theses Modules to the user so he can choose the one he wants to use. In other words, we could provide users with different views of the same Gradle project per variant/component etc.. and thus model the software model better. If we fallback to generated IDEA files then we would have to see if IDEA behave in the same way.
 
 ### Eclipse Spike
 
@@ -50,7 +50,6 @@ A quite simple model, modeled into our existing EclipseModel. Eclipse, through B
 This model allows users to do things like importing test external dependencies in production code without notifying any problem. Raw Eclipse projects and Maven imported projects behave in the same way, it’s the Eclipse model itself that leaks here.
 
 The spike succeeded. See the [`pm-sm-eclipse-import`](https://github.com/gradle/gradle/commits/pm-sm-eclipse-import) in the main `gradle` repository.
-
 
 ## Stories
 

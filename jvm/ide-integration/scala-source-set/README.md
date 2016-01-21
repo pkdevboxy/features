@@ -5,8 +5,7 @@
 - Component and binaries level Scala source-sets are properly mapped
 - Module/Project should have reasonable Scala source settings
 - Eclipse: Scala natures and builders enabled
-- IDEA
-
+- IDEA: Scala facet and compiler library enabled
 
 ## Implementation notes
 

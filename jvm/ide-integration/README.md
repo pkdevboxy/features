@@ -28,7 +28,7 @@ An IDEA Module has:
 - scoped dependencies (compile/runtime/test/provided)
 - Java language settings
 
-A convenient model, modelled into our existing IdeaModel. Scoped dependencies allows distinction between compilation, runtime, test and “provided” dependencies but does not allows modelling dependencies between components of a single Gradle project inside a single IDEA module.
+A convenient model, modeled into our existing IdeaModel. Scoped dependencies allows distinction between compilation, runtime, test and “provided” dependencies but does not allows modeling dependencies between components of a single Gradle project inside a single IDEA module.
 
 BUT IDEA kind of abuse TAPI and figure out a lot of things on his own by inspecting the Project and ignoring most of IdeaModel, [including source directories when importing a Gradle project](https://github.com/JetBrains/intellij-community/blob/e154dbccda96d3f19afff5433109cef9f00a61d0/plugins/gradle/src/org/jetbrains/plugins/gradle/service/project/BaseGradleProjectResolverExtension.java#L285-L285).
 
@@ -43,7 +43,7 @@ An Eclipse Project has:
 - a single catch-all classpath
 - Java language settings
 
-A quite simple model, modelled into our existing EclipseModel. Eclipse, through Buildship, nicely use TAPI to get the existing EclipseModel.
+A quite simple model, modeled into our existing EclipseModel. Eclipse, through Buildship, nicely use TAPI to get the existing EclipseModel.
 
 This model allows users to do things like importing test external dependencies in production code without notifying any problem. Raw Eclipse projects and Maven imported projects behave in the same way, it’s the Eclipse model itself that leaks here.
 

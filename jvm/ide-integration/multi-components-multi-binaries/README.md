@@ -15,7 +15,7 @@ This can happen with variants or via direct binary addition by the build author.
 
 ## Out of scope
 
-- Non variant binaries, ie. binaries arbitrarly added by build author
+- Non variant binaries, ie. binaries arbitrarily added by build author
 - Additional source sets
 - Test suites
 - External dependencies

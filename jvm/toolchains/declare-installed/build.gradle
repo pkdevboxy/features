@@ -1,0 +1,32 @@
+plugins {
+    id 'jvm-component'
+    id 'java-lang'
+    id 'junit-test-suite'
+}
+
+repositories {
+    jcenter()
+}
+
+model {
+    toolChains {
+        openJdk6(JdkSpec) {
+            path '/usr/lib/jvm/java-6-openjdk-amd64'
+        }
+        oracleJdk7(JdkSpec) {
+            path '/usr/lib/jvm/java-7-oracle'
+        }
+    }
+    components {
+        myLib(JvmLibrarySpec) {
+            targetPlatform 'java6'
+            targetPlatform 'java7'
+        }
+    }
+    testSuites {
+        myTest(JUnitTestSuiteSpec) {
+            jUnitVersion '4.12'
+            testing $.components.myLib
+        }
+    }
+}

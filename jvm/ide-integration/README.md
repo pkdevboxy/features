@@ -34,6 +34,8 @@ BUT IDEA kind of abuse TAPI and figure out a lot of things on his own by inspect
 
 The spike failed. We will need insight from JetBrains before knowing if import is possible without changes in IDEA itself. As a fallback we also experimented with mapping the JVM Software Model to generated IDEA files and that was success.
 
+When TAPI reports several IDEA Modules for the same directory, IDEA present theses Modules to the user so he can choose the one he wants to use. In other words, we could provide users with different views of the same Gradle project per variant/component etc.. and thus modeling the software model better. If we fallback to generated IDEA files then we would have to see if IDEA behave in the same way.
+
 ### Eclipse Spike
 
 An Eclipse Project has:

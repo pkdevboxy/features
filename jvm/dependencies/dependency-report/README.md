@@ -10,11 +10,11 @@ As a build user, I can request a dependency report for a project, for a componen
 
 _The stories below are listed in the order they should be implemented._
 
-[ ] [Dependency report for binary](./for-binary)
-[ ] [Dependency report for component](./for-component)
-[ ] [Dependency report for project](./for-project)
-[ ] [Dependency report for source-set](./for-source-set)
-[ ] [Dependency report for custom ecosystem](./for-custom-ecosystem)
+ - [ ] [Dependency report for binary](./for-binary)
+ - [ ] [Dependency report for component](./for-component)
+ - [ ] [Dependency report for project](./for-project)
+ - [ ] [Dependency report for source-set](./for-source-set)
+ - [ ] [Dependency report for custom ecosystem](./for-custom-ecosystem)
 
 ## Implementation notes
 

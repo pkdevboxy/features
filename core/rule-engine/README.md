@@ -22,7 +22,7 @@ The current implementation of the rule engine does is missing certain key functi
 
 ## Motivation
 
-Currently many of the rules our own plugins declare have problems. In some cases the whole thing works only by coincidence, in other cases the problem is more about bloated, hard to read code that relies heavily on internal APIs. There's already some layers of workarounds accumulated in our core plugins, and new work requires more and more of these. We've seen in several times how these workarounds have slowed down the implementation of even simple stories.
+Currently many of the rules our own plugins declare have problems. In some cases the whole thing works only by coincidence, in other cases the problem is more about bloated, hard to read code that relies heavily on internal APIs. There's already some layers of workarounds accumulated in our core plugins, and new work requires more and more of these. We've seen several times how these workarounds have slowed down the implementation of even simple stories.
 
 Therefore the goal here is as much to make the life of our plugin author users' lives easier as it is to speed up our own development. Another goal is to enable us to write the right rules, providing good examples for plugin authors looking at our code for examples.
 

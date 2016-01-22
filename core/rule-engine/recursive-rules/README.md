@@ -14,16 +14,23 @@ The rule is only applied to true descendants of the given element, and never to 
 
 ## API
 
+It is possible to apply a single rule, or a full `RuleSource` to all descendants with a given type:
+
 ```groovy
-class MyCompoentRules extends RuleSource {
+class MyRules extends RuleSource {
     @Mutate @Each
     void mutateMyComponents(MyComponentSpec component) {
         // do something with each MyComponentSpec, no matter where it is in the model
     }
+
+    @Rules @Each
+    void mutateMyBinaries(MyBinaryRules rules, MyBinarySpec bianry) {
+        // apply MyBinaryRules to each MyBinarySpec, no matter where it is in the model
+    }
 }
 ```
 
-The scope in which `@Each` is applied is the same scope that the `RuleSource` is applied to.
+The scope in which `@Each` is applied is the same scope that the enclosing `RuleSource` is applied.
 
 ## Tests
 
@@ -31,6 +38,7 @@ The scope in which `@Each` is applied is the same scope that the `RuleSource` is
 * rule is not applied to scope element even if it can be viewed as the required type
 * rule is not applied to descendant references
 * rule is not applied to children of referenced node
+* the above work with a complete `RuleSource` as well as a single rule
 
 ## Implementation
 

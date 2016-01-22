@@ -27,7 +27,10 @@ TBD how to scope a recursive rule to a subtree of the model.
 
 ## Tests
 
-TBD
+* rule is applied to all children of model element that can be viewed as the required type
+* rule is not applied to scope element even if it can be viewed as the required type
+* rule is not applied to descendant references
+* rule is not applied to children of referenced node
 
 ## Implementation
 

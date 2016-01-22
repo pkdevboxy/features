@@ -32,3 +32,5 @@ TBD
 ## Implementation
 
 `@Each` rules can be applied to elements via an ancestral `ModelListener` when the node is discovered.
+
+Rules applied via `ModelRegistry.applyTo(allLinksTransitive(...), ...)` should be converted to use the new notation where possible.

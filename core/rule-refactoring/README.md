@@ -12,8 +12,6 @@ Therefore the goal here is as much to make the life of our plugin author users' 
 
 ## Status
 
-
-
 ### Problems to fix
 
 Typical problems this feature tries to address:
@@ -22,11 +20,11 @@ Typical problems this feature tries to address:
 
 - **rules target the wrong subject** -- we have rules that target the global task container and use a binary as input only to modify the binary in the end. This works because we don't enforce immutability on binaries properly, but it again messes up the dependencies between rules. The problem can be fixed by creating tasks through the individual task containers of each buildable, and only collecting them in the global container.
 
-## Stories
+## Work
 
-See [HuBoard](https://huboard.com/gradle/langos#/?label=%5B%22feature%3Arule-refactoring%22%5D) or the sub-directories here for stories that have cards already.
+See the subdirectories here and the [`feature:rule-refactoring` label](https://huboard.com/gradle/langos#/?label=%5B%22feature%3Arule-refactoring%22%5D) in HuBoard.
 
-Stories without a card yet:
+Work that has not yet been mapped to a subdirectory or card:
 
 - Element has immutable properties defined early
 - Can define tasks for a binary

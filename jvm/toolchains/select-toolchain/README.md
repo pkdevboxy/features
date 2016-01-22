@@ -1,10 +1,10 @@
-# Build author declares installed Java toolchain
+# Java compile tasks select "best" compatible toolchain
 
 Story:
 
 ## Summary
 
-This will allow users to define the installed Java toolchains. We should reuse the `toolChains` container that exists in the native ecosystem. This story will setup the initial infrastructure required to support multiple toolchains in the Java software model. The user will be able to declare toolchains, but Gradle will not automatically pick them. Instead, the user would have to choose one explicitly in a rule to use it.
+This story will make Gradle use the declared toolchains and choose the most appropriate version to compile Java classes, while being lenient: if a strict match is found, the toolchain will be used. If a superior version of the JDK is found, then we would select the *closest* version (no failure).
 
 ## Usage
 
@@ -28,7 +28,7 @@ This will allow users to define the installed Java toolchains. We should reuse t
         Jar 'myLib:java6Jar'
             build using task: :myLibJava6Jar
             target platform: Java SE 6
-            tool chain: JDK 8 (1.8)
+            tool chain: OpenJDK 6 (1.6)
             classes dir: build/classes/myLib/java6Jar
             resources dir: build/resources/myLib/java6Jar
             API Jar file: build/jars/myLib/java6Jar/api/myLib.jar
@@ -36,7 +36,7 @@ This will allow users to define the installed Java toolchains. We should reuse t
         Jar 'myLib:java7Jar'
             build using task: :myLibJava7Jar
             target platform: Java SE 7
-            tool chain: JDK 8 (1.8)
+            tool chain: OracleJDK 7 (1.7)
             classes dir: build/classes/myLib/java7Jar
             resources dir: build/resources/myLib/java7Jar
             API Jar file: build/jars/myLib/java7Jar/api/myLib.jar
@@ -59,7 +59,7 @@ This will allow users to define the installed Java toolchains. We should reuse t
             JUnit version: 4.12
             component under test: JVM library 'myLib'
             binary under test: Jar 'myLib:java6Jar'
-            tool chain: JDK 8 (1.8)
+            tool chain: OpenJDK 6 (1.6)
             classes dir: build/classes/myTest/myLibJava6JarBinary
             resources dir: build/resources/myTest/myLibJava6JarBinary
         Test suite 'myTest:myLibJava7JarBinary'
@@ -69,7 +69,7 @@ This will allow users to define the installed Java toolchains. We should reuse t
             JUnit version: 4.12
             component under test: JVM library 'myLib'
             binary under test: Jar 'myLib:java7Jar'
-            tool chain: JDK 8 (1.8)
+            tool chain: OracleJDK 7 (1.7)
             classes dir: build/classes/myTest/myLibJava7JarBinary
             resources dir: build/resources/myTest/myLibJava7JarBinary
 
@@ -78,13 +78,20 @@ This will allow users to define the installed Java toolchains. We should reuse t
     BUILD SUCCESSFUL
 
 
+
 ## Implementation Goals
 
- - [ ] Add mechanism to declare Java toolchain resolvers.
- - [ ] Add resolver that uses an specified install dir to locate toolchain.
- - [ ] Resolver probes the version of the installed toolchain (reusing existing logic to do this).
- - [ ] If possible try to determine the name of the toolchain from the vendor (OpenJDK vs OracleJDK vs IBM JDK vs ...)
+In this story we assume that we are lenient, like the current implementation, we regards to choosing a compatible JDK: strictly speaking, when compiling, we should choose the exact version of the JDK that is required by a binary and fail if no such JDK is declared. However, for practical reasons we might just want to choose the closest compatible version and possibly warn about it (the Java compiler will emit a warning in any case).
+
+ - [ ] Implementation forks javac
+ - [ ] To compile Java source, select the closest compatible toolchain to compile the variant
+
+ It is a non-goal to support JDK 9 specific flags, that are there to support backwards compilation enforcing the API level (see http://openjdk.java.net/jeps/247), but if the implementation makes it easy to support that in the future, it's a plus.
 
 ## Test cases
 
-TODO
+ - [ ] Reasonable error message if no compatible toolchain is found (for example, trying to compile Java 9 with JDK 8 declared)
+ - [ ] If a binary targets Java X and a JDK X is installed, then this version is used to compile
+ - [ ] If a binary targets Java X and JDK X+1 and JDK X+2 is installed, JDK X+1 is used
+
+

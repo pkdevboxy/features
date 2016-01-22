@@ -23,7 +23,7 @@ class MyCompoentRules extends RuleSource {
 }
 ```
 
-TBD how to scope a recursive rule to a subtree of the model.
+The scope in which `@Each` is applied is the same scope that the `RuleSource` is applied to.
 
 ## Tests
 

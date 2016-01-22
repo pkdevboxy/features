@@ -22,7 +22,7 @@ Typical problems this feature tries to address:
 
 ## Work
 
-See the subdirectories here and the [`feature:rule-refactoring` label](https://huboard.com/gradle/langos#/?label=%5B%22feature%3Arule-refactoring%22%5D) in HuBoard.
+See the subdirectories here and the [`feature:rule-engine` label](https://huboard.com/gradle/langos#/?label=%5B%22feature%3Arule-engine%22%5D) in HuBoard.
 
 Work that has not yet been mapped to a subdirectory or card:
 

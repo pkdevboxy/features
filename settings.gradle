@@ -2,6 +2,8 @@ include 'template'
 
 include 'jvm:compile-avoidance'
 
+// include 'jvm:dependencies:dependency-report:for-custom-ecosystem'
+
 include 'jvm:test-execution:with-junit'
 include 'jvm:test-execution:with-dependencies:on-external-lib:scoped-to-source-set'
 include 'jvm:test-execution:with-dependencies:on-external-lib:scoped-to-suite'

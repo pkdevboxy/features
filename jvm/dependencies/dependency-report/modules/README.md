@@ -1,4 +1,6 @@
-Publishes a set of components with the following dependency structure to an ivy repository:
+Publishes a set of libraries to a local ivy repository so they can be used for deterministic testing of the dependency report feature.
+
+The published libraries have the following dependency structure:
 
 ```
 com.acme:modules:1.0

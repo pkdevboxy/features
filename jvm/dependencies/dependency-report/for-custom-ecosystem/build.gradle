@@ -1,5 +1,5 @@
 /**
- * A custom component with per sourceset and per component
+ * A custom component with per source-set and per component
  * dependencies.
  */
 interface MyComponentSpec extends ComponentSpec {
@@ -54,7 +54,7 @@ class MyLanguagePlugin extends RuleSource {
 
     @BinaryTasks
     void createMyCompileTask(ModelMap<Task> tasks, MyBinarySpec binary) {
-        def compileTaskName = binary.getTasks().taskName("compile", "My")
+        def compileTaskName = binary.getTasks().taskName("compile", "OfMine")
         tasks.create(compileTaskName, DefaultTask, new Action<DefaultTask>() {
             void execute(DefaultTask compile) {
                 compile.description = "Compiles My sources for ${binary.displayName}."
@@ -89,7 +89,7 @@ model {
 }
 
 repositories {
-    ivy { url 'artifacts' }
+    ivy { url '../artifacts' }
 }
 
 import org.gradle.platform.base.internal.DefaultDependencySpecContainer

@@ -11,6 +11,10 @@ allprojects {
     buildDir = rootProject.file("build/$name")
 }
 
+subprojects {
+  apply plugin: 'java'
+}
+
 project(':collections') {
     dependencies {
         'default' project(':core')

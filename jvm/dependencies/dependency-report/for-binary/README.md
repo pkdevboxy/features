@@ -17,3 +17,14 @@ As a build user, I can request a report of all dependencies for a particular bin
     - [ ] transitive component API dependencies
     - [ ] correctly resolved dependencies against multiple variant coordinates
   - [ ] Transitive dependencies of duplicate libraries in the dependency graph are shown only once
+  - [ ] Dependency report shows the resolved link time dependency graph for native binaries
+  - [ ] Dependency report shows the resolved runtime dependency graph for executable binaries including:
+    - [ ] JVM test suites
+    - [ ] native test suites
+    - [ ] JVM applications
+    - [ ] native executables
+  - [ ] Dependency report shows all _variant coordinates_ that influenced dependency resolution including _target platform_, _flavor_, etc
+
+## Implementation notes
+
+Report should have parity with the legacy report, showing substitutions, rendering in the presence of resolution failures, dealing with cycles and as much implementation as possible should be shared.

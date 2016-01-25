@@ -15,13 +15,13 @@ _The stories below are listed in the order they should be implemented._
  - [ ] [Dependency report for project](./for-project)
  - [ ] [Dependency report for source-set](./for-source-set)
  - [ ] [Dependency report for custom ecosystem](./for-custom-ecosystem)
+ - [ ] [Dependency report as model element](./as-model-element)
 
 ## Implementation notes
 
 - The implementation should keep the rendering of the report separate from the computation of the data structure representing the resolved report so as to allow interested parties (e.g. dotcom) to consume the data directly and without ceremony.
 - The implementation should *not* have any knowledge of the Java ecosystem. It may understand the abstract software model.
 - Ideally any model element with support for dependencies (`WithDependencies`?) could be the target of a report request.
-- Consider providing each piece of the report as a model element so other rules can be built on top.
 
 ## Setup
 

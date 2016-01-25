@@ -1,6 +1,6 @@
 # Build author declares installed JDKs
 
-Story:
+Story: https://github.com/gradle/langos/issues/153
 
 ## Summary
 
@@ -87,4 +87,10 @@ This will allow users to define the installed Java toolchains. We should **not**
 
 ## Test cases
 
-TODO
+ - Can avoid a `jdks` section altogether
+ - Reasonable error message if the path to the JDK is not valid
+ - Reasonable error message if the path is not a path to a JDK
+ - Reasonable error message if the JDK cannot be probed
+ - Cannot declare the same JDK twice (deduplicated by resolved absolute path)
+ - JDK versions are probed at most once per build
+

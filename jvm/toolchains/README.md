@@ -8,9 +8,9 @@ This feature brings toolchain declaration and toolchain selection to the Java so
 
 This feature will be deliverable when:
 
-  - [ ] toolchains can be declared
-  - [ ] toolchains are appropriately selected for compilation
-  - [ ] toolchains are appropriately selected for execution
+  - [ ] JDKs or JREs can be declared (independently of the vendor)
+  - [ ] JDKs are appropriately selected for compilation
+  - [ ] JREs are appropriately selected for execution
 
 and complete when all of the above stories are implemented.
 
@@ -21,10 +21,13 @@ and complete when all of the above stories are implemented.
 ## Stories
 _The stories (and other cards) below are listed according to the order in which they should be implemented._
 
- - [ ] [Build author declares installed Java toolchain](declare-installed)
- - [ ] [Java compile tasks select best compatible toolchain](select-toolchain)
+ - [ ] [Build author declares installed JDKs](declare-installed)
+ - [ ] [Java compile tasks select best compatible JDK](select-toolchain)
  - [ ] Test suite can declare Java runtime platforms and executes against all
- - [ ] [Build author declares toolchain compatible Java platforms](strict-toolchain)
- - [ ] Discovery of installed Java toolchains
- - [ ] Automatic download of Java toolchains
+ - [ ] [Build author declares JDK compatibility level](strict-toolchain)
+ - [ ] Discovery of installed JDKs/JREs
+
+ ## Out of scope
+
+ - [ ] Automatic download (provisioning) of Java toolchains
 

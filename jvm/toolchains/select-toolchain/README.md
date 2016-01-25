@@ -1,10 +1,10 @@
-# Java compile tasks select "best" compatible toolchain
+# Java compile tasks select "best" compatible JDK
 
 Story:
 
 ## Summary
 
-This story will make Gradle use the declared toolchains and choose the most appropriate version to compile Java classes, while being lenient: if a strict match is found, the toolchain will be used. If a superior version of the JDK is found, then we would select the *closest* version (no failure).
+This story will make Gradle use the declared JDK and choose the most appropriate version to compile Java classes, while being lenient: if a strict match is found, the toolchain will be used. If a superior version of the JDK is found, then we would select the *closest* version (no failure).
 
 ## Usage
 
@@ -83,8 +83,9 @@ This story will make Gradle use the declared toolchains and choose the most appr
 
 In this story we assume that we are lenient, like the current implementation, we regards to choosing a compatible JDK: strictly speaking, when compiling, we should choose the exact version of the JDK that is required by a binary and fail if no such JDK is declared. However, for practical reasons we might just want to choose the closest compatible version and possibly warn about it (the Java compiler will emit a warning in any case).
 
- - [ ] Implementation forks javac
+ - [ ] Implementation forks javac, if the chosen JDK is not the one that Gradle runs with.
  - [ ] To compile Java source, select the closest compatible toolchain to compile the variant
+ - [ ] The version of Java that Gradle runs on has to be included in the selection process (meaning that it should be preferred over declared installed JDKs if it matches the target platform)
 
  It is a non-goal to support JDK 9 specific flags, that are there to support backwards compilation enforcing the API level (see http://openjdk.java.net/jeps/247), but if the implementation makes it easy to support that in the future, it's a plus.
 

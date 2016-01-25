@@ -1,10 +1,10 @@
-# Build author declares installed Java toolchain
+# Build author declares installed JDKs
 
 Story:
 
 ## Summary
 
-This will allow users to define the installed Java toolchains. We should reuse the `toolChains` container that exists in the native ecosystem. This story will setup the initial infrastructure required to support multiple toolchains in the Java software model. The user will be able to declare toolchains, but Gradle will not automatically pick them. Instead, the user would have to choose one explicitly in a rule to use it.
+This will allow users to define the installed Java toolchains. We should **not** reuse the `toolChains` container that exists in the native ecosystem because it mixes the definition of tools and their resolution. Instead, we're introducing a `jdks` container that will let the user define installed JDKs. An independent resolver will use this information later. This story will setup the initial infrastructure required to support multiple JDKs in the Java software model. The user will be able to declare JDKs, but Gradle will not yet automatically pick them. Instead, the user would have to choose one explicitly in a rule to use it.
 
 ## Usage
 
@@ -80,9 +80,9 @@ This will allow users to define the installed Java toolchains. We should reuse t
 
 ## Implementation Goals
 
- - [ ] Add mechanism to declare Java toolchain resolvers.
+ - [ ] Add mechanism to declare location of JDKs
  - [ ] Add resolver that uses an specified install dir to locate toolchain.
- - [ ] Resolver probes the version of the installed toolchain (reusing existing logic to do this).
+ - [ ] Resolver probes the version of the installed toolchain (reusing existing logic to do this). This **must** be done only once per build (not per project per build). Introduce caching.
  - [ ] If possible try to determine the name of the toolchain from the vendor (OpenJDK vs OracleJDK vs IBM JDK vs ...)
 
 ## Test cases

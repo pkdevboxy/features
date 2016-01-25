@@ -9,7 +9,7 @@ repositories {
 }
 
 model {
-    toolChains {
+    jdks {
         openJdk6(JdkSpec) {
             path '/usr/lib/jvm/java-6-openjdk-amd64'
         }

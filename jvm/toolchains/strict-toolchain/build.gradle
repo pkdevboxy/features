@@ -9,14 +9,14 @@ repositories {
 }
 
 model {
-    toolChains {
+    jdks {
         openJdk6(JdkSpec) {
-            targetPlatform 'java6'
+            compatibleWith 'java6'
             path '/usr/lib/jvm/java-6-openjdk-amd64'
         }
         oracleJdk8(JdkSpec) {
-            targetPlatform 'java7'
-            targetPlatform 'java8'
+            compatibleWith 'java7'
+            compatibleWith 'java8'
             path '/usr/lib/jvm/java-8-oracle'
         }
     }

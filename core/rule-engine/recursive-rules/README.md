@@ -40,6 +40,7 @@ The scope in which `@Each` is applied is the same scope that the enclosing `Rule
   * rule is not applied to descendant references
   * rule is not applied to children of referenced node
   * rule cannot be applied to subject addressed via `@Path`
+  * fails when `@Each` is applied to an input or the `RuleSource` parameter
 
 ## Implementation
 

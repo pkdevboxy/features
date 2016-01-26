@@ -37,8 +37,3 @@ Typical problems these changes try to address:
 ## Work
 
 See cards labeled `feature:rule-engine` and the subdirectories here. The following work has yet to be mapped to a card and subdirectory:
-
-- Element has immutable properties defined early
-- Component binaries and sources, and binary sources should be immutable when used as input
-- More of the model should be managed, dependency declarations in particular
-- Fix existing rules to use correct subject

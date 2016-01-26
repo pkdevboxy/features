@@ -1,0 +1,42 @@
+plugins {
+  id 'jvm-component'
+  id 'java-lang'
+}
+
+model {
+  components {
+
+    myLib(JvmLibrarySpec) {
+      sources.java.dependencies.library 'myCore'
+      binaries {
+        myCustomJar(JarBinarySpec) {
+          sources {
+            myCustomJavaSourceSet(JavaSourceSet) {
+              dependencies {
+                library 'myUtils'
+              }
+            }
+          }
+        }
+      }
+    }
+
+    myCore(JvmLibrarySpec) {
+      api {
+        dependencies {
+          module 'com.acme:collections:1.0'
+        }
+      }
+    }
+
+    myUtils(JvmLibrarySpec) {
+      dependencies {
+        module 'com.acme:utils:1.0'
+      }
+    }
+  }
+}
+
+repositories {
+  ivy { url '../artifacts' }
+}

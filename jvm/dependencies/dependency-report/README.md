@@ -1,16 +1,18 @@
-# Dependency report shows resolved compile time dependency graph of binaries
+# Dependency report shows resolved dependency graph of binaries
 
 Feature: [#69](https://github.com/gradle/langos/issues/69)
 
 ## Summary
 
-As a build user, I can request a dependency report for a project, for a component, for a particular binary or even for a specific source set. The requested report will be displayed and will include the resolved compile time graph for each relevant binary depending on the targeted element.
+As a build user, I can request a dependency report for a project, for a component, for a particular binary or even for a specific source set. The requested report will be displayed and will include the resolved compile time, link time and/or runtime dependency graphs for each relevant binary depending on the targeted element.
 
 ## Stories
 
 _The stories below are listed in the order they should be implemented._
 
- - [ ] [Dependency report for binary](./for-binary)
+ - [ ] [Dependency report for JVM binary](./for-jvm-binary)
+ - [ ] [Dependency report for JVM test suite](./for-jvm-test-suite)
+ - [ ] [Dependency report for native binary](./for-native-binary)
  - [ ] [Dependency report for component](./for-component)
  - [ ] [Dependency report for project](./for-project)
  - [ ] [Dependency report for source-set](./for-source-set)

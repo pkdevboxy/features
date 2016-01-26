@@ -1,6 +1,6 @@
 # Java compile tasks select "best" compatible JDK
 
-Story:
+Story: https://github.com/gradle/langos/issues/154
 
 ## Summary
 

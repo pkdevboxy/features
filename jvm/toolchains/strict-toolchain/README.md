@@ -1,6 +1,6 @@
 # Build author declares JDK compatibility level
 
-Story:
+Story: https://github.com/gradle/langos/issues/156
 
 ## Summary
 

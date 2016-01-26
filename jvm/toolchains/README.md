@@ -23,9 +23,9 @@ _The stories (and other cards) below are listed according to the order in which 
 
  - [ ] [Build author declares installed JDKs](declare-installed)
  - [ ] [Java compile tasks select best compatible JDK](select-toolchain)
- - [ ] Test suite can declare Java runtime platforms and executes against all
+ - [ ] [Test suite can declare Java runtime platforms and executes against all](test-runtime)
  - [ ] [Build author declares JDK compatibility level](strict-toolchain)
- - [ ] Discovery of installed JDKs/JREs
+ - [ ] [Discovery of installed JDKs/JREs](jdk-discovery)
 
  ## Out of scope
 

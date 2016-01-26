@@ -14,17 +14,17 @@ The rule is only applied to true descendants of the given element, and never to 
 
 ## API
 
-It is possible to apply a single rule, or a full `RuleSource` to all descendants with a given type:
+It is possible to apply a single rule, or a full `RuleSource` to all descendants with a given type by annotating the subject with `@Each`:
 
 ```groovy
 class MyRules extends RuleSource {
-    @Mutate @Each
-    void mutateMyComponents(MyComponentSpec component) {
+    @Mutate
+    void mutateMyComponents(@Each MyComponentSpec component) {
         // do something with each MyComponentSpec, no matter where it is in the model
     }
 
-    @Rules @Each
-    void mutateMyBinaries(MyBinaryRules rules, MyBinarySpec bianry) {
+    @Rules
+    void mutateMyBinaries(MyBinaryRules rules, @Each MyBinarySpec bianry) {
         // apply MyBinaryRules to each MyBinarySpec, no matter where it is in the model
     }
 }
@@ -34,14 +34,25 @@ The scope in which `@Each` is applied is the same scope that the enclosing `Rule
 
 ## Tests
 
-* rule is applied to all children of model element that can be viewed as the required type
-* rule is not applied to scope element even if it can be viewed as the required type
-* rule is not applied to descendant references
-* rule is not applied to children of referenced node
-* the above work with a complete `RuleSource` as well as a single rule
+* check that these work for both standalone mutator rules and `@Rules` rules
+  * rule is applied to all children of model element that can be viewed as the required type
+  * rule is not applied to scope element even if it can be viewed as the required type
+  * rule is not applied to descendant references
+  * rule is not applied to children of referenced node
+  * rule cannot be applied to subject addressed via `@Path`
 
 ## Implementation
 
 `@Each` rules can be applied to elements via an ancestral `ModelListener` when the node is discovered.
 
 Rules applied via `ModelRegistry.applyTo(allLinksTransitive(...), ...)` should be converted to use the new notation where possible.
+
+Also try to convert anything that applies to a broader scope than necessary. If it's easy to fix, fix it, or track any problems causing the fix to be too hard to do right now.
+
+Add user guide docs with a sample.
+
+## Out of scope
+
+- break up existing rules applied to bigger than necessary scopes that need further model/rule engine features to be fixed
+- apply rules to or through references
+- support for applying the rule only to direct children (as opposed to all descendants) — in the future we can support that via `@Each(directOnly = true)` if we want to
